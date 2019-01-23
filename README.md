@@ -14,6 +14,7 @@
 
 ### 源码地址：
    Gitee地址： [https://gitee.com/hagyao520/AutomationTestSystem.git](https://gitee.com/hagyao520/AutomationTestSystem.git)
+
    GitHub地址：[https://github.com/hagyao520/AutomationTestSystem.git](https://github.com/hagyao520/AutomationTestSystem.git)
 
 ### 系统介绍：
