@@ -1,0 +1,451 @@
+/*.root,默认字体大小为12px才有效
+.root{
+    -fx-font-size: 2.2em;
+    -fx-font-family: "Helvetica, Arial, sans-serif";
+}*/
+
+/*根据ID="ad",设置字体大小*/
+#mainPane1{
+    -fx-font-size: 2.2em;
+    -fx-font-family: "Helvetica, Arial, sans-serif";
+}
+
+/*根据ID="mainBorderPane",设置面板大小*/
+#mainBorderPane{
+    -fx-pref-height: 330;
+    -fx-pref-width: 450;
+}
+
+#LoginPane{
+ -fx-background-color:#ebf2f9;
+}
+
+/**设置按钮**/
+#SettingButton{
+    -fx-background-image:url("../image/LoginPane/SettingButton/btn_set_normal.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+}
+
+#SettingButton:focused{
+    -fx-background-image:url("../image/LoginPane/SettingButton/btn_set_normal.png");
+}
+
+#SettingButton:hover {
+    -fx-background-image:url("../image/LoginPane/SettingButton/btn_set_hover.png");
+}
+
+#SettingButton:pressed {
+    -fx-background-image:url("../image/LoginPane/SettingButton/btn_set_press.png");
+}
+
+/**最小化按钮**/
+#MinimizationButton {
+    -fx-background-image:url("../image/LoginPane/MinimizationButton/btn_mini_normal.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+}
+
+#MinimizationButton:focused{
+    -fx-background-image:url("../image/LoginPane/MinimizationButton/btn_mini_normal.png");
+}
+
+#MinimizationButton:hover {
+    -fx-background-image:url("../image/LoginPane/MinimizationButton/btn_mini_highlight.png");
+}
+
+#MinimizationButton:pressed {
+    -fx-background-image:url("../image/LoginPane/MinimizationButton/btn_mini_down.png");
+}
+
+/**关闭按钮**/
+#CloseButton {
+    -fx-background-image:url("../image/LoginPane/CloseButton/btn_close_normal.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+}
+
+#CloseButton:focused{
+    -fx-background-image:url("../image/LoginPane/CloseButton/btn_close_normal.png");
+}
+
+#CloseButton:hover {
+    -fx-background-image:url("../image/LoginPane/CloseButton/btn_close_highlight.png");
+}
+
+#CloseButton:pressed {
+    -fx-background-image:url("../image/LoginPane/CloseButton/btn_close_down.png");
+}
+
+/**账号密码输入框提示文字**/
+.text-field{
+    -fx-background-radius: 3;
+    -fx-border-color: null;
+    -fx-border-radius:3;
+    -fx-border-width:0.5;
+}
+
+.text-field:focused{
+    -fx-background-radius: 3;
+    -fx-border-color: #4e8fe2;
+    -fx-border-radius:3;
+    -fx-border-width:0.5;
+}
+
+.text-field:hover {
+    -fx-background-radius: 3;
+    -fx-border-color: #47c6f9;
+    -fx-border-radius:3;
+    -fx-border-width:0.5;
+}
+
+.text-field:disabled {
+    -fx-background-radius: 3;
+    -fx-border-color: #ced3d8;
+    -fx-border-radius:3;
+    -fx-border-width:0.5;
+}
+
+/**账号输入框**/
+#AccountField {
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+    -fx-border-color: null;
+    -fx-background-image:url("../image/LoginPane/AccountField/edit_frame_normal_reversed.png");
+    -fx-border-insets: 2,2,2,2;
+    -fx-border-image-insets:  2,2,2,2;
+}
+
+#AccountField:editable {
+    -fx-background-image:url("../image/LoginPane/AccountField/edit_frame_normal_reversed.png");
+}
+
+#AccountField:focused {
+    -fx-background-image:url("../image/LoginPane/AccountField/edit_frame_hover_reversed.png");
+}
+
+/**账号输入框-鼠标放上效果**/
+#AccountField:hover {
+    -fx-background-image:url("../image/LoginPane/AccountField/edit_frame_hover_reversed.png");
+}
+
+#AccountField:pressed {
+    -fx-background-image:url("../image/LoginPane/AccountField/edit_frame_normal_reversed.png");
+}
+
+/**账号输入框下拉按钮**/
+#AccountField-Combobox-OffButton{
+    -fx-background-image:url("../image/LoginPane/AccountField/login_inputbtn_normal.png");
+    -fx-background-size: 20,20;
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+}
+#AccountField-Combobox-OffButton:focused{
+    -fx-background-image:url("../image/LoginPane/AccountField/login_inputbtn_normal.png");
+}
+
+#AccountField-Combobox-OffButton:hover {
+    -fx-background-image:url("../image/LoginPane/AccountField/login_inputbtn_highlight.png");
+}
+
+#AccountField-Combobox-OffButton:pressed {
+    -fx-background-image:url("../image/LoginPane/AccountField/login_inputbtn_down.png");
+}
+
+/**账号输入框下拉按钮**/
+#AccountField-Combobox-OnButton{
+    -fx-background-image:url("../image/LoginPane/AccountField/login_inputbtn_down.png");
+    -fx-background-size: 20,20;
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+}
+
+#AccountField-Combobox-OnButton:pressed {
+    -fx-background-image:url("../image/LoginPane/AccountField/login_inputbtn_normal.png");
+}
+
+/**账号列表删除按钮**/
+#AccountListViewDeleteButtonX{
+    -fx-background-image:url("../image/LoginPane/AccountField/account_listview_delete_normal_20x20.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+}
+
+#AccountListViewDeleteButtonX:focused{
+    -fx-background-image:url("../image/LoginPane/AccountField/account_listview_delete_normal_20x20.png");
+}
+
+#AccountListViewDeleteButtonX:hover{
+    -fx-background-image:url("../image/LoginPane/AccountField/account_listview_delete_highlight_20x20.png");
+}
+
+#AccountListViewDeleteButtonX:pressed{
+    -fx-background-image:url("../image/LoginPane/AccountField/account_listview_delete_down_20x20.png");
+}
+
+/**账号列表删除按钮**/
+#AccountListViewDeleteButtonD{
+    -fx-background-image:url("../image/LoginPane/AccountField/account_listview_delete_normal.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+}
+
+#AccountListViewDeleteButtonD:focused{
+    -fx-background-image:url("../image/LoginPane/AccountField/account_listview_delete_normal.png");
+}
+
+#AccountListViewDeleteButtonD:hover{
+    -fx-background-image:url("../image/LoginPane/AccountField/account_listview_delete_highlight.png");
+}
+
+#AccountListViewDeleteButtonD:pressed{
+    -fx-background-image:url("../image/LoginPane/AccountField/account_listview_delete_down.png");
+
+    }
+/**密码输入框**/
+#PassWordField {
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+    -fx-border-color: null;
+    -fx-background-image:url("../image/LoginPane/PassWordField/edit_frame_normal.png");
+    -fx-border-insets: 2,2,2,2;
+    -fx-border-image-insets:  2,2,2,2;
+}
+
+#PassWordField:editable{
+    -fx-background-image:url("../image/LoginPane/PassWordField/edit_frame_normal.png");
+}
+
+#PassWordField:focused{
+    -fx-background-image:url("../image/LoginPane/PassWordField/edit_frame_hover.png");
+}
+
+/**密码输入框-鼠标放上效果**/
+#PassWordField:hover{
+    -fx-background-image:url("../image/LoginPane/PassWordField/edit_frame_hover.png");
+}
+
+#PassWordField:pressed{
+    -fx-background-image:url("../image/LoginPane/PassWordField/edit_frame_normal.png");
+}
+
+/**密码输入框-键盘按钮**/
+#PassWordField-KeyButton{
+    -fx-background-fills:15,15;
+    -fx-background-image :url("../image/LoginPane/PassWordField/KeyButton/keyboard_normal.png");
+    -fx-background-insets: 5,5,5,5;
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+}
+#PassWordField-KeyButton:focused{
+    -fx-background-image:url("../image/LoginPane/PassWordField/KeyButton/keyboard_normal.png");
+}
+
+#PassWordField-KeyButton:hover {
+    -fx-background-image:url("../image/LoginPane/PassWordField/KeyButton/keyboard_hover.png");
+}
+
+#PassWordField-KeyButton:pressed {
+    -fx-background-image:url("../image/LoginPane/PassWordField/KeyButton/keyboard_down.png");
+}
+
+/**注册账号文本**/
+#RegisteredLabel{
+	-fx-font-size: 12px;
+    -fx-text-fill:#2785c8;
+}
+
+#RegisteredText:hover{
+    -fx-text-fill:#47b7f7;
+}
+
+/**忘记密码文本**/
+#ForgetPassWordLabel{
+	-fx-font-size: 12px;
+    -fx-text-fill:#2785c8;
+}
+
+#ForgetPassWordText:hover{
+    -fx-text-fill:#47b7f7;
+}
+
+/**忘记密码，自动登录复选框 **/
+.check-box {
+	/*文字颜色 */
+    -fx-text-fill: #888888;
+}
+
+.check-box > .box{
+	/*背景 */
+	-fx-background-color: #ffffff;
+    /*边框 */
+    -fx-border-color: #858686;
+    -fx-border-radius: 1.8;
+    /*大小 */
+    -fx-padding: 1;
+}
+
+.check-box1 > .box{
+    -fx-border-color: #858686;
+    /*-fx-border-insets: 1,1,1,1;*/
+    -fx-background-color: #ffffff;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+    -fx-background-radius: 0px, 0px, 0px, 0px;
+
+    -fx-text-fill: -fx-text-base-color;
+    -fx-alignment: CENTER;
+    -fx-content-display: LEFT;
+    -fx-padding: 1;
+}
+
+.check-box1:hover > .box{
+    -fx-border-color:  #1a6cc7;
+    /*-fx-border-insets: 1,1,1,1;*/
+    /*-fx-border-width:2;*/
+    -fx-color: -fx-hover-base;
+    -fx-effect: dropshadow( three-pass-box , rgba(255,255,255,0.6) , 10, 0.5 , 0 , 0 );
+    /*-fx-padding: -0.5;*/
+}
+
+.check-box1:selected > .box > .mark {
+    /*-fx-background-image:url("../image/LoginPane/LoginButton/checkbox/checkbox_selected_normal.png");*/
+    /*-fx-background-color: null;*/
+    -fx-background-color: #ffffff;
+    -fx-background-insets: 0;
+}
+
+.check-box1:selected > .box  {
+    /*-fx-background-color: null;*/
+    -fx-background-color: #4e8fe2;
+    -fx-background-insets: 0;
+}
+
+/**登录按钮 **/
+#LoginButton{
+    -fx-background-image:url("../image/LoginPane/LoginButton/button_login_normal.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+    -fx-font-family: Microsoft YaHei;
+    -fx-text-fill: white;
+}
+
+#LoginButton:focused{
+    -fx-background-image:url("../image/LoginPane/LoginButton/button_login_normal.png");
+}
+
+#LoginButton:hover {
+    -fx-background-image:url("../image/LoginPane/LoginButton/button_login_hover.png");
+}
+
+#LoginButton:pressed {
+    -fx-background-image:url("../image/LoginPane/LoginButton/button_login_down.png");
+}
+
+/**用户名文本**/
+#NameLabel{
+	-fx-font-size: 12px;
+    -fx-text-fill: black;
+}
+
+/*系统设置界面 */
+#SystemSettingPane{
+    -fx-background-color: #3E9ED0;
+}
+
+#SystemSettingLabel{
+	-fx-font-size: 13;
+    -fx-text-fill: white;
+    -fx-font-family: "微软雅黑";
+}
+
+.tab-header-background {
+	/*顶部颜色 */
+    -fx-background-color: #EDEEEE;
+}
+
+.tab-pane{
+    -fx-tab-min-width:80px;
+    -fx-tab-min-height:25px;
+    -fx-background-color: #FFFFFF;
+}
+
+.tab:selected{
+    -fx-background-color: #FFFFFF;
+}
+
+/*
+.tab{
+	-fx-font-family: "微软雅黑";
+	-fx-font-size: 12;
+    -fx-background-color: #CDCDCD;
+}
+
+.tab:hover{
+    -fx-background-color: #CDCDCD;
+}
+
+.tab:selected{
+    -fx-background-color: #FFFFFF;
+}
+*/
+
+/**连接测试按钮 **/
+#ConnectionTestButton{
+    -fx-background-color: #3E9ED0;
+    -fx-background-radius: 0;
+    -fx-font-size: 13;
+    -fx-font-family: "微软雅黑";
+    -fx-text-fill: white;
+}
+
+#ConnectionTestButton:hover {
+    -fx-background-color: #3CC3F5;
+}
+
+#ConnectionTestButton:pressed {
+    -fx-background-color: #098CBC;
+}
+
+/**加载界面背景 **/
+#LoadingBackground{
+    -fx-background-color: #C5C5C5;
+}
+
+/**加载界面进度文本 **/
+#LoadingLabel{
+    -fx-font-size: 40;
+    -fx-font-family: "微软雅黑";
+}
+
+/**进入系统按钮 **/
+#EnterTheSystemButton{
+    -fx-background-color:null;
+}
+
+#EnterTheSystemButton:focused{
+	-fx-background-image:url("../image/LoginPane/Loading/EnterTheSystem_normal.png");
+}
+
+#EnterTheSystemButton:hover {
+    -fx-background-image:url("../image/LoginPane/Loading/EnterTheSystem_highlight.png");
+}
+
+#EnterTheSystemButton:pressed {
+    -fx-background-image:url("../image/LoginPane/Loading/EnterTheSystem_down.png");
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

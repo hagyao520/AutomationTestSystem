@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>纯js实现电子时钟特效|DEMO_jQuery之家-自由分享jQuery、html5、css3的插件库</title>
+	<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="css/htmleaf-demo.css">
+	<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+	<div class="htmleaf-container">
+		<main>
+			<!-- DAY OF THE WEEK -->
+			<div class="days">
+
+				<div class="day">
+					<p class="sunday">星期日</p>
+				</div>
+
+				<div class="day">
+					<p class="monday">星期一</p>
+				</div>
+
+				<div class="day">
+					<p class="tuesday">星期二</p>
+				</div>
+
+				<div class="day">
+					<p class="wednesday">星期三</p>
+				</div>
+
+				<div class="day">
+					<p class="thursday">星期四</p>
+				</div>
+
+				<div class="day">
+					<p class="friday">星期五</p>
+				</div>
+
+				<div class="day">
+					<p class="saturday">星期六</p>
+				</div>
+
+			</div>
+			<!-- CLOCK -->
+			<div class="clock">
+				<!-- HOUR -->
+				<div class="numbers">
+					<p class="hours"></p>
+					<p class="placeholder">88</p>
+				</div>
+
+				<div class="colon">
+					<p>:</p>
+				</div>
+
+				<!-- MINUTE -->
+				<div class="numbers">
+					<p class="minutes"></p>
+					<p class="placeholder">88</p>
+				</div>
+
+				<div class="colon">
+					<p>:</p>
+				</div>
+
+				<!-- SECOND -->
+				<div class="numbers">
+					<p class="seconds"></p>
+					<p class="placeholder">88</p>
+				</div>
+
+				<!-- AM / PM -->
+				<div class="am-pm">
+
+					<!-- AM -->
+					<div>
+						<p class="am">am</p>
+					</div>
+
+					<!-- PM -->
+					<div>
+						<p class="pm">pm</p>
+					</div>
+				</div>
+
+			</div><!-- END CLOCK -->
+
+		</main>
+	</div>
+
+	<script type="text/javascript">
+		//invokes functions as soon as window loads
+		window.onload = function(){
+			time();
+			ampm();
+			whatDay();
+			setInterval(function(){
+				time();
+				ampm();
+				whatDay();
+			}, 1000);
+		};
+
+
+		//gets current time and changes html to reflect it
+		function time(){
+			var date = new Date(),
+				hours = date.getHours(),
+				minutes = date.getMinutes(),
+				seconds = date.getSeconds();
+
+			//make clock a 12 hour clock instead of 24 hour clock
+			hours = (hours > 24) ? (hours - 24) : hours;
+			hours = (hours === 0) ? 24 : hours;
+
+			//invokes function to make sure number has at least two digits
+			hours = addZero(hours);
+			minutes = addZero(minutes);
+			seconds = addZero(seconds);
+
+			//changes the html to match results
+			document.getElementsByClassName('hours')[0].innerHTML = hours;
+			document.getElementsByClassName('minutes')[0].innerHTML = minutes;
+			document.getElementsByClassName('seconds')[0].innerHTML = seconds;
+		}
+
+		//turns single digit numbers to two digit numbers by placing a zero in front
+		function addZero (val){
+			return (val <= 9) ? ("0" + val) : val;
+		}
+
+		//lights up either am or pm on clock
+		function ampm(){
+			var date = new Date(),
+				hours = date.getHours(),
+				am = document.getElementsByClassName("am")[0].classList,
+				pm = document.getElementsByClassName("pm")[0].classList;
+
+
+			(hours >= 12) ? pm.add("light-on") : am.add("light-on");
+			(hours >= 12) ? am.remove("light-on") : pm.remove("light-on");
+		}
+
+		//lights up what day of the week it is
+		function whatDay(){
+			var date = new Date(),
+				currentDay = date.getDay(),
+				days = document.getElementsByClassName("day");
+
+			//iterates through all divs with a class of "day"
+			for (x in days){
+				//list of classes in current div
+				var classArr = days[x].classList;
+
+				(classArr !== undefined) && ((x == currentDay) ? classArr.add("light-on") : classArr.remove("light-on"));
+			}
+		}
+	</script>
+
+</body>
+</html>

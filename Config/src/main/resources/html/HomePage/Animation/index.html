@@ -1,0 +1,1880 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- <script src="http://code.jquery.com/jquery-3.1.0.min.js"></script> -->
+<script src="js/index.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto:100,400" rel="stylesheet">
+<link rel="stylesheet" href="./mycss/player.css">
+
+<title>小智自动化测试系统</title>
+
+<style>
+
+body {
+	background-image : url('./myimgs/1.png');
+	background-color : black;
+	background-size : cover;
+	background-repeat : no-repeat;
+	overflow : hidden;
+	width: 1381px;
+    height: 886px
+}
+
+#introwrap {
+	width: 1381px;
+    height: 886px
+	background-color : black;
+	position : fixed;
+	top : 0;
+	bottom : 0;
+	right : 0;
+	left : 0;
+	z-index : 500;
+}
+
+#intro1 {
+	width: 1381px;
+    height: 886px
+	position : fixed;
+	top : 0;
+	bottom : 0;
+	right : 0;
+	left : 0;
+	margin : 0 auto;
+}
+
+#appwrap {
+	width: 1381px;
+    height: 886px
+	position : fixed;
+	top : 0;
+	bottom : 0;
+	right : 0;
+	left : 0;
+}
+
+.op1 {
+	position : absolute;
+	top : 150px;
+	left : 40px;
+	opacity : 0;
+}
+
+#intro2 {
+	width: 1381px;
+    height: 886px
+	position : fixed;
+	top : 0;
+	bottom : 0;
+	right : 0;
+	left : 0;
+}
+
+.line1 {
+	position : absolute;
+	bottom : 153px;
+	right : 0;
+	left : 0;
+	width : 0px;
+	height : 10px;
+	background-color : #55c9ea;
+}
+
+.line2 {
+	position : absolute;
+	bottom : 60px;
+	right : 0;
+	left : 0;
+	width : 0px;
+	height : 80px;
+	background-color : #55c9ea;
+}
+
+.img1 {
+	position : absolute;
+	right : 31px;
+	top : 0px;
+	opacity : 0;
+}
+
+.img2 {
+	position : absolute;
+	left : 33px;
+	bottom : 191px;
+	opacity : 0;
+}
+
+.img3 {
+	position : absolute;
+	top : 50%;
+	left : 50%;
+	transform: translateX(-50%) translateY(-70%);
+	opacity : 0;
+}
+
+.app1 {
+	width: 300px;
+    height: 300px;
+	position : fixed;
+	top : 0;
+	bottom : 0;
+	right : 0;
+	left : 0;
+}
+
+.img4 {
+	width: 237px;
+    height: 508px;
+	position : absolute;
+	top : 5px;
+	left : 3px;
+}
+
+.img5 {
+	width: 130px;
+    height: 74px;
+	position : absolute;
+	top : 5px;
+	left : 540px;
+}
+
+.slideshow {
+	position : absolute;
+	top : 5px;
+	left : 270px;
+	width : 264px;
+	height : 508px;
+	transition : 0.4s;
+	opacity : 0.8;
+	background-image : url('./myimgs/a.png');
+}
+
+.profile {
+	position : absolute;
+	top : 83px;
+	left : 542px;
+	width : 127px;
+	height : 430px;
+	transition : 0.8s;
+	background-image : url('./myimgs/a2.png');
+}
+
+.app1 p {
+	color : rgb(216, 239, 255);
+	font-family: 'Roboto Mono', monospace;
+	font-size : 10pt;
+	opacity : 0.7;
+}
+
+.num {
+	position : absolute;
+	top : 210px;
+	left : 14px;
+/*	background : -webkit-linear-gradient(top, rgba(216, 239, 255, 0), rgba(216, 239, 255, 0.4));
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;*/
+}
+
+.num1 {
+	position : absolute;
+	top : 230px;
+	left : 14px
+/*	background : -webkit-linear-gradient(top, rgba(216, 239, 255, 0.4), rgba(216, 239, 255, 1));
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;*/
+}
+
+.num2 {
+	position : absolute;
+	top : 250px;
+	left : 14px;
+}
+
+.num3 {
+	position : absolute;
+	top : 270px;
+	left : 14px
+}
+
+.num4 {
+	position : absolute;
+	top : 290px;
+	left : 14px
+}
+
+.num5 {
+	position : absolute;
+	top : 310px;
+	left : 14px
+}
+
+.num6 {
+	position : absolute;
+	top : 330px;
+	left : 14px
+}
+
+.num7 {
+	position : absolute;
+	top : 350px;
+	left : 14px
+}
+
+.num8 {
+	position : absolute;
+	top : 370px;
+	left : 14px
+}
+
+.num9 {
+	position : absolute;
+	top : 390px;
+	left : 14px
+}
+
+.num10 {
+	position : absolute;
+	top : 410px;
+	left : 14px
+}
+
+.num11 {
+	position : absolute;
+	top : 430px;
+	left : 14px;
+}
+
+.num12 {
+	position : absolute;
+	top : 450px;
+	left : 14px;
+}
+
+.num13 {
+	position : absolute;
+	top : 470px;
+	left : 14px;
+/*	background : -webkit-linear-gradient(bottom, rgba(216, 239, 255, 0.4), rgba(216, 239, 255, 1));
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent*/
+}
+
+.num14 {
+	position : absolute;
+	top : 483px;
+	left : 14px;
+	background : -webkit-linear-gradient(bottom, rgba(216, 239, 255, 0), rgba(216, 239, 255, 0.4));
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent
+}
+
+.random {
+	position : fixed;
+	top : 8px;
+}
+
+.img6 {
+	width: 320px;
+    height: 73px;
+	position : absolute;
+	top : 3px;
+	left : 685px;
+}
+
+.img7 {
+	width: 330px;
+    height: 73px;
+	position : absolute;
+	top : 73px;
+	left : 684px;
+}
+
+.time1 {
+	font-family: 'Roboto', sans-serif;
+	font-size : 20pt;
+	font-weight : 100;
+	color : #d8efff;
+	text-shadow : 0px 0px 5px #50aceb;
+	position : absolute;
+	top : 30px;
+	left : 720px;
+}
+
+.time2 {
+	font-family: 'Roboto', sans-serif;
+	font-size : 28pt;
+	font-weight : 100;
+	color : #d8efff;
+	text-shadow : 0px 0px 5px #50aceb;
+	position : absolute;
+	top : 23px;
+	left : 790px;
+}
+
+.time3 {
+	font-family: 'Roboto', sans-serif;
+	font-size : 12pt;
+	font-weight : 100;
+	color : #d8efff;
+	text-shadow : 0px 0px 5px #50aceb;
+	position : absolute;
+	top : 25px;
+	left : 910px;
+}
+
+.time4 {
+	font-family: 'Roboto', sans-serif;
+	font-size : 12pt;
+	font-weight : 100;
+	color : #d8efff;
+	text-shadow : 0px 0px 5px #50aceb;
+	position : absolute;
+	top : 45px;
+	left : 910px;
+}
+
+.app4 {
+	width : 1290px;
+	position : fixed;
+	top : -90px;
+	bottom : 0;
+	left : -280px;
+	right : 0;
+}
+
+.img8 {
+	width : 35.416%;
+	position : absolute;
+	left : 891px;
+	top : 209px;
+}
+
+.img9 {
+	width : 35.416%;
+	position : absolute;
+	left : 891px;
+	top : 209px;
+	-webkit-animation-name:             spin;
+	-webkit-animation-duration:         25s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+}
+
+.img9 {
+	width : 35.416%;
+	position : absolute;
+	left : 891px;
+	top : 209px;
+	-webkit-animation-name:             spin;
+	-webkit-animation-duration:         25s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+}
+
+.img10 {
+	width : 35.416%;
+	position : absolute;
+	left : 891px;
+	top : 209px;
+	-webkit-animation-name:             spin2;
+	-webkit-animation-duration:         12s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+}
+
+.img11 {
+	width : 35.416%;
+	position : absolute;
+	left : 891px;
+	top : 209px;
+	-webkit-animation-name:             spin;
+	-webkit-animation-duration:         12s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+}
+
+.img12 {
+	width : 35.416%;
+	position : absolute;
+	left : 891px;
+	top : 209px;
+	-webkit-animation-name:             spin2;
+	-webkit-animation-duration:         8s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+}
+
+.img13 {
+	width : 35.416%;
+	position : absolute;
+	left : 891px;
+	top : 209px;
+	-webkit-animation-name:             spin2;
+	-webkit-animation-duration:         12s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+}
+
+.img14 {
+	width : 35.416%;
+	position : absolute;
+	left : 891px;
+	top : 209px;
+	-webkit-animation-name:             spin;
+	-webkit-animation-duration:         12s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+}
+
+.img15 {
+	width : 35.416%;
+	position : absolute;
+	left : 891px;
+	top : 209px;
+	-webkit-animation-name:             spin2;
+	-webkit-animation-duration:         40s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+	opacity : 0.6;
+}
+
+.img16 {
+	width : 35.416%;
+	position : absolute;
+	left : 891px;
+	top : 209px;
+	-webkit-animation-name:             opac;
+	-webkit-animation-duration:         5s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+}
+
+.img17 {
+	width : 35.416%;
+	position : absolute;
+	left : 891px;
+	top : 209px;
+	-webkit-animation-name:             opac2;
+	-webkit-animation-duration:         5s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+}
+
+@-webkit-keyframes opac{
+		0%
+		{
+			opacity : 1;
+		}
+		50%
+		{
+			opacity : 0;
+		}
+		100%
+		{
+			opacity : 1;
+		}
+}
+
+
+@-webkit-keyframes opac2{
+		0%
+		{
+			opacity : 0;
+		}
+		50%
+		{
+			opacity : 1;
+		}
+		100%
+		{
+			opacity : 0;
+		}
+}
+
+@-webkit-keyframes spin{
+		from
+		{
+			-webkit-transform: rotate(0deg);
+		}
+		to
+		{
+			-webkit-transform: rotate(360deg);
+		}
+}
+
+@-webkit-keyframes spin2{
+		from
+		{
+			-webkit-transform: rotate(360deg);
+		}
+		to
+		{
+			-webkit-transform: rotate(0deg);
+		}
+}
+
+.namewrap {
+	position : fixed;
+	left : 1020px;
+	top : 3px;
+}
+
+.namewrap2 {
+	position : fixed;
+	left : 1355px;
+	top : 3px;
+}
+
+div[class^="namewrap"] p {
+	font-family: 'Roboto', sans-serif;
+	font-size : 9pt;
+	font-weight : 9pt;
+	color : #d8efff;
+	margin-top : 2px;
+	margin-bottom : 5px;
+	letter-spacing : 1px;
+	text-shadow : 0px 0px 20px #50aceb;
+}
+
+.wrapbox {
+	width: 50px;
+    height: 303px;
+	position : fixed;
+	left : 1120px;
+	top : -2px;
+	z-index : 498;
+}
+
+.wraplane {
+	position : fixed;
+	left : 1110px;
+	top : -2px;
+	z-index : 498;
+}
+
+div[class^="box"] {
+	width : 220px;
+	height : 11px;
+	background-color : #316990;
+	margin-top : 8px;
+}
+
+div[class^="lane"] {
+	width : 180px;
+	height : 11px;
+	background-color : #50aceb;
+	-webkit-animation-name:            eq;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+	margin-top : 8px;
+}
+
+.lane1 {
+	-webkit-animation-duration:        10s;
+	top : 3px;
+}
+
+.lane2 {
+	-webkit-animation-duration:        9s;
+	top : 22px;
+}
+
+.lane3 {
+	-webkit-animation-duration:        10.5s;
+	top : 86px;
+}
+
+.lane4 {
+	-webkit-animation-duration:        11s;
+	top : 112px;
+}
+
+.lane5 {
+	-webkit-animation-duration:        9.5s;
+	top : 138px;
+}
+
+.lane6 {
+	-webkit-animation-duration:        11.5s;
+	top : 164px;
+}
+
+.lane7 {
+	-webkit-animation-duration:        12s;
+	top : 190px;
+}
+
+.lane8 {
+	-webkit-animation-duration:        13s;
+	top : 216px;
+}
+
+.lane9 {
+	-webkit-animation-duration:        12.5s;
+	top : 242px;
+}
+
+.lane10 {
+	-webkit-animation-duration:        11.8s;
+	top : 268px;
+}
+
+.lane11 {
+	-webkit-animation-duration:        9.8s;
+	top : 294px;
+}
+
+.lane12 {
+	-webkit-animation-duration:        10.8s;
+	top : 320px;
+}
+
+.lane13 {
+	-webkit-animation-duration:        8.8s;
+	top : 346px;
+}
+
+.lane14 {
+	-webkit-animation-duration:        12.8s;
+	top : 372px;
+}
+
+.lane15 {
+	-webkit-animation-duration:        14s;
+	top : 398px;
+}
+
+.lane16 {
+	-webkit-animation-duration:        10.3s;
+	top : 424px;
+}
+
+.wrappoint {
+	position : fixed;
+	left : 1100px;
+	top : -6px;
+	z-index : 900;
+}
+
+.wrappoint2 {
+	position : fixed;
+	left : 1345px;
+	top : -6px;
+	z-index : 900
+}
+
+div[class^="point"] {
+	width : 3px;
+	height : 3px;
+	border-radius : 1.5px;
+	background-color : #edf8ff;
+	margin-top : 16px;
+}
+
+@-webkit-keyframes eq {
+  0% {
+    width: 150px;
+  }
+  4% {
+    width: 170px;
+  }
+  8% {
+    width: 200px;
+  }
+  12% {
+    width: 150px;
+  }
+  16% {
+    width: 110px;
+  }
+  20% {
+    width: 100px;
+  }
+  24% {
+    width: 120px;
+  }
+  28% {
+    width: 90px;
+  }
+  32% {
+    width: 130px;
+  }
+  36% {
+    width: 150px;
+  }
+  40% {
+    width: 110px;
+  }
+  44% {
+    width: 120px;
+  }
+  48% {
+    width: 130px;
+  }
+  52% {
+    width: 90px;
+  }
+  56% {
+    width: 100px;
+  }
+  60% {
+    width: 130px;
+  }
+  64% {
+    width: 160px;
+  }
+  68% {
+    width: 190px;
+  }
+  72% {
+    width: 210px;
+  }
+  76% {
+    width: 180px;
+  }
+  80% {
+    width: 150px;
+  }
+  84% {
+    width: 130px;
+  }
+  88% {
+    width: 150px;
+  }
+  92% {
+    width: 120px;
+  }
+  96% {
+    width: 140px;
+  }
+  100% {
+    width: 150px;
+  }
+}
+
+.img18 {
+	width : 200px;
+	height : 200px;
+	position : absolute;
+	top : 550px;
+	left : 15px;
+}
+
+.img19 {
+	width : 2px;
+	height : 70px;
+	position : absolute;
+	top : 578px;
+	left : 115px;
+	opacity : 0.7;
+	transform: rotate(100deg);
+	-ms-transform: rotate(100deg);
+	transform-origin: bottom;
+	-ms-transform-origin: bottom;
+}
+
+.img20 {
+	width : 2px;
+	height : 70px;
+	position : absolute;
+	top : 580px;
+	left : 114px;
+	opacity : 0.7;
+	transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	transform-origin: bottom;
+	-ms-transform-origin: bottom;
+}
+
+.img21 {
+	width : 180px;
+	height : 180px;
+	position : absolute;
+	top : 560px;
+	left : 25px;
+	transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+}
+
+.img22 {
+    width : 140px;
+	position : absolute;
+	top : 538px;
+	left : 43px;
+}
+
+.img23 {
+	width : 80px;
+	height : 100px;
+	position : absolute;
+	top : 530px;
+	left : 270px;
+	transition : 0.3s;
+}
+
+.img24 {
+	width : 93px;
+	height : 88px;
+	position : absolute;
+	top : 625px;
+	left : 264px;
+	transition : 0.3s;
+}
+
+.img25 {
+	width : 320px;
+	height : 262px;
+	position : absolute;
+	top : 540px;
+	left : 355px;
+}
+
+.img23:hover{
+	opacity : 0.6;
+	transition : 0.3s;
+}
+
+
+.img24:hover{
+	opacity : 0.6;
+	transition : 0.3s;
+}
+
+.none {
+	display : none;
+}
+
+.block {
+	display : block;
+}
+
+.img26 {
+	width : 340px;
+	height : 190px;
+	position : absolute;
+	top : 550px;
+	left : 690px;
+}
+
+.img27 {
+	width : 70px;
+	height : 70px;
+	position : absolute;
+	top : 630px;
+	left : 695px;
+	transition : 0.3s;
+}
+
+.img28 {
+	width : 90px;
+	height : 85px;
+	position : absolute;
+	top : 620px;
+	left : 858px;
+	transition : 0.3s
+}
+
+.img27:hover {
+	opacity : 0.6;
+	transition : 0.3s;
+}
+
+.img28:hover {
+	opacity : 0.6;
+	transition : 0.3s;
+}
+
+.img29 {
+	width : 90px;
+	height : 100px;
+	position : absolute;
+	top : 320px;
+	left : 1030px;
+	opacity : 0.5;
+	transition : 0.3s;
+}
+
+.img30 {
+	width : 95px;
+	height : 100px;
+	position : absolute;
+	top : 320px;
+	left : 1135px;
+	opacity : 0.5;
+	transition : 0.3s;
+}
+
+.img31 {
+	width : 120px;
+	height : 80px;
+	position : absolute;
+	top : 330px;
+	left : 1250px;
+	opacity : 0.5;
+	transition : 0.3s;
+}
+
+.img32 {
+	width : 200px;
+	height : 85px;
+	position : absolute;
+	top : 440px;
+	left : 1030px;
+	opacity : 0.5;
+	transition : 0.3s;
+}
+
+.img33 {
+	width : 120px;
+	height : 80px;
+	position : absolute;
+	top : 440px;
+	left : 1250px;
+	opacity : 0.5;
+	transition : 0.3s;
+}
+
+.img29:hover {
+	opacity : 1;
+	transition : 0.3s;
+}
+
+.img30:hover {
+	opacity : 1;
+	transition : 0.3s;
+}
+
+.img31:hover {
+	opacity : 1;
+	transition : 0.3s;
+}
+
+.img32:hover {
+	opacity : 1;
+	transition : 0.3s;
+}
+
+.img33:hover {
+	opacity : 1;
+	transition : 0.3s;
+}
+
+.img34 {
+	width : 190px
+	height : 85px;
+	position : absolute;
+	top : 460px;
+	left : 685px;
+}
+
+.random2 p {
+	width : 200px;
+	color : rgb(216, 239, 255);
+	font-family: 'Roboto Mono', monospace;
+	font-size : 10pt;
+	opacity : 0.9;
+}
+
+.random3 p {
+	color : #50aceb;
+	font-family: 'Roboto Mono', monospace;
+	font-size : 10pt;
+	opacity : 0.9;
+}
+
+.ran1 {
+	position : absolute;
+	top : 480px;
+	left : 693px;
+}
+
+.ran2 {
+	position : absolute;
+	top : 480px;
+	left : 760px;
+}
+
+.ran3 {
+	position : absolute;
+	top : 480px;
+	left : 830px;
+}
+
+.ran4 {
+	position : absolute;
+	top : 480px;
+	left : 900px;
+}
+
+
+.ran5 {
+	position : absolute;
+	top : 498px;
+	left : 693px;
+}
+
+.ran6 {
+	position : absolute;
+	top : 498px;;
+	left : 750px;
+}
+
+.ran7 {
+	position : absolute;
+	top : 498px;
+	left : 805px;
+}
+
+.ran8 {
+	position : absolute;
+	top : 498px;
+	left : 860px;
+}
+
+.ran9 {
+	position : absolute;
+	top : 498px;
+	left : 915px;
+}
+
+.ran10 {
+	position : absolute;
+	top : 498px;
+	left : 970px;
+}
+
+.img35 {
+	width : 320px
+	height : 166px;
+	position : absolute;
+	top : 550px;
+	left : 1055px;
+}
+
+.uptime p {
+	font-family: 'Roboto', sans-serif;
+	font-size : 25pt;
+	font-weight : 100;
+	color : #d8efff;
+	text-shadow : 0px 0px 5px #50aceb;
+}
+
+.days {
+	position : absolute;
+	top : 670px;
+	left : 1170px;
+}
+
+.hours {
+	position : absolute;
+	top : 670px;
+	left : 1206px;
+}
+
+.minutes {
+	position : absolute;
+	top : 670px;
+	left : 1248px;
+}
+
+.seconds {
+	position : absolute;
+	top : 670px;
+	left : 1290px;
+}
+
+div[class^="app"] {
+	opacity : 0;
+}
+
+#extra {
+	position : fixed;
+	top : 0;
+	bottom : 0;
+	left : 0;
+	right : 0;
+	z-index : -1;
+}
+
+</style>
+<script language="javascript" type="text/javascript">
+$(document).ready(function(){
+
+	$('.op1').animate({
+		"opacity" : "1"
+	}, 6000);
+	$('.op1').delay(1000).animate({
+		"opacity" : "0.2",
+		"top" : "418px",
+		"left" : "235px"
+	}, 20);
+	$('.op1').animate({
+		"opacity" : "0.2",
+		"top" : "388px",
+		"left" : "265px"
+	}, 20);
+	$('.op1').animate({
+		"opacity" : "0",
+		"z-index" : "-1"
+	}, 20);
+
+	$('.line1, .line2').delay(8000).animate({
+		"width" : "100%"
+	}, 1600);
+
+	$('.img3').delay(10300).animate({
+		"opacity" : "1"
+	}, 35);
+	$('.img3').animate({
+		"opacity" : "0"
+	}, 35);
+	$('.img3').animate({
+		"opacity" : "1"
+	}, 35);
+	$('.img1').delay(11300).animate({
+		"opacity" : "1"
+	}, 35);
+	$('.img1').animate({
+		"opacity" : "0"
+	}, 35);
+	$('.img1').animate({
+		"opacity" : "1"
+	}, 35);
+	$('.img2').delay(11700).animate({
+		"opacity" : "1"
+	}, 35);
+	$('.img2').animate({
+		"opacity" : "0"
+	}, 35);
+	$('.img2').animate({
+		"opacity" : "1"
+	}, 35);
+
+	$('#intro2').delay(14900).animate({
+		"opacity" : "0",
+		"z-index" : "-1"
+	}, 400);
+	$('#introwrap').delay(14900).animate({
+		"opacity" : "0",
+		"z-index" : "-1"
+	}, 400);
+});
+</script>
+
+<script language="javascript" type="text/javascript">
+$(document).ready(function(){
+
+	$('.app1').delay(15500).animate({
+		"opacity" : "1"
+	}, 300);
+
+	$('.app2').delay(15800).animate({
+		"opacity" : "1"
+	}, 300);
+
+	$('.app3, .app4').delay(16100).animate({
+		"opacity" : "1"
+	}, 300);
+
+	$('.app5, .app9').delay(16400).animate({
+		"opacity" : "1"
+	}, 300);
+
+	$('.app6').delay(16700).animate({
+		"opacity" : "1"
+	}, 300);
+
+	$('.app7').delay(17000).animate({
+		"opacity" : "1"
+	}, 300);
+
+	$('.app8').delay(17300).animate({
+		"opacity" : "1"
+	}, 300);
+
+	$('.app10').delay(17600).animate({
+		"opacity" : "1"
+	}, 300);
+
+});
+</script>
+
+<script language="javascript" type="text/javascript">
+$(document).ready(function(){
+
+	var images = [ 'myimgs/b.png', 'myimgs/c.png', 'myimgs/d.png', 'myimgs/e.png', 'myimgs/a.png' ];
+	var i = 0;
+
+	setInterval(function(){
+		$('.slideshow').css('background-image', function() {
+			if (i >= images.length) {
+				i=0;
+			}
+			return 'url(' + images[i++] + ')';
+		});
+	}, 20000);
+});
+</script> -->
+
+<script language="javascript" type="text/javascript">
+$(document).ready(function(){
+
+	var images = [ 'myimgs/b2.png', 'myimgs/c2.png', 'myimgs/d2.png', 'myimgs/e2.png', 'myimgs/a2.png' ];
+	var i = 0;
+
+	setInterval(function(){
+		$('.profile').css('background-image', function() {
+			if (i >= images.length) {
+				i=0;
+			}
+			return 'url(' + images[i++] + ')';
+		});
+	}, 20000);
+
+	setInterval(function(){
+		var a = Math.floor((Math.random() * 100000000000000) * 555 + 10000000000000000);
+		var b = Math.floor((Math.random() * 100000000000000) * 555 + 10000000000000000);
+		var c = Math.floor((Math.random() * 100000000000000) * 555 + 10000000000000000);
+		var d = Math.floor((Math.random() * 100000000000000) * 555 + 10000000000000000);
+		var e = Math.floor((Math.random() * 100000000000000) * 555 + 10000000000000000);
+		var f = Math.floor((Math.random() * 100000000000000) * 555 + 10000000000000000);
+		var g = Math.floor((Math.random() * 100000000000000) * 555 + 10000000000000000);
+		var h = Math.floor((Math.random() * 100000000000000) * 555 + 10000000000000000);
+		var i = Math.floor((Math.random() * 100000000000000) * 555 + 10000000000000000);
+		var j = Math.floor((Math.random() * 100000000000000) * 555 + 10000000000000000);
+		var k = Math.floor((Math.random() * 100000000000000) * 555 + 10000000000000000);
+		var l = Math.floor((Math.random() * 100000000000000) * 555 + 10000000000000000);
+		var m = Math.floor((Math.random() * 100000000000000) * 555 + 10000000000000000);
+		var n = Math.floor((Math.random() * 100000000000000) * 555 + 10000000000000000);
+		var o = Math.floor((Math.random() * 100000000000000) * 555 + 10000000000000000);
+
+		var a1 = Math.floor((Math.random() * 100000) * 555 + 10000000);
+		var b1 = Math.floor((Math.random() * 100000) * 555 + 10000000);
+		var c1 = Math.floor((Math.random() * 100000) * 555 + 10000000);
+		var d1 = Math.floor((Math.random() * 100000) * 555 + 10000000);
+		var e1 = Math.floor((Math.random() * 100000) * 555 + 10000000);
+		var f1 = Math.floor((Math.random() * 100000) * 555 + 10000000);
+		var g1 = Math.floor((Math.random() * 100000) * 555 + 10000000);
+		var h1 = Math.floor((Math.random() * 100000) * 555 + 10000000);
+		var i1 = Math.floor((Math.random() * 100000) * 555 + 10000000);
+		var j1 = Math.floor((Math.random() * 100000) * 555 + 10000000);
+		var k1 = Math.floor((Math.random() * 100000) * 555 + 10000000);
+		var l1 = Math.floor((Math.random() * 100000) * 555 + 10000000);
+		var m1 = Math.floor((Math.random() * 100000) * 555 + 10000000);
+		var n1 = Math.floor((Math.random() * 100000) * 555 + 10000000);
+		var o1 = Math.floor((Math.random() * 100000) * 555 + 10000000);
+		$('.num').html(a+""+a1);
+		$('.num1').html(b+""+b1);
+		$('.num2').html(c+""+c1);
+		$('.num3').html(d+""+d1);
+		$('.num4').html(e+""+e1);
+		$('.num5').html(f+""+f1);
+		$('.num6').html(g+""+g1);
+		$('.num7').html(h+""+h1);
+		$('.num8').html(i+""+i1);
+		$('.num9').html(j+""+j1);
+		$('.num10').html(k+""+k1);
+		$('.num11').html(l+""+l1);
+		$('.num12').html(m+""+m1);
+		$('.num13').html(n+""+n1);
+		// $('.num14').html(o+""+o1);
+	}, 100);
+});
+</script>
+
+<script language="javascript" type="text/javascript">
+$(document).ready(function(){
+
+	Time();
+	function Time()
+	{
+		var now = new Date();
+		var h = now.getHours();
+		var m = now.getMinutes();
+		var mon = now.getMonth();
+		var d = now.getDay();
+		var dt = now.getDate();
+		var y = now.getFullYear();
+		var days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+		var check = days[d];
+		var AMPM;
+		mon = mon + 1;
+		if(h>=12 && h<24)
+		{
+			AMPM = "PM";
+		}
+		if(h>=0 && h<12)
+		{
+			AMPM = "AM";
+		}
+
+		// h = checkTime2(h);
+		m = checkTime(m);
+		mon = checkTime(mon);
+
+		$('.time1').html(AMPM);
+		$('.time2').html(h+':'+m);
+		$('.time3').html(y+"."+mon+"."+dt);
+		$('.time4').html(check);
+
+		setTimeout(function()
+		{
+			Time();
+		}, 500);
+	}
+	function checkTime(i)
+	{
+		if (i < 10)
+		{
+			i = "0" + i;
+		}
+		return i;
+	}
+	function checkTime2(i)
+	{
+		var j;
+		j = i % 12;
+		if(j>9)
+		{
+			return j;
+		}
+		else
+		{
+			return "0" + j;
+		}
+	}
+
+});
+</script>
+
+<script language="javascript" type="text/javascript">
+$(document).ready(function(){
+
+	Clock();
+	function Clock() {
+		var now = new Date();
+		var h = now.getHours();
+		var m = now.getMinutes();
+		var s = now.getSeconds();
+		var ms = now.getMilliseconds();
+
+		var a, b, c;
+
+        a =  (h + m / 60) / 12 * 360
+        b = 6 * m;
+        c = (s + ms / 1000) /60 * 360;
+
+		$('.img20').css('transform', 'rotate(' + a + 'deg)');
+		$('.img19').css('transform', 'rotate(' + b + 'deg)');
+		$('.img21').css('transform', 'rotate(' + c*6 + 'deg)');
+		setTimeout(Clock, 1000);
+      }
+
+});
+</script>
+
+<script language="javascript" type="text/javascript">
+$(document).ready(function(){
+
+// html5media enables <video> and <audio> tags in all major browsers
+// Add user agent as an attribute on the <html> tag...
+// Inspiration: https://css-tricks.com/ie-10-specific-styles/
+
+var b = document.documentElement;
+b.setAttribute('data-useragent', navigator.userAgent);
+b.setAttribute('data-platform', navigator.platform);
+
+
+// HTML5 audio player + playlist controls...
+// Inspiration: http://jonhall.info/how_to/create_a_playlist_for_html5_audio
+// Created by mh
+
+jQuery(function ($) {
+    var supportsAudio = !!document.createElement('audio').canPlayType;
+    if (supportsAudio) {
+        var index = 0,
+            playing = false,
+            mediaPath = './mysongs/',
+            extension = '',
+            tracks = [{
+                "track": 1,
+                "name": "Starset - Monster",
+                "length": "3:03",
+                "file": "0"
+            },
+			{
+                "track": 2,
+                "name": "高耀太 - 火花",
+                "length": "3:53",
+                "file": "1"
+            },
+			{
+                "track": 3,
+                "name": "2",
+                "length": "0:00",
+                "file": "2"
+            },
+			{
+                "track": 4,
+                "name": "3",
+                "length": "0:00",
+                "file": "3"
+            },
+			{
+                "track": 5,
+                "name": "4",
+                "length": "0:00",
+                "file": "4"
+            },
+			{
+                "track": 6,
+                "name": "5",
+                "length": "0:00",
+                "file": "5"
+            },
+			{
+                "track": 7,
+                "name": "6",
+                "length": "0:00",
+                "file": "6"
+            },
+			{
+                "track": 8,
+                "name": "7",
+                "length": "0:00",
+                "file": "7"
+            },
+			{
+                "track": 9,
+                "name": "8",
+                "length": "0:00",
+                "file": "8"
+            },
+			{
+                "track": 10,
+                "name": "9",
+                "length": "0:00",
+                "file": "9"
+            },
+			{
+                "track": 11,
+                "name": "10",
+                "length": "0:00",
+                "file": "10"
+            }
+			],
+            buildPlaylist = $.each(tracks, function(key, value) {
+                var trackNumber = value.track,
+                    trackName = value.name,
+                    trackLength = value.length;
+                if (trackNumber.toString().length === 1) {
+                    trackNumber = '0' + trackNumber;
+                } else {
+                    trackNumber = '' + trackNumber;
+                }
+                $('#plList').append('<li><div class="plItem"><div class="plNum">' + trackNumber + '.</div><div class="plTitle">' + trackName + '</div><div class="plLength">' + trackLength + '</div></div></li>');
+            }),
+            trackCount = tracks.length,
+            npAction = $('#npAction'),
+            npTitle = $('#npTitle'),
+            audio = $('#audio1').bind('play', function () {
+                playing = true;
+                npAction.text('Now Playing...');
+            }).bind('pause', function () {
+                playing = false;
+                npAction.text('Paused...');
+            }).bind('ended', function () {
+                npAction.text('Paused...');
+                if ((index + 1) < trackCount) {
+                    index++;
+                    loadTrack(index);
+                    audio.play();
+                } else {
+                    audio.pause();
+                    index = 0;
+                    loadTrack(index);
+                }
+            }).get(0),
+            btnPrev = $('#btnPrev').click(function () {
+                if ((index - 1) > -1) {
+                    index--;
+                    loadTrack(index);
+                    if (playing) {
+                        audio.play();
+                    }
+                } else {
+                    audio.pause();
+                    index = 0;
+                    loadTrack(index);
+                }
+            }),
+            btnNext = $('#btnNext').click(function () {
+                if ((index + 1) < trackCount) {
+                    index++;
+                    loadTrack(index);
+                    if (playing) {
+                        audio.play();
+                    }
+                } else {
+                    audio.pause();
+                    index = 0;
+                    loadTrack(index);
+                }
+            }),
+            li = $('#plList li').click(function () {
+                var id = parseInt($(this).index());
+                if (id !== index) {
+                    playTrack(id);
+                }
+            }),
+            loadTrack = function (id) {
+                $('.plSel').removeClass('plSel');
+                $('#plList li:eq(' + id + ')').addClass('plSel');
+                npTitle.text(tracks[id].file);
+                index = id;
+                audio.src = mediaPath + tracks[id].file + extension;
+            },
+            playTrack = function (id) {
+                loadTrack(id);
+                audio.play();
+            };
+        extension = audio.canPlayType('audio/ogg') ? '.ogg' : audio.canPlayType('audio/mp3') ? '.mp3' : '';
+        loadTrack(index);
+    }
+});
+
+});
+</script>
+
+<script language="javascript" type="text/javascript">
+$(document).ready(function(){
+
+	$('.img23').click(function(){
+		$('.container').css('display', 'block');
+		$('.img25').css('display', 'none');
+	});
+	$('.img24').click(function(){
+		$('.container').css('display', 'none');
+		$('.img25').css('display', 'block');
+	});
+
+});
+</script>
+
+<script language="javascript" type="text/javascript">
+$(document).ready(function(){
+	setInterval(function(){
+		var a = Math.floor((Math.random() * 10) * 555 + 1000);
+		var b = Math.floor((Math.random() * 10) * 555 + 1000);
+		var c = Math.floor((Math.random() * 10) * 555 + 1000);
+		var d = Math.floor((Math.random() * 10) * 555 + 1000);
+
+		var e = Math.floor((Math.random() * 10) * 555 + 1000);
+		var f = Math.floor((Math.random() * 10) * 555 + 1000);
+		var g = Math.floor((Math.random() * 10) * 555 + 1000);
+		var h = Math.floor((Math.random() * 10) * 555 + 1000);
+		var i = Math.floor((Math.random() * 10) * 555 + 1000);
+		var j = Math.floor((Math.random() * 10) * 555 + 1000);
+
+
+		$('.ran1').html(a+"%");
+		$('.ran2').html(b+"%");
+		$('.ran3').html(c+"%");
+		$('.ran4').html(d+"%");
+
+		$('.ran5').html(e);
+		$('.ran6').html(f);
+		$('.ran7').html(g);
+		$('.ran8').html(h);
+		$('.ran9').html(i);
+		$('.ran10').html(j);
+
+
+	}, 500);
+});
+</script>
+
+<script language="javascript" type="text/javascript">
+$(document).ready(function() {
+
+function pad ( val ) { return val > 9 ? val : "0" + val; }
+ var count = 0, s = 0, m = 0, h = 0, d = 0;
+setInterval( function(){
+   /* $("#seconds").html(pad(++sec%60)); */
+   count++;
+   s = pad(parseInt(count%60));
+   m = pad(parseInt((count/60)%60, 10));
+   h = pad(parseInt((count/3600)%24, 10));
+   d = pad(parseInt((count/3600/24)%99, 10));
+
+    $(".seconds").html(":"+s);
+	$(".minutes").html(":"+m);
+	$(".hours").html(":"+h);
+	$(".days").html(d);
+}, 1000);
+});
+</script>
+
+<script language="javascript" type="text/javascript">
+$(document).ready(function(){
+
+	$('.img28').click(function(){
+		$('div[class^="app"]').css('display', 'none');
+		$('#extra').css('z-index', '900');
+	});
+	$('#extra').click(function(){
+		$('div[class^="app"]').css('display', 'block');
+		$('#extra').css('z-index', '-1');
+	});
+});
+</script>
+
+</head>
+<body>
+<div id="wrap">
+	<div id="introwrap">
+		<div id="intro1">
+			<img class="op1" src="./myimgs/title.png" />
+		</div>
+		<div id="intro2">
+			<div class="line1"></div>
+			<div class="line2"></div>
+			<img class="img1" src="./myimgs/group 4.png"/>
+			<img class="img2" src="./myimgs/group 1.png"/>
+			<img class="img3" src="./myimgs/group 5.png"/>
+		</div>
+	</div>
+	<div id="appwrap">
+		<div class="app1">
+			<img class="img4" src="./myimgs/group 9.png"/>
+			<div class="random">
+				<p class="num"></p>
+				<p class="num1"></p>
+				<p class="num2"></p>
+				<p class="num3"></p>
+				<p class="num4"></p>
+				<p class="num5"></p>
+				<p class="num6"></p>
+				<p class="num7"></p>
+				<p class="num8"></p>
+				<p class="num9"></p>
+				<p class="num10"></p>
+				<p class="num11"></p>
+				<p class="num12"></p>
+				<p class="num13"></p>
+				<!-- <p class="num14"></p> -->
+			</div>
+		</div>
+		<div class="app2">
+			<div class="slideshow"></div>
+			<div class="title1">
+				<img class="img5" src="./myimgs/group 44.png"/>
+			</div>
+			<div class="profile"></div>
+		</div>
+		<div class="app3">
+			<img class="img6" src="./myimgs/group 57.png"/>
+			<img class="img7" src="./myimgs/group 46.png"/>
+			<p class="time1"></p>
+			<p class="time2"></p>
+			<p class="time3"></p>
+			<p class="time4"></p>
+		</div>
+		<div class="app4">
+			<img class="img8" src="./myimgs/no title 1.png"/>
+			<img class="img9" src="./myimgs/diamond1.png"/>
+			<img class="img10" src="./myimgs/circle 7.png"/>
+			<img class="img11" src="./myimgs/circle 6.png"/>
+			<img class="img12" src="./myimgs/circle 8 copy 6.png"/>
+			<img class="img13" src="./myimgs/circle 8 copy 4.png"/>
+			<img class="img14" src="./myimgs/circle 8 copy 3.png"/>
+			<img class="img15" src="./myimgs/circle 9.png"/>
+			<img class="img16" src="./myimgs/copy.png"/>
+			<img class="img17" src="./myimgs/copy 2.png"/>
+		</div>
+		<div class="app5">
+			<div class="namewrap">
+				<p>XASET</p>
+				<p>MAIYA</p>
+				<p>NECH</p>
+				<p>REALN</p>
+				<p>STOLIPSIP</p>
+				<p>SALTKIT</p>
+				<p>TELINS</p>
+				<p>VELRIS</p>
+				<p>SAH</p>
+				<p>NIGPUEN</p>
+				<p>RODESH</p>
+				<p>HENRI</p>
+				<p>BCKAL</p>
+				<p>MUNLENG</p>
+				<p>NAYREATH</p>
+				<p>NEURONI</p>
+			</div>
+			<div class="namewrap2">
+				<p>TE</p>
+				<p>AM</p>
+				<p>CH</p>
+				<p>NE</p>
+				<p>PT</p>
+				<p>KA</p>
+				<p>SI</p>
+				<p>SI</p>
+				<p>AS</p>
+				<p>PE</p>
+				<p>RH</p>
+				<p>RH</p>
+				<p>ST</p>
+				<p>LU</p>
+				<p>RA</p>
+				<p>RE</p>
+			</div>
+			<div class="wrappoint">
+				<div class="point1"></div>
+				<div class="point2"></div>
+				<div class="point3"></div>
+				<div class="point4"></div>
+				<div class="point5"></div>
+				<div class="point6"></div>
+				<div class="point7"></div>
+				<div class="point8"></div>
+				<div class="point9"></div>
+				<div class="point10"></div>
+				<div class="point11"></div>
+				<div class="point12"></div>
+				<div class="point13"></div>
+				<div class="point14"></div>
+				<div class="point15"></div>
+				<div class="point16"></div>
+			</div>
+			<div class="wrappoint2">
+				<div class="point17"></div>
+				<div class="point18"></div>
+				<div class="point19"></div>
+				<div class="point20"></div>
+				<div class="point21"></div>
+				<div class="point22"></div>
+				<div class="point23"></div>
+				<div class="point24"></div>
+				<div class="point25"></div>
+				<div class="point26"></div>
+				<div class="point27"></div>
+				<div class="point28"></div>
+				<div class="point29"></div>
+				<div class="point30"></div>
+				<div class="point31"></div>
+				<div class="point32"></div>
+			</div>
+			<div class="wrapbox">
+				<div class="box1"></div>
+				<div class="box2"></div>
+				<div class="box3"></div>
+				<div class="box4"></div>
+				<div class="box5"></div>
+				<div class="box6"></div>
+				<div class="box7"></div>
+				<div class="box8"></div>
+				<div class="box9"></div>
+				<div class="box10"></div>
+				<div class="box11"></div>
+				<div class="box12"></div>
+				<div class="box13"></div>
+				<div class="box14"></div>
+				<div class="box15"></div>
+				<div class="box16"></div>
+			</div>
+			<div class="wraplane">
+				<div class="lane1"></div>
+				<div class="lane2"></div>
+				<div class="lane3"></div>
+				<div class="lane4"></div>
+				<div class="lane5"></div>
+				<div class="lane6"></div>
+				<div class="lane7"></div>
+				<div class="lane8"></div>
+				<div class="lane9"></div>
+				<div class="lane10"></div>
+				<div class="lane11"></div>
+				<div class="lane12"></div>
+				<div class="lane13"></div>
+				<div class="lane14"></div>
+				<div class="lane15"></div>
+				<div class="lane16"></div>
+			</div>
+		</div>
+		<div class="app6">
+			<img class="img18" src="./myimgs/group 58.png"/>
+			<img class="img19" src="./myimgs/rec 2.png"/>
+			<img class="img20" src="./myimgs/rec 1.png"/>
+			<img class="img21" src="./myimgs/group 59.png"/>
+			<img class="img22" src="./myimgs/time selec.png"/>
+		</div>
+		<div class="app7">
+			<img class="img23" src="./myimgs/group 67.png"/>
+			<img class="img24" src="./myimgs/group 66.png"/>
+			<img class="img25" src="./myimgs/group 71.png"/>
+			<div class="container">
+				<div class="column add-bottom">
+					<div id="mainwrap">
+						<div id="nowPlay">
+							<span class="left" id="npAction">Paused...</span>
+							<span class="right" id="npTitle"></span>
+						</div>
+						<div id="audiowrap">
+							<div id="audio0">
+								<audio preload id="audio1" controls="controls">Your browser does not support HTML5 Audio!</audio>
+							</div>
+
+						</div>
+						<div id="plwrap">
+							<ul id="plList"></ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="app8">
+			<img class="img26" src="./myimgs/group 72.png"/>
+			<img class="img27" src="./myimgs/group 79.png"/>
+			<img class="img28" src="./myimgs/group 78.png"/>
+		</div>
+		<div class="app9">
+			<img class="img29" src="./myimgs/logo1.png"/>
+			<img class="img30" src="./myimgs/logo2.png"/>
+			<img class="img31" src="./myimgs/logo3.png"/>
+			<img class="img32" src="./myimgs/logo4.png"/>
+			<img class="img33" src="./myimgs/logo5.png"/>
+		</div>
+		<div class="app10">
+			<img class="img34" src="./myimgs/rada.png"/>
+			<div class="random2">
+				<p class="ran1"></p>
+				<p class="ran2"></p>
+				<p class="ran3"></p>
+				<p class="ran4"></p>
+			</div>
+			<div class="random3">
+				<p class="ran5"></p>
+				<p class="ran6"></p>
+				<p class="ran7"></p>
+				<p class="ran8"></p>
+				<p class="ran9"></p>
+				<p class="ran10"></p>
+			</div>
+			<img class="img35" src="./myimgs/group 81.png"/>
+			<div class="uptime">
+				<p class="seconds"></p>
+				<p class="minutes"></p>
+				<p class="hours"></p>
+				<p class="days"></p>
+			</div>
+		</div>
+	</div>
+	<div id="extra"></div>
+</div>
+</body>
+</html>

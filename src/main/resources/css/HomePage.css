@@ -1,0 +1,717 @@
+﻿/**系统背景**/
+#HomePagePane{
+ /*-fx-background-color:#000000;*/
+ /*-fx-background-color:#000000;*/
+ /*-fx-background-color:#F0F0F0;*/
+}
+#HomePagePane{
+    -fx-background-image:url("../image/HomePagePane/HomePagePane.png");
+}
+
+/**版本号标签**/
+#VersionNumberText{
+	-fx-font-size: 20px;
+    -fx-text-fill: #a9a8a8;
+}
+
+/**设置按钮**/
+#SettingButton{
+    -fx-background-image:url("../image/LoginPane/SettingButton/btn_set_normal.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+}
+#SettingButton:focused{
+    -fx-background-image:url("../image/LoginPane/SettingButton/btn_set_normal.png");
+}
+#SettingButton:hover {
+    -fx-background-image:url("../image/LoginPane/SettingButton/btn_set_hover.png");
+}
+#SettingButton:pressed {
+    -fx-background-image:url("../image/LoginPane/SettingButton/btn_set_press.png");
+}
+
+/**最小化按钮**/
+#MinimizationButton {
+    -fx-background-image:url("../image/LoginPane/MinimizationButton/btn_mini_normal.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+}
+#MinimizationButton:focused{
+    -fx-background-image:url("../image/LoginPane/MinimizationButton/btn_mini_normal.png");
+}
+#MinimizationButton:hover {
+    -fx-background-image:url("../image/LoginPane/MinimizationButton/btn_mini_highlight.png");
+}
+#MinimizationButton:pressed {
+    -fx-background-image:url("../image/LoginPane/MinimizationButton/btn_mini_down.png");
+}
+
+/**关闭按钮**/
+#CloseButton {
+    -fx-background-image:url("../image/LoginPane/CloseButton/btn_close_normal.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+}
+#CloseButton:focused{
+    -fx-background-image:url("../image/LoginPane/CloseButton/btn_close_normal.png");
+}
+#CloseButton:hover {
+    -fx-background-image:url("../image/LoginPane/CloseButton/btn_close_highlight.png");
+}
+#CloseButton:pressed {
+    -fx-background-image:url("../image/LoginPane/CloseButton/btn_close_down.png");
+}
+
+/**顶部区域**/
+#TopPane{
+    -fx-background-image:url("../image/HomePagePane/TopPane/TopPane.png");
+}
+
+/**用户名称标签**/
+#UserNameLabel{
+	-fx-font-size: 19px;
+	-fx-font-family: Microsoft YaHei;
+    -fx-text-fill: #d7d7d7;
+}
+
+/**用户类型标签**/
+#UserTypeLabel{
+	-fx-font-size: 16px;
+	-fx-font-family: STHeiti;
+    -fx-text-fill: #798a9a;
+}
+
+/**切换按钮 **/
+#SwitchButton{
+    -fx-background-image:url("../image/HomePagePane/LeftPane/SwitchButton/SwitchButton_normal.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+    -fx-font-family: Microsoft YaHei;
+    -fx-text-fill: white;
+}
+#SwitchButton:hover {
+    -fx-background-image:url("../image/HomePagePane/LeftPane/SwitchButton/SwitchButton_highlight.png");
+}
+#SwitchButton:pressed {
+    -fx-background-image:url("../image/HomePagePane/LeftPane/SwitchButton/SwitchButton_down.png");
+}
+
+/**系统主界面按钮 **/
+#SystemMasterInterfaceButton{
+    -fx-background-image:url("../image/HomePagePane/LeftPane/SystemMasterInterfaceButton/SystemMasterInterface_normal.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+    -fx-font-family: Microsoft YaHei;
+    -fx-text-fill: white;
+}
+#SystemMasterInterfaceButton:hover {
+    -fx-background-image:url("../image/HomePagePane/LeftPane/SystemMasterInterfaceButton/SystemMasterInterface_highlight.png");
+}
+#SystemMasterInterfaceButton:pressed {
+    -fx-background-image:url("../image/HomePagePane/LeftPane/SystemMasterInterfaceButton/SystemMasterInterface_down.png");
+}
+#SystemMasterInterfaceButtonDown{
+    -fx-background-image:url("../image/HomePagePane/LeftPane/SystemMasterInterfaceButton/SystemMasterInterface_down.png");
+}
+
+/**前端功能中心按钮 **/
+#FrontEndFunctionCenterButton{
+    -fx-background-image:url("../image/HomePagePane/LeftPane/FrontEndFunctionCenterButton/FrontEndFunctionCenter_normal.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+    -fx-font-family: Microsoft YaHei;
+    -fx-text-fill: white;
+}
+#FrontEndFunctionCenterButton:hover {
+    -fx-background-image:url("../image/HomePagePane/LeftPane/FrontEndFunctionCenterButton/FrontEndFunctionCenter_highlight.png");
+}
+#FrontEndFunctionCenterButton:pressed {
+    -fx-background-image:url("../image/HomePagePane/LeftPane/FrontEndFunctionCenterButton/FrontEndFunctionCenter_down.png");
+}
+#FrontEndFunctionCenterButtonDown{
+    -fx-background-image:url("../image/HomePagePane/LeftPane/FrontEndFunctionCenterButton/FrontEndFunctionCenter_down.png");
+}
+
+/**后端功能中心按钮 **/
+#BackendFunctionCenterButton{
+    -fx-background-image:url("../image/HomePagePane/LeftPane/BackendFunctionCenterButton/BackendFunctionCenter_normal.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+    -fx-font-family: Microsoft YaHei;
+    -fx-text-fill: white;
+}
+#BackendFunctionCenterButton:hover {
+    -fx-background-image:url("../image/HomePagePane/LeftPane/BackendFunctionCenterButton/BackendFunctionCenter_highlight.png");
+}
+#BackendFunctionCenterButton:pressed {
+    -fx-background-image:url("../image/HomePagePane/LeftPane/BackendFunctionCenterButton/BackendFunctionCenter_down.png");
+}
+#BackendFunctionCenterButtonDown{
+    -fx-background-image:url("../image/HomePagePane/LeftPane/BackendFunctionCenterButton/BackendFunctionCenter_down.png");
+}
+
+/**WEB自动化中心按钮 **/
+#WEBAutomationCenterButton{
+    -fx-background-image:url("../image/HomePagePane/LeftPane/WEBAutomationCenterButton/WEBAutomationCenter_normal.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+    -fx-font-family: Microsoft YaHei;
+    -fx-text-fill: white;
+}
+#WEBAutomationCenterButton:hover {
+    -fx-background-image:url("../image/HomePagePane/LeftPane/WEBAutomationCenterButton/WEBAutomationCenter_highlight.png");
+}
+#WEBAutomationCenterButton:pressed {
+    -fx-background-image:url("../image/HomePagePane/LeftPane/WEBAutomationCenterButton/WEBAutomationCenter_down.png");
+}
+#WEBAutomationCenterButtonDown{
+    -fx-background-image:url("../image/HomePagePane/LeftPane/WEBAutomationCenterButton/WEBAutomationCenter_down.png");
+}
+
+/**API自动化中心按钮 **/
+#APIAutomationCenterButton{
+    -fx-background-image:url("../image/HomePagePane/LeftPane/APIAutomationCenterButton/APIAutomationCenter_normal.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+    -fx-font-family: Microsoft YaHei;
+    -fx-text-fill: white;
+}
+#APIAutomationCenterButton:hover {
+    -fx-background-image:url("../image/HomePagePane/LeftPane/APIAutomationCenterButton/APIAutomationCenter_highlight.png");
+}
+#APIAutomationCenterButton:pressed {
+    -fx-background-image:url("../image/HomePagePane/LeftPane/APIAutomationCenterButton/APIAutomationCenter_down.png");
+}
+#APIAutomationCenterButtonDown{
+    -fx-background-image:url("../image/HomePagePane/LeftPane/APIAutomationCenterButton/APIAutomationCenter_down.png");
+}
+
+/**APP自动化中心按钮 **/
+#APPAutomationCenterButton{
+    -fx-background-image:url("../image/HomePagePane/LeftPane/APPAutomationCenterButton/APPAutomationCenter_normal.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+    -fx-font-family: Microsoft YaHei;
+    -fx-text-fill: white;
+}
+#APPAutomationCenterButton:hover {
+    -fx-background-image:url("../image/HomePagePane/LeftPane/APPAutomationCenterButton/APPAutomationCenter_highlight.png");
+}
+#APPAutomationCenterButton:pressed {
+    -fx-background-image:url("../image/HomePagePane/LeftPane/APPAutomationCenterButton/APPAutomationCenter_down.png");
+}
+#APPAutomationCenterButtonDown{
+    -fx-background-image:url("../image/HomePagePane/LeftPane/APPAutomationCenterButton/APPAutomationCenter_down.png");
+}
+
+/**性能自动化中心按钮 **/
+#PerformanceAutomationCenterButton{
+    -fx-background-image:url("../image/HomePagePane/LeftPane/PerformanceAutomationCenterButton/PerformanceAutomationCenter_normal.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+    -fx-font-family: Microsoft YaHei;
+    -fx-text-fill: white;
+}
+#PerformanceAutomationCenterButton:hover {
+    -fx-background-image:url("../image/HomePagePane/LeftPane/PerformanceAutomationCenterButton/PerformanceAutomationCenter_highlight.png");
+}
+#PerformanceAutomationCenterButton:pressed {
+    -fx-background-image:url("../image/HomePagePane/LeftPane/PerformanceAutomationCenterButton/PerformanceAutomationCenter_down.png");
+}
+#PerformanceAutomationCenterButtonDown{
+    -fx-background-image:url("../image/HomePagePane/LeftPane/PerformanceAutomationCenterButton/PerformanceAutomationCenter_down.png");
+}
+
+/**左侧区域**/
+#LeftPane{
+    -fx-background-color:#2b2b2b;
+    -fx-opacity: 1;
+    -fx-background-image:url("../image/HomePagePane/LeftPane/LeftPane.png");
+}
+
+/**视频播放按钮 **/
+#VideoPlayerButton{
+	-fx-background-color:null;
+	-fx-background-image:url("../html/HomePage/Animation/myimgs/group67_80x79.png");
+    -fx-opacity:1;
+}
+
+/**视频播放关闭按钮**/
+#VideoPlayerCloseButton {
+    -fx-background-image:url("../image/LoginPane/CloseButton/btn_close_normal.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+}
+#VideoPlayerCloseButton:focused{
+    -fx-background-image:url("../image/LoginPane/CloseButton/btn_close_normal.png");
+}
+#VideoPlayerCloseButton:hover {
+    -fx-background-image:url("../image/LoginPane/CloseButton/btn_close_highlight.png");
+}
+#VideoPlayerCloseButton:pressed {
+    -fx-background-image:url("../image/LoginPane/CloseButton/btn_close_down.png");
+}
+
+/**系统主界面右侧区域**/
+#HomePageRightPane{
+    -fx-background-color:#2b2b2b;
+    -fx-opacity: 1;
+}
+
+/**前端功能中心右侧区域**/
+#FrontEndFunctionCenterPane{
+    -fx-background-image:url("../image/HomePagePane/RightPane/FrontEndFunctionCenterPane/FrontEndFunctionCenterPane.png");
+    -fx-background-color:#2b2b2b;
+    -fx-opacity: 1;
+}
+
+/**输入框**/
+#InputBoxSL {
+    -fx-background-image:url("../image/HomePagePane/RightPane/APPAutomationCenterPane/InputBox/InputBoxFieldSL.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+    -fx-border-insets: 2,2,2,2;
+    -fx-border-image-insets: 2,2,2,2;
+    -fx-border-color: null;
+    -fx-font-family: "Microsoft YaHei";
+    -fx-font-size: 12.5px;
+    -fx-font-weight:bolder;
+    -fx-text-fill: #e2e2e2;
+}
+#InputBoxL {
+    -fx-background-image:url("../image/HomePagePane/RightPane/FrontEndFunctionCenterPane/InputBox/InputBoxFieldL.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+    -fx-border-insets: 2,2,2,2;
+    -fx-border-image-insets: 2,2,2,2;
+    -fx-border-color: null;
+    -fx-font-family: "Microsoft YaHei";
+    -fx-font-size: 15px;
+    -fx-font-weight:bolder;
+    -fx-text-fill: #e2e2e2;
+}
+#InputBoxS {
+    -fx-background-image:url("../image/HomePagePane/RightPane/FrontEndFunctionCenterPane/InputBox/InputBoxFieldS.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+    -fx-border-insets: 2,2,2,2;
+    -fx-border-image-insets: 2,2,2,2;
+    -fx-border-color: null;
+    -fx-font-family: "Microsoft YaHei";
+    -fx-font-size: 12.5px;
+    -fx-font-weight:bolder;
+    -fx-text-fill: #e2e2e2;
+}
+#InputBoxM {
+    -fx-background-image:url("../image/HomePagePane/RightPane/FrontEndFunctionCenterPane/InputBox/InputBoxFieldM.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+    -fx-border-insets: 2,2,2,2;
+    -fx-border-image-insets: 2,2,2,2;
+    -fx-border-color: null;
+    -fx-font-family: "Microsoft YaHei";
+    -fx-font-size: 12.5px;
+    -fx-font-weight:bolder;
+    -fx-text-fill: #e2e2e2;
+}
+
+/**选项输入框**/
+#OptionEntryBoxLL {
+    -fx-background-image:url("../image/HomePagePane/RightPane/APPAutomationCenterPane/OptionEntryBox/OptionEntryBoxFieldLL.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+    -fx-border-insets: 2,2,2,2;
+    -fx-border-image-insets: 2,2,2,2;
+    -fx-border-color: null;
+    -fx-font-family: "Microsoft YaHei";
+    -fx-font-size: 15px;
+    -fx-font-weight:bolder;
+    -fx-text-fill: #e2e2e2;
+}
+#OptionEntryBoxL {
+    -fx-background-image:url("../image/HomePagePane/RightPane/FrontEndFunctionCenterPane/OptionEntryBox/OptionEntryBoxFieldL.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+    -fx-border-insets: 2,2,2,2;
+    -fx-border-image-insets: 2,2,2,2;
+    -fx-border-color: null;
+    -fx-font-family: "Microsoft YaHei";
+    -fx-font-size: 15px;
+    -fx-font-weight:bolder;
+    -fx-text-fill: #e2e2e2;
+}
+#OptionEntryBoxS {
+    -fx-background-image:url("../image/HomePagePane/RightPane/FrontEndFunctionCenterPane/OptionEntryBox/OptionEntryBoxFieldS.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+    -fx-border-insets: 2,2,2,2;
+    -fx-border-image-insets: 2,2,2,2;
+    -fx-border-color: null;
+    -fx-font-family: "Microsoft YaHei";
+    -fx-font-size: 15px;
+    -fx-font-weight:bolder;
+    -fx-text-fill: #e2e2e2;
+}
+#OptionEntryBoxM {
+    -fx-background-image:url("../image/HomePagePane/RightPane/FrontEndFunctionCenterPane/OptionEntryBox/OptionEntryBoxFieldM.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+    -fx-border-insets: 2,2,2,2;
+    -fx-border-image-insets: 2,2,2,2;
+    -fx-border-color: null;
+    -fx-font-family: "Microsoft YaHei";
+    -fx-font-size: 15px;
+    -fx-font-weight:bolder;
+    -fx-text-fill: #e2e2e2;
+}
+
+/**选项下拉框**/
+#ListView{
+    -fx-font-size: 12px;
+}
+
+/**选择输入框下拉按钮**/
+#ListViewButton{
+    -fx-background-image:url("../image/HomePagePane/RightPane/FrontEndFunctionCenterPane/OptionEntryBox/OptionEntryBoxButton_normal.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+}
+#ListViewButton:hover{
+    -fx-background-image:url("../image/HomePagePane/RightPane/FrontEndFunctionCenterPane/OptionEntryBox/OptionEntryBoxButton_highlight.png");
+}
+#ListViewButton:pressed {
+    -fx-background-image:url("../image/HomePagePane/RightPane/FrontEndFunctionCenterPane/OptionEntryBox/OptionEntryBoxButton_down.png");
+}
+
+/**一键下单按钮**/
+#OneCreateOrderButton{
+    -fx-background-image:url("../image/HomePagePane/RightPane/FrontEndFunctionCenterPane/OneCreateOrderButton/OneCreateOrderButton_normal.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+}
+#OneCreateOrderButton:pressed {
+    -fx-background-image:url("../image/HomePagePane/RightPane/FrontEndFunctionCenterPane/OneCreateOrderButton/OneCreateOrderButton_down.png");
+}
+
+/**一键支付按钮**/
+#OnePaymentOrderButton{
+    -fx-background-image:url("../image/HomePagePane/RightPane/FrontEndFunctionCenterPane/OnePaymentOrderButton/OnePaymentOrderButton_normal.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+}
+#OnePaymentOrderButton:pressed {
+    -fx-background-image:url("../image/HomePagePane/RightPane/FrontEndFunctionCenterPane/OnePaymentOrderButton/OnePaymentOrderButton_down.png");
+}
+
+/**一键核销按钮**/
+#OneWriteOffOrderButton{
+    -fx-background-image:url("../image/HomePagePane/RightPane/FrontEndFunctionCenterPane/OneWriteOffOrderButton/OneWriteOffOrderButton_normal.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+}
+#OneWriteOffOrderButton:pressed {
+    -fx-background-image:url("../image/HomePagePane/RightPane/FrontEndFunctionCenterPane/OneWriteOffOrderButton/OneWriteOffOrderButton_down.png");
+}
+
+/**一键评价按钮**/
+#OneEvaluateOrderButton{
+    -fx-background-image:url("../image/HomePagePane/RightPane/FrontEndFunctionCenterPane/OneEvaluateOrderButton/OneEvaluateOrderButton_normal.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+}
+#OneEvaluateOrderButton:pressed {
+    -fx-background-image:url("../image/HomePagePane/RightPane/FrontEndFunctionCenterPane/OneEvaluateOrderButton/OneEvaluateOrderButton_down.png");
+}
+
+/**后端功能中心右侧区域**/
+#BackendFunctionCenterPane{
+    -fx-background-image:url("../image/HomePagePane/RightPane/FrontEndFunctionCenterPane/FrontEndFunctionCenterPane.png");
+    -fx-background-color:#2b2b2b;
+    -fx-opacity: 1;
+}
+
+/**WEB自动化中心右侧区域**/
+#WEBAutomationCenterPane{
+    -fx-background-image:url("../image/HomePagePane/RightPane/WEBAutomationCenterPane/WEBAutomationCenterPane.png");
+    -fx-background-color:#2b2b2b;
+    -fx-opacity: 1;
+}
+
+/**API自动化中心右侧区域**/
+#APIAutomationCenterPane{
+    -fx-background-image:url("../image/HomePagePane/RightPane/APIAutomationCenterPane/APIAutomationCenterPane.png");
+    -fx-background-color:#2b2b2b;
+    -fx-opacity: 1;
+}
+
+/**APP自动化中心右侧区域**/
+#APPAutomationCenterPane{
+    -fx-background-image:url("../image/HomePagePane/RightPane/APPAutomationCenterPane/APPAutomationCenterPane.png");
+    -fx-background-color:#2b2b2b;
+    -fx-opacity: 1;
+}
+
+/**软件名称标签**/
+#SoftwareNameLabel{
+    -fx-font-family: "Microsoft YaHei";
+    -fx-font-size: 12px;
+    -fx-font-weight:bold;
+    -fx-text-fill: #d7d7d7;
+}
+
+/**提交备注文本域**/
+#CommitMessageTextArea{
+    -fx-font-family: "Microsoft YaHei";
+    -fx-font-size: 15px;
+    -fx-font-weight:bolder;
+    -fx-text-fill: #e2e2e2;
+}
+#CommitMessageTextArea .content{
+    -fx-background-image:url("../image/HomePagePane/RightPane/APPAutomationCenterPane/InputBox/CommitMessageTextArea.png");
+}
+
+/**Appium运行日志文本域**/
+#AppiumLogTextArea{
+    -fx-font-family: "Microsoft YaHei";
+    -fx-font-size: 12px;
+    -fx-font-weight:bolder;
+    -fx-text-fill: #B4B4B4;
+}
+#AppiumLogTextArea .content{
+    -fx-background-image:url("../image/HomePagePane/RightPane/APPAutomationCenterPane/InputBox/AppiumLogTextArea.png");
+}
+
+/**Appium元素搜索按钮**/
+#AppiumInspecrotButton{
+    -fx-background-image:url("../image/HomePagePane/RightPane/APPAutomationCenterPane/AppiumInspecrotButton/AppiumInspecrotButton_normal.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+}
+#AppiumInspecrotButton:pressed {
+    -fx-background-image:url("../image/HomePagePane/RightPane/APPAutomationCenterPane/AppiumInspecrotButton/AppiumInspecrotButton_down.png");
+}
+
+/**Appium获取设备按钮**/
+#APPGetDevicesButton{
+    -fx-background-image:url("../image/HomePagePane/RightPane/APPAutomationCenterPane/GetDevicesButton/GetDevicesButton_normal.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+}
+#APPGetDevicesButton:pressed {
+    -fx-background-image:url("../image/HomePagePane/RightPane/APPAutomationCenterPane/GetDevicesButton/GetDevicesButton_down.png");
+}
+
+/**APP自动化设备信息界面**/
+#DevicesCenterPane{
+    -fx-background-image:url("../image/HomePagePane/RightPane/APPAutomationCenterPane/DevicesCenterPane.png");
+    -fx-background-color:#2b2b2b;
+    -fx-opacity: 1;
+}
+
+/**Appium运行按钮**/
+#AppiumRunButton{
+    -fx-background-image:url("../image/HomePagePane/RightPane/APPAutomationCenterPane/AppiumRunButton/AppiumRunButton_normal.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+}
+#AppiumRunButton:pressed {
+    -fx-background-image:url("../image/HomePagePane/RightPane/APPAutomationCenterPane/AppiumRunButton/AppiumRunButton_down.png");
+}
+/**Appium停止按钮**/
+#AppiumStopButton{
+    -fx-background-image:url("../image/HomePagePane/RightPane/APPAutomationCenterPane/AppiumStopButton/AppiumStopButton_normal.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+}
+#AppiumStopButton:pressed {
+    -fx-background-image:url("../image/HomePagePane/RightPane/APPAutomationCenterPane/AppiumStopButton/AppiumStopButton_down.png");
+}
+
+/**脚本运行日志文本域**/
+#ScriptRunLogTextArea{
+    -fx-font-family: "Microsoft YaHei";
+    -fx-font-size: 12px;
+    -fx-font-weight:bolder;
+    -fx-text-fill: #B4B4B4;
+}
+#ScriptRunLogTextArea .content{
+    -fx-background-image:url("../image/HomePagePane/RightPane/WEBAutomationCenterPane/InputBox/ScriptRunLogTextArea.png");
+}
+
+/**脚本上传按钮**/
+#ScriptUploadButton{
+    -fx-background-image:url("../image/HomePagePane/RightPane/APPAutomationCenterPane/ScriptUploadButton/ScriptUploadButton_normal.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+}
+#ScriptUploadButton:pressed {
+    -fx-background-image:url("../image/HomePagePane/RightPane/APPAutomationCenterPane/ScriptUploadButton/ScriptUploadButton_down.png");
+}
+
+/**脚本下载按钮**/
+#ScriptDownloadButton{
+    -fx-background-image:url("../image/HomePagePane/RightPane/APPAutomationCenterPane/ScriptDownloadButton/ScriptDownloadButton_normal.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+}
+#ScriptDownloadButton:pressed {
+    -fx-background-image:url("../image/HomePagePane/RightPane/APPAutomationCenterPane/ScriptDownloadButton/ScriptDownloadButton_down.png");
+}
+
+/**脚本运行按钮**/
+#ScriptRunButton{
+    -fx-background-image:url("../image/HomePagePane/RightPane/APPAutomationCenterPane/ScriptRunButton/ScriptRunButton_normal.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+}
+#ScriptRunButton:pressed {
+    -fx-background-image:url("../image/HomePagePane/RightPane/APPAutomationCenterPane/ScriptRunButton/ScriptRunButton_down.png");
+}
+
+/**生成报告按钮**/
+#GenerationReportButton{
+    -fx-background-image:url("../image/HomePagePane/RightPane/APPAutomationCenterPane/GenerationReportButton/GenerationReportButton_normal.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+}
+#GenerationReportButton:pressed {
+    -fx-background-image:url("../image/HomePagePane/RightPane/APPAutomationCenterPane/GenerationReportButton/GenerationReportButton_down.png");
+}
+
+/**发送邮件按钮**/
+#SendMailButton{
+    -fx-background-image:url("../image/HomePagePane/RightPane/APPAutomationCenterPane/SendMailButton/SendMailButton_normal.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+}
+#SendMailButton:pressed {
+    -fx-background-image:url("../image/HomePagePane/RightPane/APPAutomationCenterPane/SendMailButton/SendMailButton_down.png");
+}
+
+/**性能自动化中心右侧区域**/
+#PerformanceAutomationCenterPane{
+    -fx-background-image:url("../image/HomePagePane/RightPane/PerformanceAutomationCenterPane/PerformanceAutomationCenterPane.png");
+    -fx-background-color:#2b2b2b;
+    -fx-opacity: 1;
+}
+
+/**软件名称标签**/
+#SoftwareNameLabel{
+    -fx-font-family: "Microsoft YaHei";
+    -fx-font-size: 12px;
+    -fx-font-weight:bold;
+    -fx-text-fill: #d7d7d7;
+}
+
+/**账号登录按钮**/
+#AccountLoginButton{
+    -fx-background-image:url("../image/HomePagePane/RightPane/PerformanceAutomationCenterPane/AccountLoginButton/AccountLoginButton_normal.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+}
+#AccountLoginButton:pressed {
+    -fx-background-image:url("../image/HomePagePane/RightPane/PerformanceAutomationCenterPane/AccountLoginButton/AccountLoginButton_down.png");
+}
+
+/**账号登录信息界面**/
+#PerformanceAccountLoginCenterPane{
+    -fx-background-image:url("../image/HomePagePane/RightPane/PerformanceAutomationCenterPane/AccountLoginButton/AccountLoginCenterPane.png");
+    -fx-background-color:#2b2b2b;
+    -fx-opacity: 1;
+}
+
+/**注册账号按钮**/
+#RegisteredAccountButton{
+    -fx-background-image:url("../image/HomePagePane/RightPane/PerformanceAutomationCenterPane/AccountLoginButton/RegisteredAccountButton_normal.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+}
+#RegisteredAccountButton:pressed {
+    -fx-background-image:url("../image/HomePagePane/RightPane/PerformanceAutomationCenterPane/AccountLoginButton/RegisteredAccountButton_down.png");
+}
+
+/**确定登录按钮**/
+#ConfirmLoginButton{
+    -fx-background-image:url("../image/HomePagePane/RightPane/PerformanceAutomationCenterPane/AccountLoginButton/ConfirmLoginButton_normal.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+}
+#ConfirmLoginButton:pressed {
+    -fx-background-image:url("../image/HomePagePane/RightPane/PerformanceAutomationCenterPane/AccountLoginButton/ConfirmLoginButton_down.png");
+}
+
+/**APK插桩按钮**/
+#ApkPileButton{
+    -fx-background-image:url("../image/HomePagePane/RightPane/PerformanceAutomationCenterPane/ApkPileButton/ApkPileButton_normal.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+}
+#ApkPileButton:pressed {
+    -fx-background-image:url("../image/HomePagePane/RightPane/PerformanceAutomationCenterPane/ApkPileButton/ApkPileButton_down.png");
+}
+
+/**获取设备按钮**/
+#PerGetDevicesButton{
+    -fx-background-image:url("../image/HomePagePane/RightPane/PerformanceAutomationCenterPane/GetDevicesButton/GetDevicesButton_normal.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+}
+#PerGetDevicesButton:pressed {
+    -fx-background-image:url("../image/HomePagePane/RightPane/PerformanceAutomationCenterPane/GetDevicesButton/GetDevicesButton_down.png");
+}
+
+/**获取设备信息界面**/
+#PerformanceDevicesCenterPane{
+    -fx-background-image:url("../image/HomePagePane/RightPane/PerformanceAutomationCenterPane/DevicesCenterPane.png");
+    -fx-background-color:#2b2b2b;
+    -fx-opacity: 1;
+}
+
+/**安装APK按钮**/
+#InstallApkButton{
+    -fx-background-image:url("../image/HomePagePane/RightPane/PerformanceAutomationCenterPane/InstallApkButton/InstallApkButton_normal.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+}
+#InstallApkButton:pressed {
+    -fx-background-image:url("../image/HomePagePane/RightPane/PerformanceAutomationCenterPane/InstallApkButton/InstallApkButton_down.png");
+}
+
+/**开始监控按钮**/
+#StartMonitoringButton{
+    -fx-background-image:url("../image/HomePagePane/RightPane/PerformanceAutomationCenterPane/StartMonitoringButton/StartMonitoringButton_normal.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+}
+#StartMonitoringButton:pressed {
+    -fx-background-image:url("../image/HomePagePane/RightPane/PerformanceAutomationCenterPane/StartMonitoringButton/StartMonitoringButton_down.png");
+}
+
+/**停止监控按钮**/
+#StopMonitoringButton{
+    -fx-background-image:url("../image/HomePagePane/RightPane/PerformanceAutomationCenterPane/StopMonitoringButton/StopMonitoringButton_normal.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+}
+#StopMonitoringButton:pressed {
+    -fx-background-image:url("../image/HomePagePane/RightPane/PerformanceAutomationCenterPane/StopMonitoringButton/StopMonitoringButton_down.png");
+}
+
+/**上传分析按钮**/
+#UploadAnalysisButton{
+    -fx-background-image:url("../image/HomePagePane/RightPane/PerformanceAutomationCenterPane/UploadAnalysisButton/UploadAnalysisButton_normal.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+}
+#UploadAnalysisButton:pressed {
+    -fx-background-image:url("../image/HomePagePane/RightPane/PerformanceAutomationCenterPane/UploadAnalysisButton/UploadAnalysisButton_down.png");
+}
+
+
+
+
+
+
+
+
+

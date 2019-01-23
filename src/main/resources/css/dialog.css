@@ -1,0 +1,82 @@
+/*消息对话框界面 */
+#MessageDialogTopPane{
+    -fx-background-color: #3E9ED0;
+}
+
+#MessageDialogBottomPane{
+    -fx-background-color: #E1E6EC;
+}
+
+/**提示文本**/
+#TipsText{
+	-fx-font-size: 12;
+    -fx-text-fill: white;
+    -fx-font-family: "微软雅黑";
+}
+
+/**关闭按钮**/
+#CloseButton {
+    -fx-background-image:url("../image/LoginPane/CloseButton/btn_close_normal.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+}
+
+#CloseButton:focused{
+    -fx-background-image:url("../image/LoginPane/CloseButton/btn_close_normal.png");
+}
+
+#CloseButton:hover {
+    -fx-background-image:url("../image/LoginPane/CloseButton/btn_close_highlight.png");
+}
+
+#CloseButton:pressed {
+    -fx-background-image:url("../image/LoginPane/CloseButton/btn_close_down.png");
+}
+
+/**提示内容文本**/
+#ContentText{
+	-fx-font-size: 12;
+    -fx-font-family: "微软雅黑";
+}
+
+/**确定按钮 **/
+#SureButton{
+    -fx-background-color: #F4F4F4;
+    -fx-background-radius: 0;
+    -fx-font-size: 12;
+    -fx-font-family: "微软雅黑";
+    -fx-text-fill: brack;
+}
+
+#SureButton:hover {
+    -fx-background-color: #BEE7FD;
+}
+
+#SureButton:pressed {
+    -fx-background-color: #EBECED;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
