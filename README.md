@@ -11,6 +11,7 @@
 
 ### 系统下载：
     微云地址：[https://share.weiyun.com/5MFDHgI](https://share.weiyun.com/5MFDHgI)
+    微云地址：[微云地址](https://share.weiyun.com/5MFDHgI)
 
 ### 源码地址：
     Gitee地址：[https://gitee.com/hagyao520/AutomationTestSystem.git](https://gitee.com/hagyao520/AutomationTestSystem.git)
@@ -92,11 +93,12 @@
 
 ### 二、系统登录：
  - 正常启动后，系统会自动进入登录界面，如下：
-      ![](https://images.gitee.com/uploads/images/2019/0123/160410_cef3e8be_1325509.png)
+
+![](https://images.gitee.com/uploads/images/2019/0123/160410_cef3e8be_1325509.png)
 
  - 点击账号选项框，选择第一个账号，如下：
 
-      ![](https://images.gitee.com/uploads/images/2019/0123/160410_821e7b47_1325509.png)
+![](https://images.gitee.com/uploads/images/2019/0123/160410_821e7b47_1325509.png)
 
  - 点击登录按钮，等待3秒，自动进入系统加载页面，如下：
 ![](https://images.gitee.com/uploads/images/2019/0123/160410_43731a19_1325509.png)
