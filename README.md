@@ -41,7 +41,7 @@
     7.  实现了可以在线上传，下载脚本，实际调用Git命令push和pull
     8.  实现了可以在线运行测试脚本，使用Ant运行build文件，执行脚本
     9.  实现了可以在线生成测试报告，使用TestNG生成，调用ExtentReports进行二次美化，界面更美观，内容清晰
-     10. 实现了可以在线发送邮件，自动发送测试报告到对应收件人邮箱，最大支持4个
+    10. 实现了可以在线发送邮件，自动发送测试报告到对应收件人邮箱，最大支持4个
 
 ### 环境配置：
    1. [JDK1.8以上](http://www.Oracle.com/technetwork/Java/javase/downloads/index.html)
@@ -53,10 +53,10 @@
    7. [Gradle](http://services.gradle.org/distributions/) 
    8. [Python](https://www.python.org/downloads/) 
    9. [Maven](http://maven.apache.org/download.cgi) 
-    10. [Ant](https://ant.apache.org)
-    11. [Atom](https://atom.io/)
-    12. [Git](https://git•scm.com/)
-    13. [一台安卓手机或者安卓模拟器，推荐使用真机](https://www.yeshen.com)
+   10. [Ant](https://ant.apache.org)
+   11. [Atom](https://atom.io/)
+   12. [Git](https://git•scm.com/)
+   13. [一台安卓手机或者安卓模拟器，推荐使用真机](https://www.yeshen.com)
 
  • 部分网站需要翻墙，具体安装参考：https://blog.csdn.net/love4399/article/details/77164500
 
@@ -92,12 +92,11 @@
 
 ### 二、系统登录：
  - 正常启动后，系统会自动进入登录界面，如下：
-
-![](https://images.gitee.com/uploads/images/2019/0123/160410_cef3e8be_1325509.png)
+      ![](https://images.gitee.com/uploads/images/2019/0123/160410_cef3e8be_1325509.png)
 
  - 点击账号选项框，选择第一个账号，如下：
 
-![](https://images.gitee.com/uploads/images/2019/0123/160410_821e7b47_1325509.png)
+      ![](https://images.gitee.com/uploads/images/2019/0123/160410_821e7b47_1325509.png)
 
  - 点击登录按钮，等待3秒，自动进入系统加载页面，如下：
 ![](https://images.gitee.com/uploads/images/2019/0123/160410_43731a19_1325509.png)
@@ -133,7 +132,7 @@
   7. 点击脚本下载按钮，即可下载脚本到本地，实现同步，方便多人协调写脚本
   8. 点击脚本运行按钮，即可在线运行脚本，在脚本运行日志区域，可以看到脚本的运行日志情况
   9. 脚本运行结束后，点击生成报告按钮，即可自动打开浏览器，查看测试报告，需翻墙使用，有提示
-   10. 选择邮件方式，输入发送人数，收件人邮箱，点击发送邮件按钮，即可自动发送测试报告到指定收件人邮箱
+  10. 选择邮件方式，输入发送人数，收件人邮箱，点击发送邮件按钮，即可自动发送测试报告到指定收件人邮箱
 
  - PS:注意测试执行时需要在common.properties文件中，指定浏览器和浏览器配置文件
  - 具体WEB项目框架请参考: https://testerhome.com/topics/13439
@@ -152,7 +151,7 @@
   7. 点击脚本下载按钮，即可下载脚本到本地，实现同步，方便多人协调写脚本
   8. 点击脚本运行按钮，即可在线运行脚本，在脚本运行日志区域，可以看到脚本的运行日志情况
   9. 脚本运行结束后，点击生成报告按钮，即可自动打开浏览器，查看测试报告，需翻墙使用，有提示
-   10. 选择邮件方式，输入发送人数，收件人邮箱，点击发送邮件按钮，即可自动发送测试报告到指定收件人邮箱
+  10. 选择邮件方式，输入发送人数，收件人邮箱，点击发送邮件按钮，即可自动发送测试报告到指定收件人邮箱
 
  - 具体API项目框架请参考: https://testerhome.com/topics/13532
 
@@ -162,7 +161,7 @@
  - 使用流程：
 ![](https://images.gitee.com/uploads/images/2019/0123/160412_8e9503e9_1325509.png)
   1. 输入APP项目工程地址，点击下载按钮，例如：https://gitee.com/hagyao520/Appium.git
-  2.选择对应软件APP名称，软件日期等，点击软件下载按钮，例如：微信
+  2. 选择对应软件APP名称，软件日期等，点击软件下载按钮，例如：微信
   3. 点击测试对象按钮，选择对应测试对象，例如：TestCases\WeChatLogin.java
   4. 点击测试脚本按钮，选择对应测试脚本，例如：TestCaseXls\WeChatLogin.xml
   5. 点击脚本集合按钮，选择对应脚本集合，例如：TestReportXml\TestngReport.xml
@@ -170,7 +169,7 @@
   7. 点击脚本下载按钮，即可下载脚本到本地，实现同步，方便多人协调写脚本
   8. 点击脚本运行按钮，即可在线运行脚本，在Appium运行日志和脚本运行日志区域，可以看到Appium及脚本的运行日志情况
   9. 脚本运行结束后，点击生成报告按钮，即可自动打开浏览器，查看测试报告，需翻墙使用，有提示
-   10. 选择邮件方式，输入发送人数，收件人邮箱，点击发送邮件按钮，即可自动发送测试报告到指定收件人邮箱
+  10. 选择邮件方式，输入发送人数，收件人邮箱，点击发送邮件按钮，即可自动发送测试报告到指定收件人邮箱
 
  - 具体APP项目框架请参考: https://testerhome.com/topics/13401
 
