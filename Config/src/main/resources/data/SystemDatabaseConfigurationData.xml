@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<root><systemDatabaseConfiguration><ddataBase>travele_test</ddataBase><dhostAddress>rm-wz99301zn03n90h47v.mysql.rds.aliyuncs.com</dhostAddress><djdbcDriver>com.mysql.jdbc.Driver</djdbcDriver><dpassWord>JQBdaev1qaz</dpassWord><dport>3306</dport><duserName>jeqbdev</duserName></systemDatabaseConfiguration></root>

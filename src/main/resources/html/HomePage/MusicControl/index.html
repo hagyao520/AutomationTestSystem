@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vsPlayAudio v0.1.0</title> -->
+	
+	<!--默认样式  可无视-->
+    <link rel="stylesheet" href="./reset.css">
+    <!--输入框样式-->
+	<link rel="stylesheet" type="text/css" href="./style.css">
+    
+	<!--核心js-->
+    <script src="./vsPlayAudio.min.js.下载"></script>
+    
+
+<style type="text/css">
+#vsPlayAudio .vsPlayAudio-control-show {
+    visibility: visible;
+    left: 205px;
+    opacity: 1;
+}
+
+#vsPlayAudio .vsPlayAudio-play {
+    position: absolute;
+    top: 90px;
+    opacity: 1;
+    transition: all .5s;
+    -moz-transition: all .5s;
+    -webkit-transition: all .5s;
+    -o-transition: all .5s;	
+}
+#vsPlayAudio .vsPlayAudio-play-none {
+    opacity: 1;
+}
+#vsPlayAudio .vsPlayAudio-play svg {
+    position: absolute;
+    margin: 1px;
+    left: 65px;
+    width: 30px;
+    height: 30px;
+}
+#vsPlayAudio .vsPlayAudio-cover-box {
+    top: 390px;
+    width: 206px;
+    height: 205px;
+    animation:vsPlayAudio-playMove 10s infinite linear;
+    -moz-animation:vsPlayAudio-playMove 10s infinite linear;
+    -webkit-animation:vsPlayAudio-playMove 10s infinite linear;
+    -o-animation:vsPlayAudio-playMove 10s infinite linear; 
+    animation-play-state:paused;
+    -moz-animation-play-state:paused; 
+    -webkit-animation-play-state:paused; 
+    -o-animation-play-state:paused;
+}
+
+</style>
+</head>
+
+<body style="background-color:rgba(0,0,0,0.5);">
+    <div id="vsPlayAudio"></div>
+    <div style="margin-top:132px;margin-left:132px;">
+    <input id="data" type="text" value="" placeholder="请输入歌单ID">
+    <!-- <input type="button" value="获取歌单" onclick="huoqu()"/> -->
+    <button class="button" style="vertical-align:middle" onclick="huoqu()"><span>获取歌单</span></button>
+    </div>
+    <script type="text/javascript">
+        var player;
+        function huoqu(){
+            var data = document.getElementById('data').value;
+            if(data!=""){
+                player.pause();
+                player = new vsPlayAudio({
+                  music: {
+                    type: 'cloud',
+                    source: data
+                  },
+                  autoPlay: false,
+                  random: true
+                });
+            }else{
+               alert("请前往【https://music.163.com/#/discover/playlist】获取歌单ID！"); 
+               window.open('https://music.163.com/#/discover/playlist');
+            }
+        } 
+        player = new vsPlayAudio({});
+        // player = new vsPlayAudio({
+        //           music: {
+        //             type: 'cloud',
+        //             source: 430428917
+        //           },
+        //           autoPlay: true,
+        //           random: true
+        //         });
+    </script>
+    <script type="text/javascript" src="./index.js.下载"></script>
+</body>
+</html>

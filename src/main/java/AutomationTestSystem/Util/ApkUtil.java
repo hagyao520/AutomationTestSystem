@@ -31,7 +31,7 @@ public class ApkUtil {
      */
     //windows环境下直接指向appt.exe
     //比如你可以放在src下
-    private String mAaptPath = "D:\\Program\\Android_SDK\\android-sdk-windows\\build-tools\\25.0.2\\aapt.exe";
+    private String mAaptPath = "D:\\Program\\Android_SDK\\android-sdk-windows\\build-tools\\30.0.0\\aapt.exe";
     //linux下
     //private String mAaptPath = "/usr/local/apktool/aapt";
 

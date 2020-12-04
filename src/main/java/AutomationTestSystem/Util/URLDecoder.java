@@ -64,5 +64,12 @@ public class URLDecoder {
     	String key1 = str.split("&")[0].split("=")[1];
     	String key2 = str.split("&")[1].split("=")[0];
     	System.out.println(key1 + "--" + key2);
+    	
+    	String str1 = "http://oss.pgyer.com/de9116764520b481acc529df22cee98a.apk?auth_key=1560&response-content-disposition=attachment%3B+filename%3Dapp-debug.apk";
+    	String key3 = str1.split("%3D")[1];
+    	System.out.println(key3);
+    	
+    	String key4 = str1.substring(str1.lastIndexOf("%3D")).replace("%3D", "");
+    	System.out.println(key4);
     }
 }

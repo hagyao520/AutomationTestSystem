@@ -737,8 +737,10 @@ public class PerformanceAutomationCenterPageView extends Application {
     		    				public void run() {
     		    					SoftwareEngineering = SoftwareEngineeringurl.substring(SoftwareEngineeringurl.lastIndexOf("/")+1);
     		    					String NewSoftwareEngineering = ""+System.getProperty("user.home")+"\\AppData\\Local\\AutomationTestSystem\\app\\"+SoftwareEngineering+"";
+    		    					String Account = HomePageView.AccountField.getText();
+		    					    String PassWord = HomePageView.PasswrodField.getText();
     		    					try {
-    		    						String message =JGitUtil.CloneRepository(SoftwareEngineeringurl,NewSoftwareEngineering);
+    		    						String message =JGitUtil.CloneRepository(SoftwareEngineeringurl,NewSoftwareEngineering,Account,PassWord);
     			                		if(message=="Success"){
     			                			Platform.runLater(new Runnable() {
         			    	    			    @Override
@@ -1653,7 +1655,7 @@ public class PerformanceAutomationCenterPageView extends Application {
 	    	    MobilePhoneManufacturerField.setPrefColumnCount(10);//设置文本最大显示内容长度
 	    	    MobilePhoneManufacturerField.setBackground(Background.EMPTY);
 	    	    MobilePhoneManufacturerField.setBorder(Border.EMPTY);
-	    	    MobilePhoneManufacturerField.setEditable(false);
+//	    	    MobilePhoneManufacturerField.setEditable(false);
 	    	    
 	    	    MobilePhoneModelField.setLayoutX(110);
 	    	    MobilePhoneModelField.setLayoutY(135);

@@ -10,6 +10,7 @@ echo 【目录打开成功,别关闭，程序生成中...】
 echo 开始执行打包EXE程序操作！
 javafxpackager -deploy -native exe -srcdir target\jfx\app -outdir AutomationTestSystem -name AutomationTestSystem -outfile AutomationTestSystem -appclass AutomationTestSystem.StartClient
 echo 打包EXE程序成功！
+pause
 
 
 

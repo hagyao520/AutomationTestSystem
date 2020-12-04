@@ -12,6 +12,7 @@ import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Tab;
@@ -83,6 +84,7 @@ import AutomationTestSystem.Util.ApkUtil;
 import AutomationTestSystem.Util.DatabaseUtil;
 import AutomationTestSystem.Util.DialogUtil;
 import AutomationTestSystem.Util.DragUtil;
+import AutomationTestSystem.Util.HttpPostRequestUtil;
 import AutomationTestSystem.Util.JGitUtil;
 import AutomationTestSystem.Util.OpenBrowserUtil;
 import AutomationTestSystem.Util.SendEmail;
@@ -691,74 +693,83 @@ public class APPAutomationCenterPageView extends Application {
         	    SoftwareEngineeringButton.setId("ListViewButton");
         	    SoftwareEngineeringButton.setOnAction(new EventHandler<ActionEvent>() {
 	                public void handle(ActionEvent event) {
-	                	String SoftwareEngineeringurl=SoftwareEngineeringField.getText().replace(".git", "");
-	                	if(StringUtil.isEmpty(SoftwareEngineeringurl)){
-                			Dialog.SetMessageDialog("Warning","请输入工程地址！");
+	                	if(HomePageView.AccountLoginOpen==0){
+	                		HomePageView.AccountLoginCenterPane.setVisible(true);
+	                	}else if(SendPeopleNumberField.getText().equals("5")){
+	                		HomePageView.AccountLoginCenterPane.setVisible(true);
 	                	}else{
-	                		SoftwareEngineeringButton.setDisable(true);
-                			DownloadProgressBar.setLayoutX(450);
-    	      	    	    DownloadProgressBar.setLayoutY(8);
-    	      	    	    DownloadProgressLabel.setLayoutX(457);
-    	      	    	    DownloadProgressLabel.setLayoutY(17);
-    	                	DownloadProgressBar.setVisible(true);
-    		    	    	DownloadProgressLabel.setVisible(true);
-    	                	Worker = CreateWorker("SoftwareEngineering");
-//    	                	DownloadProgressBar.progressProperty().bind(Worker.progressProperty());
-    	                	DownloadProgressLabel.textProperty().bind(Worker.messageProperty());
-    	                	new Thread(Worker).start();
-    	                	Timer timer = new Timer();
-    		    			timer.schedule(new TimerTask() {
-    		    				@Override
-    		    				public void run() {
-//    		    					SoftwareEngineering ="Appium";
-    		    					SoftwareEngineering = SoftwareEngineeringurl.substring(SoftwareEngineeringurl.lastIndexOf("/")+1);
-    		    					String SoftwareEngineeringPath = ""+System.getProperty("user.home")+"\\AppData\\Local\\AutomationTestSystem\\app\\"+SoftwareEngineering+"";
-    		    					try {
-    		    						String message =JGitUtil.CloneRepository(SoftwareEngineeringurl,SoftwareEngineeringPath);
-    			                		if(message=="Success"){
-    			                			Platform.runLater(new Runnable() {
-        			    	    			    @Override
-        			    	    			    public void run() {
-        			    	    			    	Dialog.SetMessageDialog("Success","工程下载成功！");
-            			                			SoftwareEngineeringField.setText(SoftwareEngineering.replace(".git", ""));
-                			                		DownloadProgressBar.setVisible(false);
-                						    	    DownloadProgressLabel.setVisible(false);
-                						    	    SoftwareEngineeringButton.setDisable(false);
-        			    	    			    }
-        			    	    			});
-    			                		}else if(message=="AlreadyExisted"){
-    			                			Platform.runLater(new Runnable() {
-        			    	    			    @Override
-        			    	    			    public void run() {
-        			    	    			    	DownloadProgressLabel.textProperty().unbind();
-        			    	    			    	Dialog.SetMessageDialog("Warning","工程已存在，请勿重复下载！");
-        			    	    			    	SoftwareEngineeringField.setText(SoftwareEngineering.replace(".git", ""));
-        			    	    			    	DownloadProgressBar.setVisible(false);
-        			    	    			    	DownloadProgressLabel.setVisible(false);
-        			    	    			    	SoftwareEngineeringButton.setDisable(false);
-        						                	String Dir = System.getProperty("user.home")+"\\AppData\\Local\\AutomationTestSystem\\app\\"+SoftwareEngineering+"";
-        						                	OpenDir(Dir);
-        						                	OpenFile(Dir);
-        			    	    			    }
-        			    	    			});
-    			                		}else{
-    			                			Platform.runLater(new Runnable() {
-        			    	    			    @Override
-        			    	    			    public void run() {
-        			    	    			    	DownloadProgressLabel.textProperty().unbind();
-        			    	    			    	Dialog.SetMessageDialog("Warning","工程地址错误或网络连接失败，请检查后重试！");
-        			    	    			    	DownloadProgressBar.setVisible(false);
-        			    	    			    	DownloadProgressLabel.setVisible(false);
-        			    	    			    	SoftwareEngineeringButton.setDisable(false);
-        			    	    			    }
-        			    	    			});
-    			                		}
-    								} catch (Exception e) {
-    									e.printStackTrace();
-    							    }
-    		    				}
-    		    			}, 200);
-                		}
+	                		String SoftwareEngineeringurl=SoftwareEngineeringField.getText().replace(".git", "");
+		                	if(StringUtil.isEmpty(SoftwareEngineeringurl)){
+	                			Dialog.SetMessageDialog("Warning","请输入工程地址！");
+		                	}else{
+		                		SoftwareEngineeringButton.setDisable(true);
+	                			DownloadProgressBar.setLayoutX(450);
+	    	      	    	    DownloadProgressBar.setLayoutY(8);
+	    	      	    	    DownloadProgressLabel.setLayoutX(457);
+	    	      	    	    DownloadProgressLabel.setLayoutY(17);
+	    	                	DownloadProgressBar.setVisible(true);
+	    		    	    	DownloadProgressLabel.setVisible(true);
+	    	                	Worker = CreateWorker("SoftwareEngineering");
+//	    	                	DownloadProgressBar.progressProperty().bind(Worker.progressProperty());
+	    	                	DownloadProgressLabel.textProperty().bind(Worker.messageProperty());
+	    	                	new Thread(Worker).start();
+	    	                	Timer timer = new Timer();
+	    		    			timer.schedule(new TimerTask() {
+	    		    				@Override
+	    		    				public void run() {
+//	    		    					SoftwareEngineering ="Appium";
+	    		    					SoftwareEngineering = SoftwareEngineeringurl.substring(SoftwareEngineeringurl.lastIndexOf("/")+1);
+	    		    					String SoftwareEngineeringPath = ""+System.getProperty("user.home")+"\\AppData\\Local\\AutomationTestSystem\\app\\"+SoftwareEngineering+"";
+	    		    					String Account = HomePageView.AccountField.getText();
+			    					    String PassWord = HomePageView.PasswrodField.getText();
+	    		    					try {
+	    		    						String message =JGitUtil.CloneRepository(SoftwareEngineeringurl,SoftwareEngineeringPath,Account,PassWord);
+	    			                		if(message=="Success"){
+	    			                			Platform.runLater(new Runnable() {
+	        			    	    			    @Override
+	        			    	    			    public void run() {
+	        			    	    			    	Dialog.SetMessageDialog("Success","工程下载成功！");
+	            			                			SoftwareEngineeringField.setText(SoftwareEngineering.replace(".git", ""));
+	                			                		DownloadProgressBar.setVisible(false);
+	                						    	    DownloadProgressLabel.setVisible(false);
+	                						    	    SoftwareEngineeringButton.setDisable(false);
+	        			    	    			    }
+	        			    	    			});
+	    			                		}else if(message=="AlreadyExisted"){
+	    			                			Platform.runLater(new Runnable() {
+	        			    	    			    @Override
+	        			    	    			    public void run() {
+	        			    	    			    	DownloadProgressLabel.textProperty().unbind();
+	        			    	    			    	Dialog.SetMessageDialog("Warning","工程已存在，请勿重复下载！");
+	        			    	    			    	SoftwareEngineeringField.setText(SoftwareEngineering.replace(".git", ""));
+	        			    	    			    	DownloadProgressBar.setVisible(false);
+	        			    	    			    	DownloadProgressLabel.setVisible(false);
+	        			    	    			    	SoftwareEngineeringButton.setDisable(false);
+	        						                	String Dir = System.getProperty("user.home")+"\\AppData\\Local\\AutomationTestSystem\\app\\"+SoftwareEngineering+"";
+	        						                	OpenDir(Dir);
+	        						                	OpenFile(Dir);
+	        			    	    			    }
+	        			    	    			});
+	    			                		}else{
+	    			                			Platform.runLater(new Runnable() {
+	        			    	    			    @Override
+	        			    	    			    public void run() {
+	        			    	    			    	DownloadProgressLabel.textProperty().unbind();
+	        			    	    			    	Dialog.SetMessageDialog("Warning","工程地址错误丨账号密码错误丨网络连接失败，请检查后重试！");
+	        			    	    			    	DownloadProgressBar.setVisible(false);
+	        			    	    			    	DownloadProgressLabel.setVisible(false);
+	        			    	    			    	SoftwareEngineeringButton.setDisable(false);
+	        			    	    			    	HomePageView.AccountLoginCenterPane.setVisible(true);
+	        			    	    			    }
+	        			    	    			});
+	    			                		}
+	    								} catch (Exception e) {
+	    									e.printStackTrace();
+	    							    }
+	    		    				}
+	    		    			}, 200);
+	                		}
+	                	}
 	                }
 	            });
         	    
@@ -886,9 +897,11 @@ public class APPAutomationCenterPageView extends Application {
 	    	    SoftwareDownloadsButton.setId("ListViewButton");
 	    	    SoftwareDownloadsButton.setOnAction(new EventHandler<ActionEvent>() {
 	                public void handle(ActionEvent event) {
-	                	if(StringUtil.isEmpty(SoftwareEngineeringField.getText())){
-                			Dialog.SetMessageDialog("Warning","请输入工程地址！");
-	                	}else if (StringUtil.isEmpty(String.valueOf(SoftwareDate))) {
+	                    if(StringUtil.isEmpty(SoftwareEngineeringField.getText())){
+                            Dialog.SetMessageDialog("Warning","请输入工程地址！");
+                        }else if (StringUtil.isEmpty(SoftwareEngineering)) {
+                            Dialog.SetMessageDialog("Warning","请先下载工程！");
+                        }else if (StringUtil.isEmpty(String.valueOf(SoftwareDate))) {
 		    	        	Dialog.SetMessageDialog("Warning","请输入软件日期！");
 		                }else{
 		                	DownloadProgressBar.setLayoutX(450);
@@ -1015,7 +1028,7 @@ public class APPAutomationCenterPageView extends Application {
 						            			  SoftwareDownloadsButton.setDisable(true);
 								                   String DownloadUrl =SoftwareDownloadsField.getText();
 								                   String SavePath = ""+System.getProperty("user.home")+"\\AppData\\Local\\AutomationTestSystem\\app\\"+SoftwareEngineering+"\\TestData\\App\\";
-								                   String ApkPath =APPAutomationCenterPageController.DownLoadFromUrlParam(DownloadUrl, SavePath,"attname");
+								                   String ApkPath =APPAutomationCenterPageController.DownLoadFromUrlParam(DownloadUrl, SavePath,"%3D");
 								                   String NewApkPath =ApkPath.replace(""+System.getProperty("user.home")+"\\AppData\\Local\\AutomationTestSystem\\app\\"+SoftwareEngineering+"\\TestData\\App\\", "");
 								                   if("null".equals(NewApkPath)){
 								                	   Platform.runLater(new Runnable() {
@@ -1034,17 +1047,18 @@ public class APPAutomationCenterPageView extends Application {
 												           System.out.println(apkInfo);
 												           String apkName = apkInfo.getApplicationLable(); 
 												           String apkPackageName = apkInfo.getPackageName(); 
+												           String apkActivity = apkInfo.getLaunchableActivity();
 //												           SoftwareIcon = ""+ApkIconUtil.extractFileFromApk(ApkPath, apkInfo.getApplicationIcon(), ""+System.getProperty("user.home")+"\\AppData\\Local\\AutomationTestSystem\\app\\src\\main\\resources\\image\\HomePagePane\\RightPane\\APPAutomationCenterPane\\SoftwareIcon\\" + apkName + ".png");
 														   SoftwareIcon = ApkIconUtil.extractFileFromApk(ApkPath, apkInfo.getApplicationIcon(), ""+System.getProperty("user.dir")+"/src/main/resources/image/HomePagePane/RightPane/APPAutomationCenterPane/SoftwareIcon/" + apkName + ".png");
 												    	   Platform.runLater(new Runnable() {
 									    	    			    @Override
 									    	    			    public void run() {
-																    SoftwareDownloadsField.clear();
-																    SoftwareDownloadsField.setText(NewApkPath);
+									    	    			    	SoftwareNameLabel.setText(apkName);
 									    	    			    	Image SoftwareIconIamge = new Image("file:///"+SoftwareIcon, 65,65,true, false);
-															    	SoftwareIconImageView.setImage(SoftwareIconIamge);
-															    	SoftwareNameLabel.setText(apkName);   
-															    	SoftwareDownloadsField.appendText("丨"+apkPackageName);
+									    	    			    	SoftwareIconImageView.setImage(SoftwareIconIamge);
+									    	    			    	SoftwareDownloadsField.clear();
+															    	SoftwareDownloadsField.setText(apkPackageName);   
+															    	SoftwareDownloadsField.appendText("丨"+apkActivity);
 															    	Dialog.SetMessageDialog("Success","软件下载并解析成功！");
 									    	    			    }
 									    	    		  });
@@ -1108,9 +1122,11 @@ public class APPAutomationCenterPageView extends Application {
 	    	    TestObjectButton.setId("ListViewButton");
 	    	    TestObjectButton.setOnAction(new EventHandler<ActionEvent>() {
 	                public void handle(ActionEvent event) {
-	                	if (StringUtil.isEmpty(SoftwareEngineering)) {
-		    	        	Dialog.SetMessageDialog("Warning","请先下载工程！");
-		                }else{
+	                    if(StringUtil.isEmpty(SoftwareEngineeringField.getText())){
+                            Dialog.SetMessageDialog("Warning","请输入工程地址！");
+                        }else if (StringUtil.isEmpty(SoftwareEngineering)) {
+                            Dialog.SetMessageDialog("Warning","请先下载工程！");
+                        }else{
 		                	try{
 		                		fileChooser.setTitle("请选择需要运行的测试对象文件");
 			                	fileChooser.setInitialDirectory(new File(System.getProperty("user.home")+"\\AppData\\Local\\AutomationTestSystem\\app\\"+SoftwareEngineering+"\\src\\test\\java\\TestCases"));                 
@@ -1148,9 +1164,11 @@ public class APPAutomationCenterPageView extends Application {
 	    	    TestScriptsButton.setId("ListViewButton");
 	    	    TestScriptsButton.setOnAction(new EventHandler<ActionEvent>() {
 	                public void handle(ActionEvent event) {
-	                	if (StringUtil.isEmpty(SoftwareEngineering)) {
-		    	        	Dialog.SetMessageDialog("Warning","请先下载工程！");
-		                }else{
+	                    if(StringUtil.isEmpty(SoftwareEngineeringField.getText())){
+                            Dialog.SetMessageDialog("Warning","请输入工程地址！");
+                        }else if (StringUtil.isEmpty(SoftwareEngineering)) {
+                            Dialog.SetMessageDialog("Warning","请先下载工程！");
+                        }else{
 		                	try{
 		                		fileChooser.setTitle("请选择需要运行的测试脚本文件");
 			                	fileChooser.setInitialDirectory(new File(System.getProperty("user.home")+"\\AppData\\Local\\AutomationTestSystem\\app\\"+SoftwareEngineering+"\\src\\test\\java\\TestCaseXml"));                 
@@ -1188,9 +1206,11 @@ public class APPAutomationCenterPageView extends Application {
 	    	    TestScriptsAggregateButton.setId("ListViewButton");
 	    	    TestScriptsAggregateButton.setOnAction(new EventHandler<ActionEvent>() {
 	                public void handle(ActionEvent event) {
-	                	if (StringUtil.isEmpty(SoftwareEngineering)) {
-		    	        	Dialog.SetMessageDialog("Warning","请先下载工程！");
-		                }else{
+	                    if(StringUtil.isEmpty(SoftwareEngineeringField.getText())){
+                            Dialog.SetMessageDialog("Warning","请输入工程地址！");
+                        }else if (StringUtil.isEmpty(SoftwareEngineering)) {
+                            Dialog.SetMessageDialog("Warning","请先下载工程！");
+                        }else{
 		                	try{
 		                		fileChooser.setTitle("请选择需要运行的测试脚本集合文件");
 			                	fileChooser.setInitialDirectory(new File(System.getProperty("user.home")+"\\AppData\\Local\\AutomationTestSystem\\app\\"+SoftwareEngineering+"\\src\\test\\java\\TestReportXml"));                 
@@ -1286,20 +1306,20 @@ public class APPAutomationCenterPageView extends Application {
 	                		AddresseeThreeField.setText("");
 	                		AddresseeFourField.setText("");
 	                	}else if("2".equals(SendPeopleNumber)){
-	                		AddresseeOneField.setText("liuzhi@jiumiaodai.com");
-	                		AddresseeTwoField.setText("fengwanhua@jiumiaodai.com");
+	                		AddresseeOneField.setText("liuzhi1@sunline.cn");
+	                		AddresseeTwoField.setText("jinliu@sunline.cn");
 	                		AddresseeThreeField.setText("");
 	                		AddresseeFourField.setText("");
 	                	}else if("3".equals(SendPeopleNumber)){
-	                		AddresseeOneField.setText("liuzhi@jiumiaodai.com");
-	                		AddresseeTwoField.setText("fengwanhua@jiumiaodai.com");
-	                		AddresseeThreeField.setText("xiameng@jiumiaodai.com");
+	                	    AddresseeOneField.setText("liuzhi1@sunline.cn");
+                            AddresseeTwoField.setText("jinliu@sunline.cn");
+	                		AddresseeThreeField.setText("yinhongcheng@sunline.cn");
 	                		AddresseeFourField.setText("");
 	                	}else if("4".equals(SendPeopleNumber)){
-	                		AddresseeOneField.setText("liuzhi@jiumiaodai.com");
-	                		AddresseeTwoField.setText("fengwanhua@jiumiaodai.com");
-	                		AddresseeThreeField.setText("xiameng@jiumiaodai.com");
-	                		AddresseeFourField.setText("ray@jiumiaodai.com");
+	                	    AddresseeOneField.setText("liuzhi1@sunline.cn");
+                            AddresseeTwoField.setText("jinliu@sunline.cn");
+                            AddresseeThreeField.setText("yinhongcheng@sunline.cn");
+	                		AddresseeFourField.setText("zhangcheng2@sunline.cn");
 	                	}else{
 //	                		SendPeopleNumberField.setText("");
 	                		AddresseeOneField.setText("");
@@ -1381,7 +1401,8 @@ public class APPAutomationCenterPageView extends Application {
 	    	    AppiumInspecrotButton.setOnAction(new EventHandler<ActionEvent>() {
 	                public void handle(ActionEvent event) {
 	                	if("".equals(MobileDevicesField.getText())){
-	                		Dialog.SetMessageDialog("Warning","请先获取设备！");
+//	                		Dialog.SetMessageDialog("Warning","请先获取设备！");
+	                		DevicesCenterPane.setVisible(true);
 	                	}else{
 	                		AppiumRunButton.setVisible(false);
 		                	AppiumStopButton.setVisible(true);
@@ -1707,10 +1728,12 @@ public class APPAutomationCenterPageView extends Application {
 	    	    ScriptUploadButton.setOnAction(new EventHandler<ActionEvent>() {
 	                public void handle(ActionEvent event) {
 	                	ScriptUploadButton.setDisable(true);
-	                	if(StringUtil.isEmpty(SoftwareEngineering)){
-                			Dialog.SetMessageDialog("Warning","请先下载工程！");
-                			ScriptUploadButton.setDisable(false);
-	                	}else{
+	                	if(StringUtil.isEmpty(SoftwareEngineeringField.getText())){
+                            Dialog.SetMessageDialog("Warning","请输入工程地址！");
+                        }else if (StringUtil.isEmpty(SoftwareEngineering)) {
+                            Dialog.SetMessageDialog("Warning","请先下载工程！");
+                            ScriptUploadButton.setDisable(false);
+                        }else{
 	                		Timer timer = new Timer();
 		        			timer.schedule(new TimerTask() {
 		        				@Override
@@ -1720,6 +1743,8 @@ public class APPAutomationCenterPageView extends Application {
 //		    	                	String TestScripts = TestScriptsField.getText().replace("TestCaseXml\\", "");
 //		    	                	String TestScriptsAggregate = TestScriptsAggregateField.getText().replace("TestReportXml\\", "");
 		    	                	String CommitMessage = CommitMessageTextArea.getText();
+		    	                	String Account = HomePageView.AccountField.getText();
+		    					    String PassWord = HomePageView.PasswrodField.getText();
 		    	                	try {
 		    	                		if (StringUtil.isEmpty(CommitMessage)) {
 		    	                			Platform.runLater(new Runnable() {
@@ -1729,7 +1754,7 @@ public class APPAutomationCenterPageView extends Application {
 	    	    	    	    			    }
 	    	    	    	    			});
 		    			                }else{
-		    			                	String message= JGitUtil.GitPush(gitlocalPath,CommitMessage);
+		    			                	String message= JGitUtil.GitPush(gitlocalPath,CommitMessage,Account,PassWord);
 		    			                	if(message=="无已修改脚本！"){
 		    			                		Platform.runLater(new Runnable() {
 		    	    	    	    			    @Override
@@ -1742,7 +1767,8 @@ public class APPAutomationCenterPageView extends Application {
 		    	    	    	    			    @Override
 		    	    	    	    			    public void run() {
 //		    	    	    	    			    	Dialog.SetMessageDialog("Error",message);
-		    	    	    	    			    	Dialog.SetMessageDialog("Error","请先搭建GIT环境，不懂请联系作者！");
+		    	    	    	    			        HomePageView.AccountLoginCenterPane.setVisible(true);
+		    	    	    	    			        Dialog.SetMessageDialog("Error","请检查GIT环境，确保账号密码正确！");
 		    	    	    	    			    }
 		    	    	    	    			});
 		    			                	}else if(message=="提交成功！"){
@@ -1778,7 +1804,9 @@ public class APPAutomationCenterPageView extends Application {
 	    	    ScriptDownloadButton.setOnAction(new EventHandler<ActionEvent>() {
 	                public void handle(ActionEvent event) {
     					ScriptDownloadButton.setDisable(true);
-    					if(StringUtil.isEmpty(SoftwareEngineering)){
+    					if(StringUtil.isEmpty(SoftwareEngineeringField.getText())){
+                            Dialog.SetMessageDialog("Warning","请输入工程地址！");
+                        }else if(StringUtil.isEmpty(SoftwareEngineering)){
                 			Dialog.SetMessageDialog("Warning","请先下载工程！");
                 			ScriptDownloadButton.setDisable(false);
 	                	}else{
@@ -1787,13 +1815,17 @@ public class APPAutomationCenterPageView extends Application {
 		        				@Override
 		        				public void run() {
 		        					String gitlocalPath =""+System.getProperty("user.home")+"\\AppData\\Local\\AutomationTestSystem\\app\\"+SoftwareEngineering+"";
+		        					String Account = HomePageView.AccountField.getText();
+		    					    String PassWord = HomePageView.PasswrodField.getText();
 		    	                	try {
-		    	                		String message= JGitUtil.GitPull(gitlocalPath);
+		    	                		String message= JGitUtil.GitPull(gitlocalPath,Account,PassWord);
 		    		                	if(message=="拉取失败！"){
 		    		                		Platform.runLater(new Runnable() {
 			    	    	    			    @Override
 			    	    	    			    public void run() {
-			    	    	    			    	Dialog.SetMessageDialog("Error",message);
+//			    	    	    			    	Dialog.SetMessageDialog("Error",message);
+			    	    	    			    	HomePageView.AccountLoginCenterPane.setVisible(true);
+			    	    	    			    	Dialog.SetMessageDialog("Error","请检查GIT环境，确保账号密码正确！");
 			    	    	    			    }
 			    	    	    			});
 		    		                	}else if(message=="拉取成功！"){
@@ -1832,7 +1864,9 @@ public class APPAutomationCenterPageView extends Application {
 	                	String TestScripts = TestScriptsField.getText();
 	                	String TestScriptsAggregate = TestScriptsAggregateField.getText();
 	                	String MobileDevices = MobileDevicesField.getText();
-	                    if (StringUtil.isEmpty(SoftwareEngineering)) {
+	                	if(StringUtil.isEmpty(SoftwareEngineeringField.getText())){
+                            Dialog.SetMessageDialog("Warning","请输入工程地址！");
+                        }else if (StringUtil.isEmpty(SoftwareEngineering)) {
 		    	        	Dialog.SetMessageDialog("Warning","请先下载工程！");
                 		}else if (StringUtil.isEmpty(SoftwareDownloads)) {
 		    	        	Dialog.SetMessageDialog("Warning","请先下载软件！");
@@ -1843,7 +1877,8 @@ public class APPAutomationCenterPageView extends Application {
 		                }else if (StringUtil.isEmpty(TestScriptsAggregate)) {
 		    	        	Dialog.SetMessageDialog("Warning","请选择测试脚本集合！");
 		                }else if(StringUtil.isEmpty(MobileDevices)){
-	                		Dialog.SetMessageDialog("Warning","请先获取设备！");
+//	                		Dialog.SetMessageDialog("Warning","请先获取设备！");
+		                	DevicesCenterPane.setVisible(true);
 	                	}else{
 		                	ScriptRunButton.setDisable(true);
 		                	AppiumRunButton.setVisible(false);
@@ -1878,7 +1913,7 @@ public class APPAutomationCenterPageView extends Application {
 				                	timer.schedule(new TimerTask() {
 				        				@Override
 				        				public void run() {
-				    	                	String mvn = "cmd /c c: && cd "+System.getProperty("user.home")+"\\AppData\\Local\\AutomationTestSystem\\app\\"+SoftwareEngineering+" && mvn package";
+				    	                	String mvn = "cmd /c c: && cd "+System.getProperty("user.home")+"\\AppData\\Local\\AutomationTestSystem\\app\\"+SoftwareEngineering+" && mvn clean package";
 				    	                    String ant = "cmd /c c: && cd "+System.getProperty("user.home")+"\\AppData\\Local\\AutomationTestSystem\\app\\"+SoftwareEngineering+" && ant";
 				        					try {
 				        						Command("ScriptsStop","cmd /c start wmic process where name='cmd.exe' call terminate");
@@ -1960,7 +1995,9 @@ public class APPAutomationCenterPageView extends Application {
 	    	    GenerationReportButton.setOnAction(new EventHandler<ActionEvent>() {
 	                public void handle(ActionEvent event) {
 	                	try {
-	                		if(StringUtil.isEmpty(SoftwareEngineering)) {
+	                	    if(StringUtil.isEmpty(SoftwareEngineeringField.getText())){
+	                            Dialog.SetMessageDialog("Warning","请输入工程地址！");
+	                        }else if(StringUtil.isEmpty(SoftwareEngineering)) {
 	                			Dialog.SetMessageDialog("Warning","请先下载工程！");
 			                }else if(SoftwareEngineering!=null){
 			                	if(FirstOpen==0){
@@ -1982,15 +2019,22 @@ public class APPAutomationCenterPageView extends Application {
 	    	    SendMailButton.setPrefHeight(42);
 	    	    SendMailButton.setId("SendMailButton");
 	    	    SendMailButton.setOnAction(new EventHandler<ActionEvent>() {
+	    	        String MailboxAccount ="";
+                    String MailboxAuthorizationPassword ="";
 	                public void handle(ActionEvent event) {
 	                	Smtp =MailModeField.getText();
 	                	if("QQ".equals(Smtp)){
     						Smtp="smtp.qq.com";
-    						System.out.println(Smtp);
+    						MailboxAccount="1306086303@qq.com";
+    						MailboxAuthorizationPassword="ticmipgebuznhdcd";
     					}else if("网易".equals(Smtp)){
     						Smtp="smtp.163.com";
+    						MailboxAccount="hagyao520@163.com";
+                            MailboxAuthorizationPassword="YPFCHNRRCIQWFUBK";
     					}else if("新浪".equals(Smtp)){
     						Smtp="smtp.sina.com";
+    						MailboxAccount="hagyao520@sina.com";
+                            MailboxAuthorizationPassword="61a185f24d2f6d1f";
     					}
     					String SendPeopleNumber =SendPeopleNumberField.getText();
     					String AddresseeOne =AddresseeOneField.getText();
@@ -1999,7 +2043,9 @@ public class APPAutomationCenterPageView extends Application {
     					String AddresseeFour =AddresseeFourField.getText();
     					String EntryName = SoftwareEngineeringField.getText();
 //    					String EntryName = "Appium";
-    					if(StringUtil.isEmpty(SoftwareEngineering)) {
+    					if(StringUtil.isEmpty(SoftwareEngineeringField.getText())){
+                            Dialog.SetMessageDialog("Warning","请输入工程地址！");
+                        }else if(StringUtil.isEmpty(SoftwareEngineering)) {
 		    	        	Dialog.SetMessageDialog("Warning","请先下载工程！");
 		                }else if (StringUtil.isEmpty(Smtp)) {
 		    	        	Dialog.SetMessageDialog("Warning","请先选择邮件发送方式！");
@@ -2017,7 +2063,7 @@ public class APPAutomationCenterPageView extends Application {
 			        				@Override
 			        				public void run() {
 			    	                	try {
-			    	                        int message = SendEmail.sendEmail(""+Smtp+"", "1306086303@qq.com", "yeuzsyojkvpliddi",SendPeopleNumber,AddresseeOne,null,null,null,EntryName);
+			    	                        int message = SendEmail.sendEmail(""+Smtp+"", MailboxAccount, MailboxAuthorizationPassword,SendPeopleNumber,AddresseeOne,null,null,null,EntryName);
 			    						    if(message==0){
 			    						    	Platform.runLater(new Runnable() {
 			    		    	    			    @Override
@@ -2031,7 +2077,7 @@ public class APPAutomationCenterPageView extends Application {
 			    	                		Platform.runLater(new Runnable() {
 		    		    	    			    @Override
 		    		    	    			    public void run() {
-		    		    	    			    	Dialog.SetMessageDialog("Warning","工程地址或邮件格式错误或网络连接失败，请检查后重试！");
+		    		    	    			    	Dialog.SetMessageDialog("Warning","邮件格式错误或网络连接失败，请检查后重试！");
 		    		    	    			    	SendMailButton.setDisable(false);
 		    		    	    			    	e.printStackTrace();
 		    		    	    			    }
@@ -2052,7 +2098,7 @@ public class APPAutomationCenterPageView extends Application {
 			        				@Override
 			        				public void run() {
 			    	                	try {
-			    	                        int message = SendEmail.sendEmail(""+Smtp+"", "1306086303@qq.com", "yeuzsyojkvpliddi",SendPeopleNumber,AddresseeOne,AddresseeTwo,null,null,EntryName);
+			    	                        int message = SendEmail.sendEmail(""+Smtp+"", MailboxAccount, MailboxAuthorizationPassword,SendPeopleNumber,AddresseeOne,AddresseeTwo,null,null,EntryName);
 			    						    if(message==0){
 			    						    	Platform.runLater(new Runnable() {
 			    		    	    			    @Override
@@ -2089,7 +2135,7 @@ public class APPAutomationCenterPageView extends Application {
 			        				@Override
 			        				public void run() {
 			    	                	try {
-			    	                        int message = SendEmail.sendEmail(""+Smtp+"", "1306086303@qq.com", "yeuzsyojkvpliddi",SendPeopleNumber,AddresseeOne,AddresseeTwo,AddresseeThree,null,EntryName);
+			    	                        int message = SendEmail.sendEmail(""+Smtp+"", MailboxAccount, MailboxAuthorizationPassword,SendPeopleNumber,AddresseeOne,AddresseeTwo,AddresseeThree,null,EntryName);
 			    						    if(message==0){
 			    						    	Platform.runLater(new Runnable() {
 			    		    	    			    @Override
@@ -2128,7 +2174,7 @@ public class APPAutomationCenterPageView extends Application {
 			        				@Override
 			        				public void run() {
 			    	                	try {
-			    	                        int message = SendEmail.sendEmail(""+Smtp+"", "1306086303@qq.com", "yeuzsyojkvpliddi",SendPeopleNumber,AddresseeOne,AddresseeTwo,AddresseeThree,AddresseeFour,EntryName);
+			    	                        int message = SendEmail.sendEmail(""+Smtp+"", MailboxAccount, MailboxAuthorizationPassword,SendPeopleNumber,AddresseeOne,AddresseeTwo,AddresseeThree,AddresseeFour,EntryName);
 			    						    if(message==0){
 			    						    	Platform.runLater(new Runnable() {
 			    		    	    			    @Override
@@ -2200,6 +2246,7 @@ public class APPAutomationCenterPageView extends Application {
 	    	    
 	    	    APPAutomationCenterPane.getChildren().add(ScriptRunLogTextArea);
 	    	    
+	    	    APPAutomationCenterPane.getChildren().add(HomePageView.AccountLoginCenterPane); 
 	    	    APPAutomationCenterPane.getChildren().add(ScriptUploadButton);
 	    	    APPAutomationCenterPane.getChildren().add(ScriptDownloadButton);
 	    	    APPAutomationCenterPane.getChildren().add(ScriptRunButton);
@@ -2376,7 +2423,25 @@ public class APPAutomationCenterPageView extends Application {
 		}
 		
         public static void main(String[] args) {
-        	Locale.setDefault(Locale.US);
-	        launch(args);
+//        	Locale.setDefault(Locale.US);
+//	        launch(args);
+	        String AppiumStart = "cmd /c node "+System.getProperty("user.home")+"\\AppData\\Local\\Programs\\Appium\\resources\\app\\node_modules\\appium\\build\\lib\\main.js --address 127.0.0.1 --port 4723";
+            try {
+//                Command("AppiumStop","cmd /c taskkill /f /IM node.exe");
+//                Command("AppiumStart",AppiumStart);
+                System.out.println(AppiumStart); 
+                Process pr =  Runtime.getRuntime().exec(AppiumStart);
+                BufferedReader input = new BufferedReader(new InputStreamReader(pr.getInputStream(), "utf-8"));
+                String line = input.readLine();
+                if(line!=null){
+                    while(line!=null){
+                        System.out.println(line);
+                        line = input.readLine();
+                    }
+                }
+                
+            } catch (IOException  e) {
+                e.printStackTrace();
+            }
         }
 }

@@ -222,6 +222,24 @@
     -fx-background-image:url("../image/HomePagePane/LeftPane/PerformanceAutomationCenterButton/PerformanceAutomationCenter_down.png");
 }
 
+/**性能自动化中心按钮 **/
+#ATXEquipmentClusterButton{
+    -fx-background-image:url("../image/HomePagePane/LeftPane/ATXEquipmentClusterButton/ATXEquipmentCluster_normal.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+    -fx-font-family: Microsoft YaHei;
+    -fx-text-fill: white;
+}
+#ATXEquipmentClusterButton:hover {
+    -fx-background-image:url("../image/HomePagePane/LeftPane/ATXEquipmentClusterButton/ATXEquipmentCluster_highlight.png");
+}
+#ATXEquipmentClusterButton:pressed {
+    -fx-background-image:url("../image/HomePagePane/LeftPane/ATXEquipmentClusterButton/ATXEquipmentCluster_down.png");
+}
+#ATXEquipmentClusterButtonDown{
+    -fx-background-image:url("../image/HomePagePane/LeftPane/ATXEquipmentClusterButton/ATXEquipmentCluster_down.png");
+}
+
 /**左侧区域**/
 #LeftPane{
     -fx-background-color:#2b2b2b;
@@ -613,6 +631,14 @@
     -fx-background-image:url("../image/HomePagePane/RightPane/PerformanceAutomationCenterPane/AccountLoginButton/AccountLoginButton_down.png");
 }
 
+
+/**码云账号登录信息界面**/
+#GiteeAccountLoginCenterPane{
+    -fx-background-image:url("../image/HomePagePane/RightPane/PerformanceAutomationCenterPane/AccountLoginButton/AccountLoginCenterPane2.png");
+    -fx-background-color:#2b2b2b;
+    -fx-opacity: 1;
+}
+
 /**账号登录信息界面**/
 #PerformanceAccountLoginCenterPane{
     -fx-background-image:url("../image/HomePagePane/RightPane/PerformanceAutomationCenterPane/AccountLoginButton/AccountLoginCenterPane.png");
@@ -707,11 +733,96 @@
     -fx-background-image:url("../image/HomePagePane/RightPane/PerformanceAutomationCenterPane/UploadAnalysisButton/UploadAnalysisButton_down.png");
 }
 
+/**设备集群化中心右侧区域**/
+#ATXEquipmentClusterCenterPane{
+    -fx-background-image:url("../image/HomePagePane/RightPane/ATXEquipmentClusterCenterPane/ATXEquipmentClusterCenterPane.png");
+    -fx-background-color:#2b2b2b;
+    -fx-opacity: 1;
+}
 
+/**开启服务按钮**/
+#StartServiceButton{
+    -fx-background-image:url("../image/HomePagePane/RightPane/ATXEquipmentClusterCenterPane/StartServiceButton/StartServiceButton_normal.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+}
+#StartServiceButton:pressed {
+    -fx-background-image:url("../image/HomePagePane/RightPane/ATXEquipmentClusterCenterPane/StartServiceButton/StartServiceButton_down.png");
+}
 
+/**关闭服务按钮**/
+#StopServiceButton{
+    -fx-background-image:url("../image/HomePagePane/RightPane/ATXEquipmentClusterCenterPane/StopServiceButton/StopServiceButton_normal.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+}
+#StopServiceButton:pressed {
+    -fx-background-image:url("../image/HomePagePane/RightPane/ATXEquipmentClusterCenterPane/StopServiceButton/StopServiceButton_down.png");
+}
 
+/**获取设备按钮**/
+#ATXGetDevicesButton{
+    -fx-background-image:url("../image/HomePagePane/RightPane/ATXEquipmentClusterCenterPane/GetDevicesButton/GetDevicesButton_normal.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+}
+#ATXGetDevicesButton:pressed {
+    -fx-background-image:url("../image/HomePagePane/RightPane/ATXEquipmentClusterCenterPane/GetDevicesButton/GetDevicesButton_down.png");
+}
 
+/**设备信息界面**/
+#ATXGetDevicesCenterPane{
+    -fx-background-image:url("../image/HomePagePane/RightPane/ATXEquipmentClusterCenterPane/DevicesCenterPane/DevicesCenterPane.png");
+    -fx-background-color:#2b2b2b;
+    -fx-opacity: 1;
+}
 
+/**启动远程按钮**/
+#StartRemoteButton{
+    -fx-background-image:url("../image/HomePagePane/RightPane/ATXEquipmentClusterCenterPane/DevicesCenterPane/StartRemoteButton_normal.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+}
+#StartRemoteButton:pressed {
+    -fx-background-image:url("../image/HomePagePane/RightPane/ATXEquipmentClusterCenterPane/DevicesCenterPane/StartRemoteButton_down.png");
+}
 
+/**关闭窗口按钮**/
+#CloseWindowButton{
+    -fx-background-image:url("../image/HomePagePane/RightPane/ATXEquipmentClusterCenterPane/DevicesCenterPane/CloseWindowButton_normal.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+}
+#CloseWindowButton:pressed {
+    -fx-background-image:url("../image/HomePagePane/RightPane/ATXEquipmentClusterCenterPane/DevicesCenterPane/CloseWindowButton_down.png");
+}
 
+/**远程操控按钮**/
+#RemoteControlButton{
+    -fx-background-image:url("../image/HomePagePane/RightPane/ATXEquipmentClusterCenterPane/RemoteControlButton/RemoteControlButton_normal.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+}
+#RemoteControlButton:pressed {
+    -fx-background-image:url("../image/HomePagePane/RightPane/ATXEquipmentClusterCenterPane/RemoteControlButton/RemoteControlButton_down.png");
+}
 
+/**远程监控按钮**/
+#RemoteMonitoringButton{
+    -fx-background-image:url("../image/HomePagePane/RightPane/ATXEquipmentClusterCenterPane/RemoteMonitoringButton/RemoteMonitoringButton_normal.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+}
+#RemoteMonitoringButton:pressed {
+    -fx-background-image:url("../image/HomePagePane/RightPane/ATXEquipmentClusterCenterPane/RemoteMonitoringButton/RemoteMonitoringButton_down.png");
+}
+
+/**获取元素按钮**/
+#GetElementsButton{
+    -fx-background-image:url("../image/HomePagePane/RightPane/ATXEquipmentClusterCenterPane/GetElementsButton/GetElementsButton_normal.png");
+    -fx-background-color:null;
+    -fx-background-radius: 0;
+}
+#GetElementsButton:pressed {
+    -fx-background-image:url("../image/HomePagePane/RightPane/ATXEquipmentClusterCenterPane/GetElementsButton/GetElementsButton_down.png");
+}

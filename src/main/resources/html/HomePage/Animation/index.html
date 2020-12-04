@@ -5,6 +5,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <!-- <script src="http://code.jquery.com/jquery-3.1.0.min.js"></script> -->
 <script src="js/index.js"></script>
+<script src="./vsPlayAudio.min.js.下载"></script>
+<script type="text/javascript" src="./index.js.下载"></script>
+<link rel="stylesheet" type="text/css" href="./style.css">
 <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Roboto:100,400" rel="stylesheet">
@@ -1100,7 +1103,50 @@ div[class^="app"] {
 	z-index : -1;
 }
 
+.vsPlayAudio {
+    opacity : 0;
+}
+#vsPlayAudio *{font-family:"Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;-webkit-text-size-adjust:100%;box-sizing: content-box;line-height: 1;}
+
+#vsPlayAudio .vsPlayAudio-control-show {
+    visibility: visible;
+    left: 213px;
+    opacity: 1;
+}
+
+#vsPlayAudio .vsPlayAudio-play {
+    position: absolute;
+    top: 90px;
+    opacity: 1;
+    transition: all .5s;
+    -moz-transition: all .5s;
+    -webkit-transition: all .5s;
+    -o-transition: all .5s;	
+}
+#vsPlayAudio .vsPlayAudio-play-none {
+    opacity: 1;
+}
+#vsPlayAudio .vsPlayAudio-play svg {
+    position: absolute;
+    margin: 1px;
+    left: 65px;
+    width: 30px;
+    height: 30px;
+}
+#vsPlayAudio .vsPlayAudio-cover-box {
+    width: 206px;
+    height: 205px;
+    animation:vsPlayAudio-playMove 10s infinite linear;
+    -moz-animation:vsPlayAudio-playMove 10s infinite linear;
+    -webkit-animation:vsPlayAudio-playMove 10s infinite linear;
+    -o-animation:vsPlayAudio-playMove 10s infinite linear; 
+    animation-play-state:paused;
+    -moz-animation-play-state:paused; 
+    -webkit-animation-play-state:paused; 
+    -o-animation-play-state:paused;
+}
 </style>
+
 <script language="javascript" type="text/javascript">
 $(document).ready(function(){
 
@@ -1184,7 +1230,7 @@ $(document).ready(function(){
 		"opacity" : "1"
 	}, 300);
 
-	$('.app6').delay(16700).animate({
+	$('.vsPlayAudio').delay(16700).animate({
 		"opacity" : "1"
 	}, 300);
 
@@ -1404,68 +1450,26 @@ jQuery(function ($) {
                 "track": 1,
                 "name": "Starset - Monster",
                 "length": "3:03",
-                "file": "0"
-            },
-			{
-                "track": 2,
-                "name": "高耀太 - 火花",
-                "length": "3:53",
                 "file": "1"
             },
 			{
-                "track": 3,
-                "name": "2",
-                "length": "0:00",
+                "track": 2,
+                "name": "和田薫 - 犬夜叉 时代を越える想い",
+                "length": "2:15",
                 "file": "2"
             },
-			{
-                "track": 4,
-                "name": "3",
-                "length": "0:00",
+            {
+                "track": 3,
+                "name": "L.long - 初见（Cover：叶里）",
+                "length": "4:30",
                 "file": "3"
             },
 			{
-                "track": 5,
-                "name": "4",
-                "length": "0:00",
+                "track": 4,
+                "name": "高耀太 - 火花",
+                "length": "3:53",
                 "file": "4"
             },
-			{
-                "track": 6,
-                "name": "5",
-                "length": "0:00",
-                "file": "5"
-            },
-			{
-                "track": 7,
-                "name": "6",
-                "length": "0:00",
-                "file": "6"
-            },
-			{
-                "track": 8,
-                "name": "7",
-                "length": "0:00",
-                "file": "7"
-            },
-			{
-                "track": 9,
-                "name": "8",
-                "length": "0:00",
-                "file": "8"
-            },
-			{
-                "track": 10,
-                "name": "9",
-                "length": "0:00",
-                "file": "9"
-            },
-			{
-                "track": 11,
-                "name": "10",
-                "length": "0:00",
-                "file": "10"
-            }
 			],
             buildPlaylist = $.each(tracks, function(key, value) {
                 var trackNumber = value.track,
@@ -1542,7 +1546,7 @@ jQuery(function ($) {
                 loadTrack(id);
                 audio.play();
             };
-        extension = audio.canPlayType('audio/ogg') ? '.ogg' : audio.canPlayType('audio/mp3') ? '.mp3' : '';
+        extension = audio.canPlayType('audio/mp3') ? '.mp3' : audio.canPlayType('audio/mp3') ? '.mp3' : '';
         loadTrack(index);
     }
 });
@@ -1556,10 +1560,12 @@ $(document).ready(function(){
 	$('.img23').click(function(){
 		$('.container').css('display', 'block');
 		$('.img25').css('display', 'none');
+		$('.vsPlayAudio').css('margin-top', '280px');
 	});
 	$('.img24').click(function(){
 		$('.container').css('display', 'none');
 		$('.img25').css('display', 'block');
+		$('.vsPlayAudio').css('margin-top', '500px');
 	});
 
 });
@@ -1648,6 +1654,7 @@ $(document).ready(function(){
 			<img class="img3" src="./myimgs/group 5.png"/>
 		</div>
 	</div>
+
 	<div id="appwrap">
 		<div class="app1">
 			<img class="img4" src="./myimgs/group 9.png"/>
@@ -1806,13 +1813,13 @@ $(document).ready(function(){
 				<div class="lane16"></div>
 			</div>
 		</div>
-		<div class="app6">
+<!-- 		<div class="app6">
 			<img class="img18" src="./myimgs/group 58.png"/>
 			<img class="img19" src="./myimgs/rec 2.png"/>
 			<img class="img20" src="./myimgs/rec 1.png"/>
 			<img class="img21" src="./myimgs/group 59.png"/>
 			<img class="img22" src="./myimgs/time selec.png"/>
-		</div>
+		</div> -->
 		<div class="app7">
 			<img class="img23" src="./myimgs/group 67.png"/>
 			<img class="img24" src="./myimgs/group 66.png"/>
@@ -1876,5 +1883,32 @@ $(document).ready(function(){
 	</div>
 	<div id="extra"></div>
 </div>
+<div class="vsPlayAudio" >
+<div class="vsPlayAudio" id="vsPlayAudio" style="margin-top:520px;margin-left:10px;position:relative;z-index:99998;"></div>
+<input style="margin-top:225px;margin-left:-80px;position:relative;z-index:99998;" id="data" type="text" value="" placeholder="请输入歌单ID">
+<button style="margin-top:210px;margin-left:5px;position:relative;z-index:99998;" class="button" style="vertical-align:middle" onclick="huoqu()"><span>获取歌单</span></button>
+</div>
+<script type="text/javascript">
+	var player;
+        function huoqu(){
+            var data = document.getElementById('data').value;
+            if(data!=""){
+                player.pause();
+                player = new vsPlayAudio({
+                  music: {
+                    type: 'cloud',
+                    source: data
+                  },
+                  autoPlay: false,
+                  random: true
+                });
+            }else{
+               alert("请前往【https://music.163.com/#/discover/playlist】获取歌单ID！"); 
+               window.open('https://music.163.com/#/discover/playlist');
+            }
+        } 
+        player = new vsPlayAudio({});
+</script>
+<script type="text/javascript" src="./index.js.下载"></script>
 </body>
 </html>

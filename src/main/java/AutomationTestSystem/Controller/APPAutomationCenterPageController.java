@@ -10,8 +10,6 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import AutomationTestSystem.Util.URLDecoder;
-
 /**
  * @author King
  * @date 2018年8月1日 18:18:074
@@ -95,8 +93,8 @@ public class APPAutomationCenterPageController {
             //得到输入流  
             DataInputStream dataInputStream = new DataInputStream(url.openStream());
 
-//            String fileName = DownloadUrl.substring(DownloadUrl.lastIndexOf("/"));
-            String fileName = URLDecoder.getParamByUrl(DownloadUrl, Param);
+            String fileName = DownloadUrl.substring(DownloadUrl.lastIndexOf(Param)).replace(Param, "");
+//            String fileName = URLDecoder.getParamByUrl(DownloadUrl, Param);
             if("LekeU.apk".equals(fileName)){
             	fileName="LekeU.apk";
             	fileOutputStream = new FileOutputStream(new File(SavePath+fileName));
@@ -139,9 +137,13 @@ public class APPAutomationCenterPageController {
 //            DownLoadFromUrl("http://img.bimg.126.net/photo/DCi7Q__VN3NJ_63cq7sosA==/3439905690381537164.jpg",  
 //                    "D:\\","百度.png"); 
             
-            String DownloadUrl = "http://app-global.pgyer.com/4868b7f9f9b341049771596534cc64bd.apk?attname=LekeW.apk&sign=b45e80059a769a7141ca78ae2f4227ae&t=5be26ec0";
+//            String DownloadUrl = "http://app-global.pgyer.com/4868b7f9f9b341049771596534cc64bd.apk?attname=LekeW.apk&sign=b45e80059a769a7141ca78ae2f4227ae&t=5be26ec0";
+//            String SavePath="D:\\";
+//            DownLoadFromUrlParam(DownloadUrl,SavePath,"attname");
+            
+            String DownloadUrl = "http://oss.pgyer.com/1b68452cf6bab37a5752f5d39a713fa1.apk?auth_key=1560501174-add470b09f5701aed4990f603f784c9d-0-7a451b56e41034567d2226154e2d9d11&response-content-disposition=attachment%3B+filename%3Dflutter_wanandroid.apk";
             String SavePath="D:\\";
-            DownLoadFromUrlParam(DownloadUrl,SavePath,"attname");
+            DownLoadFromUrlParam(DownloadUrl,SavePath,"%3D");
         }catch (Exception e) {  
         	e.printStackTrace();
             System.out.println("失败");

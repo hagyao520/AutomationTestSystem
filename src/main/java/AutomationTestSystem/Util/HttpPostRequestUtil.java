@@ -62,6 +62,54 @@ public class HttpPostRequestUtil {
 	      return Message;
 	  }
 
+	  /**
+	   * 指定API接口URL,POST请求参数,获取StatusCode
+	   * @param ApiUrl
+	   * @param Param
+	   * @return StatusCode
+	   */
+	  public static int GetStatusCode(String ApiUrl, String Param){
+
+		  Response response = given()
+	                .config((RestAssured.config().sslConfig(new SSLConfig().relaxedHTTPSValidation())))
+	                .contentType("application/x-www-form-urlencoded")
+	                .log().all()
+	                .body(Param)
+	                .post(ApiUrl);
+		  
+		  // 打印出 response 的statusCode
+		  int StatusCode = response.getStatusCode();
+	      System.out.println("StatusCode:" + StatusCode);  
+	       
+	      return StatusCode;
+	  }
+	  
+	  /**
+	     * 指定API接口URL,POST请求参数,获取StatusCode
+	     * @param ApiUrl
+	     * @param Param
+	     * @param Cookie
+	     * @return StatusCode
+	     */
+	    public static int GetStatusCode(String ApiUrl, String Param, Map<String, String> Cookie){
+
+	        Response response = given()
+	                .config((RestAssured.config().sslConfig(new SSLConfig().relaxedHTTPSValidation())))
+	                .contentType("application/json")
+	                .log().all()
+	                .request()
+	                .body(Param)
+	                .cookies(Cookie)
+	                .when()
+	                .post(ApiUrl);
+
+	        // 打印出 response 的statusCode
+	        int StatusCode = response.getStatusCode();
+	        System.out.println("StatusCode:" + StatusCode);
+
+	        return StatusCode;
+	    }
+	    
    /**
     * 指定API接口URL,POST请求参数,获取JsonResult
     * @param ApiUrl
@@ -331,32 +379,6 @@ public class HttpPostRequestUtil {
         System.out.println("Value:" +JsonValueValue);
 
         return JsonValueValue;
-    }
-
-    /**
-     * 指定API接口URL,POST请求参数,获取StatusCode
-     * @param ApiUrl
-     * @param Param
-     * @param Cookie
-     * @return StatusCode
-     */
-    public static int GetStatusCode(String ApiUrl, String Param, Map<String, String> Cookie){
-
-        Response response = given()
-                .config((RestAssured.config().sslConfig(new SSLConfig().relaxedHTTPSValidation())))
-                .contentType("application/json")
-                .log().all()
-                .request()
-                .body(Param)
-                .cookies(Cookie)
-                .when()
-                .post(ApiUrl);
-
-        // 打印出 response 的statusCode
-        int StatusCode = response.getStatusCode();
-        System.out.println("StatusCode:" + StatusCode);
-
-        return StatusCode;
     }
 
     /**

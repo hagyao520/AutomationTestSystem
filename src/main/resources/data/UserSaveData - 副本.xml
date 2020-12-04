@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<userSaveDataBox>
+		<map>
+			<data>
+				<dataKey>18688888888</dataKey>
+				<data>
+					<userSaveData>
+						<account>18688888888</account>
+						<automaticLogonStatus>false</automaticLogonStatus>
+						<head>https://imgstatic.ctfile.com/upload/portal/20366518/pcCWFT1z/20190606-1559801840207750.png</head>
+						<passWord>小 智</passWord>
+						<rememberPasswordStatus>true</rememberPasswordStatus>
+					</userSaveData>
+				</data>
+			</data>
+			<data>
+				<dataKey>13510454271</dataKey>
+				<data>
+					<userSaveData>
+						<account>13510454271</account>
+						<automaticLogonStatus>true</automaticLogonStatus>
+						<head>https://imgstatic.ctfile.com/upload/portal/20366518/ljgIXI7u/20190606-1559802051529954.jpeg</head>
+						<passWord>King</passWord>
+						<rememberPasswordStatus>true</rememberPasswordStatus>
+					</userSaveData>
+				</data>
+			</data>
+			<data>
+				<dataKey>13810454271</dataKey>
+				<data>
+					<userSaveData>
+						<account>13810454271</account>
+						<automaticLogonStatus>false</automaticLogonStatus>
+						<head>https://qlogo4.store.qq.com/qzone/673103881/673103881/100?1431387725</head>
+						<passWord>Lames</passWord>
+						<rememberPasswordStatus>true</rememberPasswordStatus>
+					</userSaveData>
+				</data>
+			</data>
+			<data>
+				<dataKey>1055183228</dataKey>
+				<data>
+					<userSaveData>
+						<account>1055183228</account>
+						<automaticLogonStatus>false</automaticLogonStatus>
+						<head>https://testerhome.com/uploads/photo/2019/858abcf5-b709-4b96-8f3d-7e2ee249898a.jpg</head>
+						<passWord>Lames</passWord>
+						<rememberPasswordStatus>true</rememberPasswordStatus>
+					</userSaveData>
+				</data>
+			</data>
+		</map>
+		<size>4</size>
+	</userSaveDataBox>
+</root>

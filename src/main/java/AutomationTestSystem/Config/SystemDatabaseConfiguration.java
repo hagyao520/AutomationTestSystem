@@ -11,12 +11,12 @@ public class SystemDatabaseConfiguration {
 //		private String ddataBase;
 
 		private String djdbcDriver = "com.mysql.jdbc.Driver";
-		private String dhostAddress = "rm-wz99301zn03n90h47v.mysql.rds.aliyuncs.com";
-		private String duserName = "jqbdaev";
-		private String dpassWord = "JQBdaev1qaz";
-		private String dport = "3306";
-		private String ddataBase = "travele_test";
-
+		private String dhostAddress = "10.22.83.70";
+		private String duserName = "adminall";
+		private String dpassWord = "admin@300348";
+		private String dport = "3323";
+		private String ddataBase = "YHT_USER_SIT";
+        
 		public String getDjdbcDriver() {
 			return djdbcDriver;
 		}

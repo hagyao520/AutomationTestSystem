@@ -51,6 +51,7 @@ public class LoginController {
                 "\"username\": \""+Account+"\",\"password\": \""+PassWord+"\"}";
 
         //指定API地址,请求参数,发起请求,获取token值
+        System.out.println(LoginApiUrl);
         String token = HttpPostRequestUtil.GetToKen(LoginApiUrl,Param);
         
         //指定请求的Api地址

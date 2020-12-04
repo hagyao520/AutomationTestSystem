@@ -1,4 +1,4 @@
-/*.root,默认字体大小为12px才有效
+﻿/*.root,默认字体大小为12px才有效
 .root{
     -fx-font-size: 2.2em;
     -fx-font-family: "Helvetica, Arial, sans-serif";
@@ -389,6 +389,11 @@
 }
 */
 
+/**数据库选项 **/
+#menuBar{
+    -fx-background-radius: 3;
+}
+
 /**连接测试按钮 **/
 #ConnectionTestButton{
     -fx-background-color: #3E9ED0;
@@ -433,7 +438,6 @@
 #EnterTheSystemButton:pressed {
     -fx-background-image:url("../image/LoginPane/Loading/EnterTheSystem_down.png");
 }
-
 
 
 

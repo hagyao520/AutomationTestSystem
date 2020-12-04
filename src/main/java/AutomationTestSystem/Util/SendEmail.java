@@ -1,5 +1,6 @@
 package AutomationTestSystem.Util;
 
+import java.io.IOException;
 import java.util.Properties;
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
@@ -10,6 +11,12 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
 
 /**
  * @ClassName: Sendmail
@@ -38,9 +45,10 @@ import javax.mail.internet.MimeMultipart;
          //2、通过session得到transport对象
          Transport ts = session.getTransport();
          //3、连上邮件服务器
-         ts.connect("smtp.qq.com", "1306086303@qq.com", "yeuzsyojkvpliddi");
+//         ts.connect("smtp.qq.com", "1306086303@qq.com", "ticmipgebuznhdcd");
+         ts.connect("smtp.163.com", "hagyao520@163.com", "YPFCHNRRCIQWFUBK");
          //4、创建邮件
-         Message message = createMixedMail(session, "1306086303@qq.com", "4","1306086303@qq.com","1174863835@qq.com","liuzhi@jiumiaodai.com","1833082791@qq.com","乐客开门");
+         Message message = createMixedMail(session, "hagyao520@163.com", "1","1306086303@qq.com","1174863835@qq.com","liuzhi@jiumiaodai.com","1833082791@qq.com","sunline.finline.android.test");
          //5、发送邮件
          ts.sendMessage(message, message.getAllRecipients());
          System.out.println(message.getMessageNumber());
@@ -99,9 +107,11 @@ import javax.mail.internet.MimeMultipart;
          }
          message.setSubject("【"+EntryName+"】自动化测试报告");//设置邮件主题
          
+         Object[] TestResult =GetTestResult(""+System.getProperty("user.home")+"\\AppData\\Local\\AutomationTestSystem\\app\\"+EntryName+"\\TestOutput\\TestngReport\\testng-results.xml");
+         
          //正文
          MimeBodyPart text = new MimeBodyPart();
-         text.setContent("<tr><font size='3'<td>各位同事，大家好，以下为【"+EntryName+"】自动化测试报告样本，请查收，具体详情请下载附件！</td> </font><br>-------------------------------(本邮件是程序自动下发的，请勿回复！)------------------------------</br></tr> <img src='cid:index.png'><br>PS：请添加151.139.237.11 cdn.rawgit.com到本地hosts文件末尾，或者翻墙即可正常打开测试报告，否则会显示乱码！</br>","text/html;charset=UTF-8");
+         text.setContent("<tr><td><br /><b><font size='4' color='#0000FF'>各位同事，大家好，以下为【"+EntryName+"】自动化测试报告样本，请查收，具体详情请下载附件！</font></b><br>-------------------------------(本邮件是程序自动下发的，请勿回复！)------------------------------</br></td></tr><tr><td><br /><b><font size='5' color='#d98719'>测试结果</font></b><hr size='2' width='100%' align='center' /></td></tr><tr><td><font size='3' <ul><li>测试项目 ：『"+EntryName+"』</li><li>******** 测 试 执 行 结 果 ********</li><li>测试总数量： <font color='#0000FF'>"+TestResult[0]+"</font></li><li>测试通过数量：<font color='#238e23'>"+TestResult[1]+"</font></li><li>测试失败数量：<font color='#FF0000'>"+TestResult[2]+"</font></li><li>测试受阻数量：<font color='#e47833'>"+TestResult[3]+"</font></li><li>测试报告：****具体情况，请下载附件****</li><img src='cid:index.png'><br>PS：请添加151.139.237.11 cdn.rawgit.com到本地C:/Windows/System32/drivers/etc/hosts文件末尾，或者翻墙即可正常打开测试报告，否则会显示乱码！</br></ul> </font></td></tr> ","text/html;charset=UTF-8");
          
          //图片
          MimeBodyPart image = new MimeBodyPart();
@@ -143,5 +153,25 @@ import javax.mail.internet.MimeMultipart;
 //         message.writeTo(new FileOutputStream("D:\\MixedMail.eml"));
          //返回创建好的的邮件
          return message;
+     }
+     
+     public static Object[] GetTestResult(String soucePath) throws SAXException, IOException{
+    	 String total = "";
+    	 String passed = "";
+    	 String failed = "";
+    	 String skipped = "";
+    	 DocumentBuilderFactory a = DocumentBuilderFactory.newInstance();  
+         try {   
+             DocumentBuilder b = a.newDocumentBuilder();  
+             Document document = b.parse(soucePath);  
+             total = document.getElementsByTagName("testng-results").item(0).getAttributes().getNamedItem("total").getNodeValue();
+             passed = document.getElementsByTagName("testng-results").item(0).getAttributes().getNamedItem("passed").getNodeValue();
+             failed = document.getElementsByTagName("testng-results").item(0).getAttributes().getNamedItem("failed").getNodeValue();
+             skipped = document.getElementsByTagName("testng-results").item(0).getAttributes().getNamedItem("skipped").getNodeValue();
+         } catch (ParserConfigurationException e) {  
+             e.printStackTrace();  
+         }
+         Object[] TestResult = {total,passed,failed,skipped};
+         return TestResult;
      }
 }

@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<!-- saved from url=(0037)http://www.chengfeilong.com/skPlayer/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>SKPlayer</title>
+    <meta name="viewport" content="width=440,user-scalable=no">
+    <style>
+        body{
+            font-family:Arial,Helvetica,sans-serif;
+            color:#6A6B6F;
+            text-align:center;
+            padding-top:17px;
+            width:470px;
+            margin:0 auto;
+        }
+        h1{
+            font-size:36px;
+        }
+        h2{
+            font-size:24px;
+        }
+        p{
+            font-size:18px;
+        }
+        #skPlayer{
+            margin:27px auto 0;
+        }
+        .container{
+            margin-top:200px;
+        }
+        .doc{
+            text-align:left;
+        }
+        pre{
+            padding-left:2em;
+            font-size:16px;
+            line-height:24px;
+            color:#fff;
+            background-color:#272822;
+            border-radius:3px;
+        }
+        @media screen and (max-width:768px){
+            body{
+                width:100%;
+            }
+            .doc{
+                display:none;
+            }
+        }
+    </style>
+<style type="text/css">/*!
+    SKPlayer
+ */
+#skPlayer {
+  width: 380px;
+  height: 100px;
+  font-family: Arial,Helvetica,sans-serif;
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  cursor: default;
+  background-color: #FFF;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12); }
+  #skPlayer * {
+    margin: 0;
+    padding: 0;
+    box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box; }
+    #skPlayer *::before {
+      box-sizing: content-box;
+      -webkit-box-sizing: content-box;
+      -moz-box-sizing: content-box; }
+    #skPlayer *::after {
+      box-sizing: content-box;
+      -webkit-box-sizing: content-box;
+      -moz-box-sizing: content-box; }
+  #skPlayer .skPlayer-tip-loading {
+    font-size: 30px;
+    color: #6A6B6F;
+    line-height: 100px;
+    text-align: center; }
+  #skPlayer .skPlayer-picture {
+    width: 100px;
+    height: 100px;
+    float: left;
+    position: relative;
+    border-radius: 7px 0 0 5px;
+    z-index: 3; }
+  #skPlayer .skPlayer-cover {
+    width: 100%;
+    transition: 0.37s;
+    -webkit-transition: 0.37s;
+    -moz-transition: 0.37s; }
+    #skPlayer .skPlayer-cover.skPlayer-pause {
+      filter: blur(3px);
+      -webkit-filter: blur(3px); }
+  #skPlayer .skPlayer-play-btn {
+    display: block;
+    width: 60px;
+    height: 60px;
+    background-color: #D94240;
+    border-radius: 50%;
+    position: absolute;
+    overflow: hidden;
+    top: 50%;
+    left: 0;
+    transform: translate(-50%, -50%) translateZ(0);
+    -webkit-transform: translate(-50%, -50%) translateZ(0);
+    -moz-transform: translate(-50%, -50%) translateZ(0);
+    -ms-transform: translate(-50%, -50%) translateZ(0);
+    z-index: 2;
+    transition: 0.7s;
+    -webkit-transition: 0.7s;
+    -moz-transition: 0.7s; }
+    #skPlayer .skPlayer-play-btn.skPlayer-pause {
+      left: 50%; }
+      #skPlayer .skPlayer-play-btn.skPlayer-pause .skPlayer-left {
+        border: 14px solid #FFF;
+        border-left: 2px solid #FFF;
+        border-right: 2px solid #FFF; }
+      #skPlayer .skPlayer-play-btn.skPlayer-pause .skPlayer-right {
+        top: 16px; }
+    #skPlayer .skPlayer-play-btn span {
+      display: block;
+      width: 0;
+      height: 0;
+      position: absolute;
+      transition: 0.37s;
+      -webkit-transition: 0.37s;
+      -moz-transition: 0.37s;
+      transform: translateZ(0);
+      -webkit-transform: translateZ(0);
+      -moz-transform: translateZ(0);
+      -ms-transform: translateZ(0); }
+      #skPlayer .skPlayer-play-btn span.skPlayer-left {
+        border-left: 24px solid #FFF;
+        border-top: 14px solid transparent;
+        border-bottom: 14px solid transparent;
+        left: 21px;
+        top: 16px; }
+      #skPlayer .skPlayer-play-btn span.skPlayer-right {
+        border: 14px solid #FFF;
+        border-left: 2px solid #FFF;
+        border-right: 2px solid #FFF;
+        right: 21px;
+        top: -76px; }
+  #skPlayer .skPlayer-control {
+    width: 250px;
+    height: 75px;
+    padding: 10px 15px 15px;
+    background-color: transparent;
+    float: right;
+    border-radius: 0 7px 7px 0;
+    position: relative;
+    z-index: 2;
+    text-align: left; }
+    #skPlayer .skPlayer-control p {
+      line-height: 1.2;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis; }
+      #skPlayer .skPlayer-control p.skPlayer-name {
+        font-size: 18px;
+        font-weight: 700;
+        color: #6A6B6F; }
+      #skPlayer .skPlayer-control p.skPlayer-author {
+        font-size: 15px;
+        color: #666;
+        max-width: 90%; }
+    #skPlayer .skPlayer-control > .skPlayer-percent {
+      width: 250px;
+      height: 6px;
+      background-color: #EBEBF2;
+      margin: 9px 0;
+      cursor: pointer;
+      overflow: hidden;
+      position: relative; }
+      #skPlayer .skPlayer-control > .skPlayer-percent .skPlayer-line {
+        width: 0;
+        height: 100%;
+        background-color: #D94240;
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 2; }
+      #skPlayer .skPlayer-control > .skPlayer-percent .skPlayer-line-loading {
+        width: 0;
+        height: 100%;
+        background-color: #D3D3E0;
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 1;
+        transition: 0.7s;
+        -webkit-transition: 0.7s;
+        -moz-transition: 0.7s;
+        transform: translateZ(0);
+        -webkit-transform: translateZ(0);
+        -moz-transform: translateZ(0);
+        -ms-transform: translateZ(0); }
+    #skPlayer .skPlayer-control .skPlayer-time {
+      font-size: 15px;
+      color: #666;
+      float: left; }
+    #skPlayer .skPlayer-control .skPlayer-volume {
+      width: 120px;
+      height: 14px;
+      float: right;
+      position: relative;
+      margin: 1px 24px 0 0; }
+      #skPlayer .skPlayer-control .skPlayer-volume .skPlayer-icon {
+        display: block;
+        width: 5px;
+        height: 6px;
+        position: absolute;
+        background-color: #6A6B6F;
+        top: 4px;
+        left: -20px;
+        cursor: pointer; }
+        #skPlayer .skPlayer-control .skPlayer-volume .skPlayer-icon.skPlayer-quiet::before {
+          display: block; }
+        #skPlayer .skPlayer-control .skPlayer-volume .skPlayer-icon::before {
+          content: '';
+          display: none;
+          width: 2px;
+          height: 22px;
+          transform: rotate(58deg);
+          -webkit-transform: rotate(58deg);
+          -moz-transform: rotate(58deg);
+          -ms-transform: rotate(58deg);
+          background-color: #6A6B6F;
+          position: absolute;
+          top: -8px;
+          left: 5px; }
+        #skPlayer .skPlayer-control .skPlayer-volume .skPlayer-icon::after {
+          content: '';
+          display: block;
+          width: 5px;
+          height: 6px;
+          border-width: 4px 5px;
+          border-style: solid;
+          border-color: transparent #6A6B6F transparent transparent;
+          position: absolute;
+          top: -4px;
+          left: -5px; }
+      #skPlayer .skPlayer-control .skPlayer-volume .skPlayer-percent {
+        position: absolute;
+        width: 120px;
+        height: 14px;
+        background-color: #EBEBF2;
+        border-radius: 6px;
+        overflow: hidden;
+        cursor: pointer;
+        top: 0;
+        left: 0; }
+      #skPlayer .skPlayer-control .skPlayer-volume .skPlayer-line {
+        height: 100%;
+        width: 100%;
+        background-color: #D94240;
+        transition: 0.37s;
+        -webkit-transition: 0.37s;
+        -moz-transition: 0.37s; }
+    #skPlayer .skPlayer-control .skPlayer-list-switch {
+      display: block;
+      width: 16px;
+      height: 15px;
+      position: absolute;
+      right: 15px;
+      bottom: 12px;
+      cursor: pointer; }
+    #skPlayer .skPlayer-control .skPlayer-list-icon {
+      display: block;
+      width: 16px;
+      height: 3px;
+      background-color: #6A6B6F;
+      position: absolute;
+      right: 0;
+      bottom: 6px; }
+      #skPlayer .skPlayer-control .skPlayer-list-icon::before {
+        content: '';
+        display: block;
+        width: 16px;
+        height: 3px;
+        background-color: #6A6B6F;
+        position: absolute;
+        left: 0;
+        bottom: 6px; }
+      #skPlayer .skPlayer-control .skPlayer-list-icon::after {
+        content: '';
+        display: block;
+        width: 16px;
+        height: 3px;
+        background-color: #6A6B6F;
+        position: absolute;
+        left: 0;
+        bottom: -6px; }
+    #skPlayer .skPlayer-control .skPlayer-mode {
+      display: block;
+      width: 16px;
+      height: 17px;
+      background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAARCAYAAADUryzEAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QAAAAAAAD5Q7t/AAAACXBIWXMAAAsSAAALEgHS3X78AAABVklEQVQ4y5XTvY6NURQG4OdsnElMFFqFiCgk/htBaFAoRq0QHYO9JTsSVyB6+STfx4hO5QJMZTQkU0gw4gJM4wpIxH8x6+QMxndy3mZl7bXf911r/wwgl/oCJ/2Ll13bnNKDpB8nJtTXBMJlBi1+TjLIpW7+Y0MudYinKPiOeziObRuQL2Epl7oVRkp3cRYfMde1zZv/OA9xBzuDc3WQS92HlXA+1rXN276Zc6mH8CrMjyRcxibcn0SO81rBQwwwn3Auak8mkdfhccQzCbsjeT2FwKjTXQk/IpmdQmBLxG8Jq5HsnUJgf8TVhOeRXJhC4GLEZwkL+IVrcUW9yKUexJUY/VHq2uZdiMxgMZd6tId8GIuxd6Frm/ejl1ixx9prvG18tXKpszgQbc9jGGPfZPyZvuI8HuDWX8afsIwbQYbTWGL8F3Rt8wXXN+j8Mz5gO3asWx/AbzMQVi2KT5GSAAAAAElFTkSuQmCC);
+      position: absolute;
+      right: 15px;
+      bottom: 51px;
+      cursor: pointer; }
+      #skPlayer .skPlayer-control .skPlayer-mode.skPlayer-mode-loop {
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAARCAYAAADUryzEAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QAAAAAAAD5Q7t/AAAACXBIWXMAAAsSAAALEgHS3X78AAABa0lEQVQ4y5XTu2pVURAG4O9s9QgGC1sLEbEQvMXGG7FRCwutLcROIq4lLASfQOxlC3trbK18AFMZm0QEhcSID2Aan0BB4gWLM8cT48455G+GWWv++WfWzOpBymURM/7HUtvUF4xBZTzOT7gfJAiV3Wjwe5JAymXnPwEplz5eIuMnHuMc9naQb2Ih5bIHhpke4TK+4Grb1CtbKPfxEAeCc7uXcjmK1VA+2zb1h3E9p1xO4n2In6pwCzvwZDM55bIYE/qLtqlX8Qw9zFa4EncvOgRndI/3edhLFQ6FszxpZBswrPRghV/hTG0jwa6wPyqshXNkGwmOhV2r8Dqc6x2BS3jTcX4j7KteyuVE9LSOM/HKWyLi3xmMcbpqm/oj5gxWeT7lcnoMeRrzETvXNvWn4SYWHDbYxgdGo5VymcLxKHsW/Wj7HqPPtI5reIr7m4S/4i3uBhkuYoHRX9A29Xfc6aj8Gz5jH/ZvOO/BH1b7XciLVLbaAAAAAElFTkSuQmCC); }
+  #skPlayer .skPlayer-list {
+    display: none;
+    width: 100%;
+    position: absolute;
+    top: 100px;
+    padding-top: 6px;
+    background-color: #FFF;
+    list-style: none;
+    max-height: 171px;
+    overflow-y: auto;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12); }
+    #skPlayer .skPlayer-list li {
+      position: relative;
+      height: 32px;
+      line-height: 32px;
+      padding: 0 15px;
+      font-size: 12px;
+      border-top: 1px solid #E9E9E9;
+      cursor: pointer;
+      transition: 0.2s;
+      -webkit-transition: 0.2s;
+      -moz-transition: 0.2s;
+      overflow: hidden; }
+      #skPlayer .skPlayer-list li:hover {
+        background-color: #DDD; }
+      #skPlayer .skPlayer-list li.skPlayer-curMusic {
+        background-color: #B0B0B0; }
+        #skPlayer .skPlayer-list li.skPlayer-curMusic .skPlayer-list-sign {
+          display: block; }
+    #skPlayer .skPlayer-list::-webkit-scrollbar {
+      width: 14px; }
+    #skPlayer .skPlayer-list::-webkit-scrollbar-track {
+      border-left: 1px solid #E9E9E9; }
+    #skPlayer .skPlayer-list::-webkit-scrollbar-thumb {
+      box-shadow: inset 0 0 7px rgba(0, 0, 0, 0.3);
+      background-color: #D94240; }
+    #skPlayer .skPlayer-list .skPlayer-list-sign {
+      display: none;
+      width: 3px;
+      height: 22px;
+      position: absolute;
+      left: 0;
+      top: 5px;
+      background-color: #D94240; }
+    #skPlayer .skPlayer-list .skPlayer-list-index {
+      color: #666;
+      position: absolute;
+      left: 15px;
+      top: 0; }
+    #skPlayer .skPlayer-list .skPlayer-list-name {
+      color: #6A6B6F;
+      float: left;
+      margin-left: 24px;
+      max-width: 200px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis; }
+    #skPlayer .skPlayer-list .skPlayer-list-author {
+      color: #666;
+      float: right;
+      max-width: 107px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis; }
+  #skPlayer.skPlayer-list-on .skPlayer-list {
+    display: block; }
+</style></head>
+<body style="">
+    <iframe frameborder="0" scrolling="0" width="91px" height="20px" src="./SKPlayer_files/github-btn.html"></iframe>
+    <h1>SKPlayer 3.0</h1>
+    <p>一款简约好看的HTML5音乐播放器</p>
+    <p>
+        <img src="./SKPlayer_files/skplayer.svg" alt="npm">
+        <img src="./SKPlayer_files/skplayer(1).svg" alt="license">
+        <img src="./SKPlayer_files/skplayer(2).svg" alt="downloads">
+        <img src="./SKPlayer_files/made by-Scott-orange.svg" alt="made by">
+    </p>
+    <div id="skPlayer" class="skPlayer-list-on">
+            <audio class="skPlayer-source" src="http://m10.music.126.net/20190731184732/e30bcd47130e8fd523ba56322c86a9cf/ymusic/92de/34ea/5228/f935f9bbb5e4b15d39fc7062a3ea3254.mp3" preload="auto"></audio>
+            <div class="skPlayer-picture">
+                <img class="skPlayer-cover skPlayer-pause" src="./SKPlayer_files/5790028231871967.jpg" alt="">
+                <a href="javascript:;" class="skPlayer-play-btn skPlayer-pause">
+                    <span class="skPlayer-left"></span>
+                    <span class="skPlayer-right"></span>
+                </a>
+            </div>
+            <div class="skPlayer-control">
+                <p class="skPlayer-name">神秘的航行</p>
+                <p class="skPlayer-author">StudioEIM</p>
+                <div class="skPlayer-percent">
+                    <div class="skPlayer-line-loading" style="width: 100%;"></div>
+                    <div class="skPlayer-line" style="width: 23.36%;"></div>
+                </div>
+                <p class="skPlayer-time">
+                    <span class="skPlayer-cur">00:41</span>/<span class="skPlayer-total">02:59</span>
+                </p>
+                <div class="skPlayer-volume" style="">
+                    <i class="skPlayer-icon"></i>
+                    <div class="skPlayer-percent">
+                        <div class="skPlayer-line" style="width: 52.5%;"></div>
+                    </div>
+                </div>
+                <div class="skPlayer-list-switch">
+                    <i class="skPlayer-list-icon"></i>
+                </div>
+                <i class="skPlayer-mode"></i>
+            </div>
+            <ul class="skPlayer-list">
+        
+                <li data-index="0" class="">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">1</span>
+                    <span class="skPlayer-list-name" title="Cruisin&#39;">Cruisin'</span>
+                    <span class="skPlayer-list-author" title="Sioen">Sioen</span>
+                </li>
+            
+                <li data-index="1" class="">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">2</span>
+                    <span class="skPlayer-list-name" title="キミが残した世界で">キミが残した世界で</span>
+                    <span class="skPlayer-list-author" title="菅原纱由理（THE SxPLAY）">菅原纱由理（THE&nbsp;SxPLAY）</span>
+                </li>
+            
+                <li data-index="2" class="">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">3</span>
+                    <span class="skPlayer-list-name" title="MapleStory">MapleStory</span>
+                    <span class="skPlayer-list-author" title="StudioEIM">StudioEIM</span>
+                </li>
+            
+                <li data-index="3">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">4</span>
+                    <span class="skPlayer-list-name" title="Mr. Blue Sky">Mr. Blue Sky</span>
+                    <span class="skPlayer-list-author" title="Electric Light Orchestra">Electric Light Orchestra</span>
+                </li>
+            
+                <li data-index="4" class="">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">5</span>
+                    <span class="skPlayer-list-name" title="Gloves 2 Ali">Gloves 2 Ali</span>
+                    <span class="skPlayer-list-author" title="陈光荣">陈光荣</span>
+                </li>
+            
+                <li data-index="5" class="skPlayer-curMusic">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">6</span>
+                    <span class="skPlayer-list-name" title="神秘的航行">神秘的航行</span>
+                    <span class="skPlayer-list-author" title="StudioEIM">StudioEIM</span>
+                </li>
+            
+                <li data-index="6" class="">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">7</span>
+                    <span class="skPlayer-list-name" title="Maps">Maps</span>
+                    <span class="skPlayer-list-author" title="Alyson Stoner&amp;MAX&amp;Kurt Hugo Schneider">Alyson Stoner&amp;MAX&amp;Kurt Hugo Schneider</span>
+                </li>
+            
+                <li data-index="7">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">8</span>
+                    <span class="skPlayer-list-name" title="Goodbye My Lover">Goodbye My Lover</span>
+                    <span class="skPlayer-list-author" title="James Blunt">James Blunt</span>
+                </li>
+            
+                <li data-index="8">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">9</span>
+                    <span class="skPlayer-list-name" title="Dream">Dream</span>
+                    <span class="skPlayer-list-author" title="Rabpit">Rabpit</span>
+                </li>
+            
+                <li data-index="9">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">10</span>
+                    <span class="skPlayer-list-name" title="Wings Of Piano">Wings Of Piano</span>
+                    <span class="skPlayer-list-author" title="V.K克">V.K克</span>
+                </li>
+            
+                <li data-index="10">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">11</span>
+                    <span class="skPlayer-list-name" title="time flows away">time flows away</span>
+                    <span class="skPlayer-list-author" title="songroger">songroger</span>
+                </li>
+            
+                <li data-index="11">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">12</span>
+                    <span class="skPlayer-list-name" title="Radioactive">Radioactive</span>
+                    <span class="skPlayer-list-author" title="William Joseph">William Joseph</span>
+                </li>
+            
+                <li data-index="12">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">13</span>
+                    <span class="skPlayer-list-name" title="Hit the Rhyme">Hit the Rhyme</span>
+                    <span class="skPlayer-list-author" title="蛋堡">蛋堡</span>
+                </li>
+            
+                <li data-index="13">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">14</span>
+                    <span class="skPlayer-list-name" title="Honey Honey">Honey Honey</span>
+                    <span class="skPlayer-list-author" title="孙燕姿">孙燕姿</span>
+                </li>
+            
+                <li data-index="14">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">15</span>
+                    <span class="skPlayer-list-name" title="Dealbreaker">Dealbreaker</span>
+                    <span class="skPlayer-list-author" title="Rachael Yamagata">Rachael&nbsp;Yamagata</span>
+                </li>
+            
+                <li data-index="15">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">16</span>
+                    <span class="skPlayer-list-name" title="恋">恋</span>
+                    <span class="skPlayer-list-author" title="星野源">星野源</span>
+                </li>
+            
+                <li data-index="16">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">17</span>
+                    <span class="skPlayer-list-name" title="Yuri on ICE">Yuri on ICE</span>
+                    <span class="skPlayer-list-author" title="梅林太郎">梅林太郎</span>
+                </li>
+            
+                <li data-index="17">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">18</span>
+                    <span class="skPlayer-list-name" title="Paper Plane&#39;s Adventure">Paper Plane's Adventure</span>
+                    <span class="skPlayer-list-author" title="V.K克">V.K克</span>
+                </li>
+            
+                <li data-index="18">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">19</span>
+                    <span class="skPlayer-list-name" title="Something Just Like This">Something Just Like This</span>
+                    <span class="skPlayer-list-author" title="The Chainsmokers&amp;Coldplay">The Chainsmokers&amp;Coldplay</span>
+                </li>
+            
+                <li data-index="19">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">20</span>
+                    <span class="skPlayer-list-name" title="Start A Fire">Start A Fire</span>
+                    <span class="skPlayer-list-author" title="John Legend">John Legend</span>
+                </li>
+            
+                <li data-index="20">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">21</span>
+                    <span class="skPlayer-list-name" title="Closer">Closer</span>
+                    <span class="skPlayer-list-author" title="The Chainsmokers&amp;Halsey">The Chainsmokers&amp;Halsey</span>
+                </li>
+            
+                <li data-index="21">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">22</span>
+                    <span class="skPlayer-list-name" title="The truth that you leave">The&nbsp;truth&nbsp;that&nbsp;you&nbsp;leave</span>
+                    <span class="skPlayer-list-author" title="Pianoboy高至豪">Pianoboy高至豪</span>
+                </li>
+            
+                <li data-index="22">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">23</span>
+                    <span class="skPlayer-list-name" title="Photograph">Photograph</span>
+                    <span class="skPlayer-list-author" title="Ed Sheeran">Ed Sheeran</span>
+                </li>
+            
+                <li data-index="23">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">24</span>
+                    <span class="skPlayer-list-name" title="Q&amp;A">Q&amp;A</span>
+                    <span class="skPlayer-list-author" title="LONG:D&amp;Tarin">LONG:D&amp;Tarin</span>
+                </li>
+            
+                <li data-index="24">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">25</span>
+                    <span class="skPlayer-list-name" title="Rain ">Rain </span>
+                    <span class="skPlayer-list-author" title="秦基博&amp;大江千里">秦基博&amp;大江千里</span>
+                </li>
+            
+                <li data-index="25">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">26</span>
+                    <span class="skPlayer-list-name" title="That Girl">That Girl</span>
+                    <span class="skPlayer-list-author" title="Justin Timberlake">Justin Timberlake</span>
+                </li>
+            
+                <li data-index="26">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">27</span>
+                    <span class="skPlayer-list-name" title="Harmonia">Harmonia</span>
+                    <span class="skPlayer-list-author" title="ミト">ミト</span>
+                </li>
+            
+                <li data-index="27">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">28</span>
+                    <span class="skPlayer-list-name" title="Try Try Try">Try Try Try</span>
+                    <span class="skPlayer-list-author" title="Jason Mraz">Jason Mraz</span>
+                </li>
+            
+                <li data-index="28">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">29</span>
+                    <span class="skPlayer-list-name" title="Can&#39;t Take My Eyes Off You">Can't Take My Eyes Off You</span>
+                    <span class="skPlayer-list-author" title="Andy Williams">Andy Williams</span>
+                </li>
+            
+                <li data-index="29">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">30</span>
+                    <span class="skPlayer-list-name" title="Everybody">Everybody</span>
+                    <span class="skPlayer-list-author" title="Ingrid Michaelson">Ingrid Michaelson</span>
+                </li>
+            
+                <li data-index="30">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">31</span>
+                    <span class="skPlayer-list-name" title="벚꽃 엔딩">벚꽃 엔딩</span>
+                    <span class="skPlayer-list-author" title="Busker Busker">Busker Busker</span>
+                </li>
+            
+                <li data-index="31">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">32</span>
+                    <span class="skPlayer-list-name" title="In The End">In The End</span>
+                    <span class="skPlayer-list-author" title="Linkin Park">Linkin Park</span>
+                </li>
+            
+                <li data-index="32">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">33</span>
+                    <span class="skPlayer-list-name" title="Try">Try</span>
+                    <span class="skPlayer-list-author" title="Colbie Caillat">Colbie Caillat</span>
+                </li>
+            
+                <li data-index="33">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">34</span>
+                    <span class="skPlayer-list-name" title="Back At One">Back At One</span>
+                    <span class="skPlayer-list-author" title="Brian McKnight">Brian McKnight</span>
+                </li>
+            
+                <li data-index="34">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">35</span>
+                    <span class="skPlayer-list-name" title="Dilemma">Dilemma</span>
+                    <span class="skPlayer-list-author" title="Nelly&amp;Kelly Rowland">Nelly&amp;Kelly Rowland</span>
+                </li>
+            
+                <li data-index="35">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">36</span>
+                    <span class="skPlayer-list-name" title="Sugar">Sugar</span>
+                    <span class="skPlayer-list-author" title="Maroon 5">Maroon 5</span>
+                </li>
+            
+                <li data-index="36">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">37</span>
+                    <span class="skPlayer-list-name" title="두사랑 ">두사랑 </span>
+                    <span class="skPlayer-list-author" title="DAViCHi&amp;Mad Clown">DAViCHi&amp;Mad Clown</span>
+                </li>
+            
+                <li data-index="37">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">38</span>
+                    <span class="skPlayer-list-name" title="她说">她说</span>
+                    <span class="skPlayer-list-author" title="林俊杰">林俊杰</span>
+                </li>
+            
+                <li data-index="38">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">39</span>
+                    <span class="skPlayer-list-name" title="고백">고백</span>
+                    <span class="skPlayer-list-author" title="Deli Spice">Deli Spice</span>
+                </li>
+            
+                <li data-index="39">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">40</span>
+                    <span class="skPlayer-list-name" title="Viva La Vida">Viva La Vida</span>
+                    <span class="skPlayer-list-author" title="Coldplay">Coldplay</span>
+                </li>
+            
+                <li data-index="40">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">41</span>
+                    <span class="skPlayer-list-name" title="Treasure">Treasure</span>
+                    <span class="skPlayer-list-author" title="Bruno Mars">Bruno Mars</span>
+                </li>
+            
+                <li data-index="41">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">42</span>
+                    <span class="skPlayer-list-name" title="Robotpet">Robotpet</span>
+                    <span class="skPlayer-list-author" title="Li-lo*">Li-lo*</span>
+                </li>
+            
+                <li data-index="42">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">43</span>
+                    <span class="skPlayer-list-name" title="Reality">Reality</span>
+                    <span class="skPlayer-list-author" title="Richard Sanderson">Richard Sanderson</span>
+                </li>
+            
+                <li data-index="43">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">44</span>
+                    <span class="skPlayer-list-name" title="Happy  (NEUS Remix)">Happy  (NEUS Remix)</span>
+                    <span class="skPlayer-list-author" title="Neus&amp;Pharrell Williams">Neus&amp;Pharrell Williams</span>
+                </li>
+            
+                <li data-index="44">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">45</span>
+                    <span class="skPlayer-list-name" title="I&#39;m Yours">I'm Yours</span>
+                    <span class="skPlayer-list-author" title="Jason Mraz">Jason Mraz</span>
+                </li>
+            
+                <li data-index="45">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">46</span>
+                    <span class="skPlayer-list-name" title="fall">fall</span>
+                    <span class="skPlayer-list-author" title="Ina Wroldsen">Ina Wroldsen</span>
+                </li>
+            
+                <li data-index="46">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">47</span>
+                    <span class="skPlayer-list-name" title="If I Ain&#39;t Got You">If I Ain't Got You</span>
+                    <span class="skPlayer-list-author" title="Alicia Keys">Alicia Keys</span>
+                </li>
+            
+                <li data-index="47">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">48</span>
+                    <span class="skPlayer-list-name" title="红色高跟鞋">红色高跟鞋</span>
+                    <span class="skPlayer-list-author" title="蔡健雅">蔡健雅</span>
+                </li>
+            
+                <li data-index="48">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">49</span>
+                    <span class="skPlayer-list-name" title="SexyBack (feat.Timbaland)">SexyBack (feat.Timbaland)</span>
+                    <span class="skPlayer-list-author" title="Justin Timberlake&amp;Timbaland">Justin Timberlake&amp;Timbaland</span>
+                </li>
+            
+                <li data-index="49">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">50</span>
+                    <span class="skPlayer-list-name" title="原来">原来</span>
+                    <span class="skPlayer-list-author" title="林俊杰">林俊杰</span>
+                </li>
+            
+                <li data-index="50">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">51</span>
+                    <span class="skPlayer-list-name" title="Geronimo (Benny Benassi Remix)">Geronimo (Benny Benassi Remix)</span>
+                    <span class="skPlayer-list-author" title="Sheppard&amp;Benny Benassi">Sheppard&amp;Benny Benassi</span>
+                </li>
+            
+                <li data-index="51">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">52</span>
+                    <span class="skPlayer-list-name" title="Lemon Tree">Lemon Tree</span>
+                    <span class="skPlayer-list-author" title="Fool&#39;s Garden">Fool's Garden</span>
+                </li>
+            
+                <li data-index="52">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">53</span>
+                    <span class="skPlayer-list-name" title="不得不爱">不得不爱</span>
+                    <span class="skPlayer-list-author" title="弦子&amp;潘玮柏">弦子&amp;潘玮柏</span>
+                </li>
+            
+                <li data-index="53">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">54</span>
+                    <span class="skPlayer-list-name" title="クリスマスソング">クリスマスソング</span>
+                    <span class="skPlayer-list-author" title="back number">back number</span>
+                </li>
+            
+                <li data-index="54">
+                    <i class="skPlayer-list-sign"></i>
+                    <span class="skPlayer-list-index">55</span>
+                    <span class="skPlayer-list-name" title="NEXT TO YOU">NEXT TO YOU</span>
+                    <span class="skPlayer-list-author" title="Ken Arai">Ken Arai</span>
+                </li>
+            
+            </ul>
+        </div>
+    <div class="container">
+        <button onclick="player.play()">player.play()</button>
+        <button onclick="player.pause()">player.pause()</button>
+        <button onclick="player.toggle()">player.toggle()</button>
+        <button onclick="player.prev()">player.prev()</button>
+        <button onclick="player.next()">player.next()</button>
+        <button onclick="player.switchMusic(7)">player.switchMusic(7)</button>
+        <button onclick="player.toggleList()">player.toggleList()</button>
+        <button onclick="player.toggleMute()">player.toggleMute()</button>
+        <button onclick="player.switchMode()">player.switchMode()</button>
+    </div>
+    <div class="doc">
+        <h2>特点</h2>
+        <p>1.支持自配置音乐文件 or 指定网易云音乐歌单两种方式</p>
+        <p>2.提供大量API支持</p>
+        <h2>下载</h2>
+        <pre>npm install skplayer --save</pre>
+        <p>或者前往github v3.0分支下载整包</p>
+        <h2>使用</h2>
+        <p>HTML:</p>
+        <pre>&lt;div id="skPlayer"&gt;&lt;/div&gt;</pre>
+        <p>JS:</p>
+        <pre>&lt;script src="./dist/skPlayer.min.js"&gt;&lt;/script&gt;</pre>
+        <p>或</p>
+        <pre>var skPlayer = require('skPlayer');</pre>
+        <h2>配置</h2>
+        <p>配置网易云音乐歌单方式</p>
+        <pre>var player = new skPlayer({<br>    autoplay: true,<br>    //可选项,自动播放,默认为false,true/false<br>    listshow: true,<br>    //可选项,列表显示,默认为true,true/false<br>    mode: 'listloop',<br>    //可选项,循环模式,默认为'listloop'<br>    //'listloop',列表循环<br>    //'singleloop',单曲循环<br>    music: {<br>    //必需项,音乐配置<br>        type: 'cloud',<br>        //必需项,网易云方式指定填'cloud'<br>        source: 317921676<br>        //必需项,网易云音乐歌单id<br>        //登录网易云网页版,在网页地址中拿到<br>        // ... playlist?id=317921676<br>    }<br>});</pre>
+        <p>自配置音乐文件方式</p>
+        <pre>var player = new skPlayer({<br>     ... <br>    //可选项配置同上<br>    music: {<br>    //必需项,音乐配置<br>        type: 'file',<br>        //必需项,自配置文件方式指定填'file'<br>        source: [<br>        //必需项,音乐文件数组<br>            {<br>                name: '打呼',<br>                //必需项,歌名<br>                author: '潘玮柏&amp;杨丞琳',<br>                //必需项,歌手<br>                src: 'xxx.mp3',<br>                //必需项,音乐文件<br>                cover: 'xxx.jpg'<br>                //必需项,封面图片<br>            },<br>             ... <br>        ]<br>    }<br>});</pre>
+        <h2>API</h2>
+        <p>播放</p>
+        <pre>player.play();</pre>
+        <p>暂停</p>
+        <pre>player.pause();</pre>
+        <p>播放/暂停切换</p>
+        <pre>player.toggle();</pre>
+        <p>上一首</p>
+        <pre>player.prev();</pre>
+        <p>下一首</p>
+        <pre>player.next();</pre>
+        <p>切歌</p>
+        <pre>player.switchMusic(index);<br>//index为列表中歌曲前对应的序号</pre>
+        <p>列表显示/隐藏切换</p>
+        <pre>player.toggleList();</pre>
+        <p>静音/正常切换</p>
+        <pre>player.toggleMute();</pre>
+        <p>单曲循环/列表循环切换</p>
+        <pre>player.switchMode();</pre>
+        <p>销毁</p>
+        <pre>player.destroy();<br>//skPlayer默认只能存在一个实例<br>//需要重新配置时调用该方法销毁当前实例</pre>
+        <h2>最后</h2>
+        <p>修复了旧版存在的问题，请及时更新v3.0最新版</p>
+        <h2>注：</h2>
+        <p>由于兼容性问题，移动端暂不支持自动播放和音量控制，同时toggleMute()方法在移动端可能存在异常，以及其他的一些未知BUG</p>
+    </div>
+    <script src="./SKPlayer_files/skPlayer.min.js.下载"></script>
+    <script>
+        var player = new skPlayer({
+            autoplay: true,
+            music: {
+                type: 'cloud',
+                source: 430428917
+            }
+        });
+    </script>
+
+</body></html>

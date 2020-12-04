@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<root><systemServerConfiguration><sapi>www.travel.szjqb.net</sapi><shostAddress>47.106.179.225</shostAddress><skey>src/main/resources/Key/id_rsa</skey><spassWord>JQBdev@1qaz2wsx</spassWord><sport>22</sport><suserName>liuzhi</suserName></systemServerConfiguration></root>
+<root><systemServerConfiguration><sapi>yhtsit.sunline.cn</sapi><shostAddress>yhtsit.sunline.cn</shostAddress><skey>src/main/resources/Keya/id_rsa</skey><spassWord>yhttest_300348</spassWord><sport>38822</sport><suserName>yhttest</suserName></systemServerConfiguration></root>

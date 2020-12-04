@@ -297,21 +297,24 @@ public class FrontEndFunctionCenterPageView extends Application {
 	    		UserNameLabel.setLayoutX(79);
 	    		UserNameLabel.setLayoutY(12);
 	    		UserNameLabel.setId("UserNameLabel");
-	    		Object[] UserLoginInfo =LoginController.WebUserLoginInfo(Account, PassWord);
-      		    String UserName = (String) UserLoginInfo[0];
+//	    		Object[] UserLoginInfo =LoginController.WebUserLoginInfo(Account, PassWord);
+//      		    String UserName = (String) UserLoginInfo[0];
+//	    		UserNameLabel.setText(UserName);
+	    		UserSaveData usd1 = usdb.get(Account);
+	    		String UserName = usd1.getPassWord();
 	    		UserNameLabel.setText(UserName);
-//	    		UserNameLabel.setText("小  智");
+//	    		UserNameLabel.setText("小    智");//无验证
 	    		
 	    		UserTypeLabel.setLayoutX(80);
 	    		UserTypeLabel.setLayoutY(38);
 	    		UserTypeLabel.setId("UserTypeLabel");
-      		    String UserType =String.valueOf((int) UserLoginInfo[2]) ;
-      		    if("1".equals(UserType)){
-      		    	UserTypeLabel.setText("游   客");
-      		    }if("2".equals(UserType)){
-      		    	UserTypeLabel.setText("旅 行 社");
-      		    }
-//      		    UserTypeLabel.setText("游 客 组");
+//      		    String UserType =String.valueOf((int) UserLoginInfo[2]) ;
+//      		    if("1".equals(UserType)){
+//    		    	UserTypeLabel.setText("游   客");
+//    		    }if("2".equals(UserType)){
+//    		    	UserTypeLabel.setText("旅 行 社");
+//    		    }
+      		    UserTypeLabel.setText("体 验 者");//无验证
 	    		
 //      		    System.out.println(UserNameLabel.getText().length());
 	    		if(UserNameLabel.getText().length()>10){

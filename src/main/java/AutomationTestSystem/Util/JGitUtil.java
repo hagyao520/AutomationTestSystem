@@ -25,7 +25,7 @@ public class JGitUtil {
 	static String PassWord  = "xxxxxx";
 	
 	//克隆仓库
-	public static String CloneRepository(String Url, String LocalPath) {
+	public static String CloneRepository(String Url, String LocalPath, String UserName, String PassWord) {
         try {
         	CredentialsProvider cp = new UsernamePasswordCredentialsProvider(UserName, PassWord);
         	System.out.println("开始下载："+Url);
@@ -38,8 +38,8 @@ public class JGitUtil {
             System.out.println("下载成功，保存位置为："+LocalPath);
             return "Success";
         } catch (Exception e) {
-//            e.printStackTrace();
-//            System.out.println(e.getMessage());
+            e.printStackTrace();
+            System.out.println(e.getMessage());
             String LocalPathName =LocalPath.replace(""+System.getProperty("user.home")+"\\AppData\\Local\\AutomationTestSystem\\app\\", "");
             String AlreadyExisted ="Destination path \""+LocalPathName+"\" already exists and is not an empty directory";
             if(AlreadyExisted.equals(e.getMessage())){
@@ -53,7 +53,6 @@ public class JGitUtil {
     //切换分支
     public void CheckoutBranch(String localPath, String branchName){
         String projectURL = localPath + "\\.git";
-
         Git git = null;
         try {
             git = Git.open(new File(projectURL));
@@ -63,18 +62,14 @@ public class JGitUtil {
         }catch (Exception e){
             e.printStackTrace();
             System.out.println("切换分支失败");
-        } finally{
-            if (git != null) {
-                git.close();
-            }
-        }   
+        }
     }
 
     /**
      * 提交本地代码
      * @return 
      */
-    public static String GitPush(String localPath, String message) {
+    public static String GitPush(String localPath, String message, String UserName, String PassWord) {
     	String projectURL = localPath + "\\.git";
     	Git git = null;
         try {
@@ -97,16 +92,11 @@ public class JGitUtil {
             CredentialsProvider cp = new UsernamePasswordCredentialsProvider(UserName, PassWord);
             pushCommand.setCredentialsProvider(cp);
             pushCommand.call();
-            
             git.close();
             return "提交成功！";
         } catch (Exception e) {
             e.printStackTrace();
             return "提交失败！";
-        } finally{
-            if (git != null) {
-                git.close();
-            }
         }
     }
 
@@ -114,7 +104,7 @@ public class JGitUtil {
      * 拉取远程仓库代码
      * @return 
      */
-    public static String GitPull(String localPath) {
+    public static String GitPull(String localPath, String UserName, String PassWord) {
     	String projectURL = localPath + "\\.git";
     	Git git = null;
         try {
@@ -124,21 +114,16 @@ public class JGitUtil {
             pullCommand.setRemoteBranchName("master");
             pullCommand.setCredentialsProvider(cp);
             pullCommand.call();
-
             git.close();
             return "拉取成功！";
         } catch (Exception e) {
             e.printStackTrace();
             return "拉取失败！";
-        } finally{
-            if (git != null) {
-                git.close();
-            }
         }
     }
     
     //提交代码
-    public static String Commit(String localPath,String pushMessage)  {
+    public static String Commit(String localPath,String pushMessage, String UserName, String PassWord)  {
         String projectURL = localPath + "\\.git";
         Git git = null;
         try {
@@ -176,16 +161,16 @@ public class JGitUtil {
 
 	public static void main(String[] args) {
         JGitUtil gitUtil = new JGitUtil();
-        String url = "https://gitee.com/hagyao520/JMoney.Luckeylink.Android.Test.git";
+        String url = "http://e-git.yfb.sunline.cn/yht-app/sunline.finline.android.test.git";
         String localPath =""+System.getProperty("user.home")+"\\AppData\\Local\\AutomationTestSystem\\app\\Appium";
         String FilePath =""+System.getProperty("user.home")+"\\AppData\\Local\\AutomationTestSystem\\app\\Appium\\src\\test\\java\\TestCases\\LuckeyLogin.java";
         String branchName = "20171010_branch";
         try {
-//            String dd=gitUtil.CloneRepository(url,localPath);
-//            System.out.println(dd);
+            String dd=gitUtil.CloneRepository(url,localPath,"liuzhi1","lz612425");
+            System.out.println(dd);
 //            gitUtil.CheckoutBranch(localPath,branchName);
-        	System.out.println(localPath+" "+FilePath);
-            gitUtil.Commit(localPath,"更新");
+//        	System.out.println(localPath+" "+FilePath);
+//            gitUtil.Commit(localPath,"更新","","");
         } catch (Exception e) {
             e.printStackTrace();
         }

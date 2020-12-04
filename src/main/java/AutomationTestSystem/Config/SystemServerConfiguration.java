@@ -10,13 +10,13 @@ public class SystemServerConfiguration {
 //		private String skey;
 //		private String sapi;
 
-		private String shostAddress = "48.106.159.235";
-		private String sport = "22";
-		private String suserName = "liuzhi";
-		private String spassWord = "JQBdev@12qaz23wsx";
+		private String shostAddress = "yhtsit.sunline.cn";
+		private String sPort = "38822";
+		private String suserName = "yhttest";
+		private String spassWord = "yhttest_300348";
 		private String skey = "src/main/resources/Keya/id_rsa";
-		private String sapi = "www.travele.szjaqb.net";
-
+		private String sapi = "yhtsit.sunline.cn";
+        
 		public String getShostAddress() {
 			return shostAddress;
 		}
@@ -26,11 +26,11 @@ public class SystemServerConfiguration {
 		}
 
 		public String getSport() {
-			return sport;
+			return sPort;
 		}
 
-		public void setSport(String sport) {
-			this.sport = sport;
+		public void setSport(String sPort) {
+			this.sPort = sPort;
 		}
 
 		public String getSuserName() {

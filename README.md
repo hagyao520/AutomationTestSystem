@@ -10,7 +10,7 @@
      • 其中最重要的是AutomationTestSystem是跨平台的，何为跨平台，意思就是一套系统兼容多个平台，可以针对不同的平台用一套方法来编写测试用例
 
 ### 系统下载：
-   微云地址： [https://share.weiyun.com/5MFDHgI](https://share.weiyun.com/5MFDHgI)
+   微云地址： [https://pan.baidu.com/s/1GQONQa1No4uyrt12-ls-uw](https://pan.baidu.com/s/1GQONQa1No4uyrt12-ls-uw)
 
 ### 源码地址：
    Gitee地址： [https://gitee.com/hagyao520/AutomationTestSystem.git](https://gitee.com/hagyao520/AutomationTestSystem.git)
@@ -62,7 +62,7 @@
  • 部分网站需要翻墙，具体安装参考：https://blog.csdn.net/love4399/article/details/77164500
 
 ### 安装运行：
-    1.  下载完exe系统程序后，双击AutomationTestSystem-1.1.2.exe，点击install按钮，完成安装
+    1.  下载完exe系统程序后，双击AutomationTestSystem-1.1.3.exe，点击install按钮，完成安装
     2.  安装完成后，会自动运行程序，注：【系统需安装java环境】
     3.  鼠标右击任务栏中程序图标，打开程序安装位置，进入app目录
     4.  双击【点击生成桌面快捷方式】bat文件，即可自动生成桌面快捷程序，以后点击桌面图标运行即可
@@ -193,11 +193,23 @@
   9. 点击停止监控按钮，可以暂停获取对应手机内存，CPU，网络等数据，并记录开始时间和结束时间，代表这一段时间内容性能信息
    10. 点击上传分析按钮，可以自动上传当前性能数据至Appetizer，登录Appetizer客户端，即可查看具体的性能分析报告
 
-### 十、任务栏图标：
+### 十、ATX设备集群化中心（Android多设备在线管理平台）：
+ - ATX设备集群化中心是我自己设计的一套界面，专门针对于公司存在多部手机设备时，无法集中管理而开发的平台，可在线管理设备，远程操控，远程监控，获取元素等！
+![](https://testerhome.com/uploads/photo/2019/b03c2e9b-6b2d-45c4-9a07-54de09e78bc0.gif!large)
+ - 使用流程：
+![](https://testerhome.com/uploads/photo/2019/b3813e56-2893-49a0-a9f2-2875cb7a690a.png!large)
+
+&emsp;1.点击开启服务按钮，一键启动rethinkdb，atx-server，WEditor后台服务，点击关闭服务按钮，即可一键关闭所有服务
+&emsp;2.点击获取设备按钮，保持手机和电脑之间的连接，并开启Android开发者USB调试模式，可在线一键获取手机设备信息
+&emsp;3.点击远程操控按钮，选择谷歌浏览器安装路径，填写对应手机IP，手机UDID，电脑IP，即可一键远程操控设备
+&emsp;4.点击远程监控按钮，选择谷歌浏览器安装路径，填写对应手机IP，手机UDID，电脑IP，即可一键远程监控设备
+&emsp;5.点击获取元素按钮，填写对应手机IP，点击连接按钮，即可在线远程获取手机元素信息
+
+### 十一、任务栏图标：
  - 该系统继承一般的Windows程序特性，可以最小化，生成任务栏图标，不使用时，可以挂起任务栏，方便使用。
 ![](https://testerhome.com/uploads/photo/2019/c86e4581-ac57-4dbb-a0d0-63f13ecb929f.gif!large)
 
-### 十一、感谢：
+### 十二、感谢：
 #### 如果您觉得这个框架对您有用，您可以捐赠下我，让我有理由继续下去，非常感谢。
 ![](https://images.gitee.com/uploads/images/2019/0123/160413_dc7a01d5_1325509.png)
 
