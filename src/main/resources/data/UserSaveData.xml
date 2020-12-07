@@ -50,19 +50,7 @@
 					</userSaveData>
 				</data>
 			</data>
-			<data>
-				<dataKey>1055183228</dataKey>
-				<data>
-					<userSaveData>
-						<account>1055183228</account>
-						<automaticLogonStatus>false</automaticLogonStatus>
-						<head>http://testerhome.com/uploads/photo/2019/858abcf5-b709-4b96-8f3d-7e2ee249898a.jpg</head>
-						<passWord>Lames</passWord>
-						<rememberPasswordStatus>true</rememberPasswordStatus>
-					</userSaveData>
-				</data>
-			</data>
 		</map>
-		<size>5</size>
+		<size>4</size>
 	</userSaveDataBox>
 </root>

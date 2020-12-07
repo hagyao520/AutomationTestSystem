@@ -620,7 +620,7 @@ public class BackendFunctionCenterPageView extends Application {
                 textArea.setFont(Constants.BASIC_BOLD);
 
                 TextAreaScrollPane = new JScrollPane(textArea);
-                TextAreaScrollPane.setBounds(820, 515, 555, 370);
+                TextAreaScrollPane.setBounds(825, 515, 549, 370);
 
                 MainPanel.add(DataDisplayList);
                 MainPanel.add(jTabbedpane);
@@ -662,6 +662,8 @@ public class BackendFunctionCenterPageView extends Application {
                     List<String> tips = new ArrayList<String>();
                     list.add(UserInfoTextField1);
                     tips.add("请输入查询的手机号...");
+                    list.add(UserInfoTextField2);
+                    tips.add("请输入查询的法人号...");
 
                     boolean state = getaddActionListener(UserInfoButton, option, list, tips);
                     if (state) {
@@ -671,7 +673,8 @@ public class BackendFunctionCenterPageView extends Application {
                             }
                         }
                         String phone = list.get(0).getText();
-                        boolean SqlState = BackendFunctionCenterPageController.UserInfoButton(option, phone);
+                        String corpno = list.get(1).getText();
+                        boolean SqlState = BackendFunctionCenterPageController.UserInfoButton(option, phone,corpno);
                         getSelectState(SqlState, option);
                     }
                     textAreaToBottom(textArea);
@@ -859,15 +862,25 @@ public class BackendFunctionCenterPageView extends Application {
             params.put(param, value.get(i));
         }
         textArea.append("参数：" + params.toString() + "\n");
-        if (StringUtil.isEqual(list.get(0).getText(), tips.get(0))) {
-            Platform.runLater(new Runnable() {
-                @Override
-                public void run() {
-                    Dialog.SetMessageDialog("Warning", "" + tips.get(0) + "！");
-                    list.get(0).grabFocus();
-                }
-            });
-            return false;
+        switch(option){
+            case "查询" :
+                break;
+            case "修改" :
+                    if (StringUtil.isEmpty(list.get(0).getText())&&StringUtil.isEqual(list.get(0).getText(), tips.get(0))) {
+                        Platform.runLater(new Runnable() {
+                            @Override
+                            public void run() {
+                                Dialog.SetMessageDialog("Warning", "" + tips.get(0) + "！");
+                            }
+                        });
+                        list.get(0).grabFocus();//获取输入框光标焦点
+                        return false;
+                    }
+                break;
+            case "新增" :
+                break;
+            case "删除" :
+                break;
         }
         return true;
     }
@@ -913,8 +926,6 @@ public class BackendFunctionCenterPageView extends Application {
                 @Override
                 public void run() {
                     Dialog.SetMessageDialog("Success", "" + tip + "成功！");
-                    textArea.append("状态：：" + tip + "成功！" + "\n");
-                    textArea.append("\n");
                 }
             });
         } else {

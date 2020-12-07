@@ -49,27 +49,61 @@ public class BackendFunctionCenterPageController {
     private static String duserName = "yhtsit";
     private static String dpassWord = "SitYht@300348";
     private static int dport = 3323;
-    private static String ddataBase = "YHT_APP_SIT";
+    private static String ddataBase = "YHT_USER_SIT";
 
     public static void main(String[] args) throws Exception {
         DatabaseUtil.Connect_MySql(djdbcDriver, dhostAddress, dport, ddataBase, duserName, dpassWord);
-        UserInfoButton("查询","18694925429");
+        UserInfoButton("查询","18694925429","000025");
     }
 
     // 根据用户手机号，查询用户信息
-    public static boolean UserInfoButton(String option,String phone) throws Exception {
+    public static boolean UserInfoButton(String option,String phone,String corpno) throws Exception {
         boolean state = false;
         String sql = "SELECT "
             + "a.usercd as 用户ID,a.custno as 客户号,a.phonno as 手机号,"
             + "b.custna as 姓名,b.bhdate as 出生日期,b.idtfno as 身份证号码,b.idefdt as 开始日期,b.idexdt as 结束日期,b.issuat as 签发机关,b.idsite as 身份证住址,"
-            + "c.bdacct as 二类户卡号,c.bkstnm as 二类户所属银行,d.reacct as 二类户绑定银行卡,d.bkstnm  as 二类户绑定卡所属银行 "
+            + "c.bdacct as 二类户卡号,c.bkstnm as 二类户所属银行,c.corpno as 二类户法人号,"
+            + "d.reacct as 二类户绑定银行卡,d.bkstnm  as 二类户绑定卡所属银行 "
+            + "FROM user_base_info a,cust_base_info b,cust_bind_acct c,cust_acct_rela d "
+            + "WHERE a.custno=b.custno and b.custno=c.custno and c.bdacct=d.bdacct "
+            + "ORDER BY c.gmt_create DESC;";
+        String sql0 = "SELECT "
+            + "a.usercd as 用户ID,a.custno as 客户号,a.phonno as 手机号,"
+            + "b.custna as 姓名,b.bhdate as 出生日期,b.idtfno as 身份证号码,b.idefdt as 开始日期,b.idexdt as 结束日期,b.issuat as 签发机关,b.idsite as 身份证住址,"
+            + "c.bdacct as 二类户卡号,c.bkstnm as 二类户所属银行,c.corpno as 二类户法人号,"
+            + "d.reacct as 二类户绑定银行卡,d.bkstnm  as 二类户绑定卡所属银行 "
+            + "FROM user_base_info a,cust_base_info b,cust_bind_acct c,cust_acct_rela d "
+            + "WHERE a.custno=b.custno and b.custno=c.custno and c.bdacct=d.bdacct and a.phonno='" + phone + "' and c.corpno='"+corpno+"' "
+            + "ORDER BY c.gmt_create DESC;";
+        String sql1 = "SELECT "
+            + "a.usercd as 用户ID,a.custno as 客户号,a.phonno as 手机号,"
+            + "b.custna as 姓名,b.bhdate as 出生日期,b.idtfno as 身份证号码,b.idefdt as 开始日期,b.idexdt as 结束日期,b.issuat as 签发机关,b.idsite as 身份证住址,"
+            + "c.bdacct as 二类户卡号,c.bkstnm as 二类户所属银行,c.corpno as 二类户法人号,"
+            + "d.reacct as 二类户绑定银行卡,d.bkstnm  as 二类户绑定卡所属银行 "
             + "FROM user_base_info a,cust_base_info b,cust_bind_acct c,cust_acct_rela d "
             + "WHERE a.custno=b.custno and b.custno=c.custno and c.bdacct=d.bdacct and a.phonno='" + phone + "' "
-            + "ORDER BY c.gmt_create DESC";
+            + "ORDER BY c.gmt_create DESC;";
+        String sql2 = "SELECT "
+            + "a.usercd as 用户ID,a.custno as 客户号,a.phonno as 手机号,"
+            + "b.custna as 姓名,b.bhdate as 出生日期,b.idtfno as 身份证号码,b.idefdt as 开始日期,b.idexdt as 结束日期,b.issuat as 签发机关,b.idsite as 身份证住址,"
+            + "c.bdacct as 二类户卡号,c.bkstnm as 二类户所属银行,c.corpno as 二类户法人号,"
+            + "d.reacct as 二类户绑定银行卡,d.bkstnm  as 二类户绑定卡所属银行 "
+            + "FROM user_base_info a,cust_base_info b,cust_bind_acct c,cust_acct_rela d "
+            + "WHERE a.custno=b.custno and b.custno=c.custno and c.bdacct=d.bdacct and c.corpno='" + corpno + "' "
+            + "ORDER BY c.gmt_create DESC;";
+        
         try {
             switch (option) {
                 case "查询":
-                    state = Select(sql);
+                    if(StringUtil.isEmpty(phone) && StringUtil.isEmpty(corpno)){
+                        state = Select(option,sql);
+                    }else if (StringUtil.isNotEmpty(phone) && StringUtil.isNotEmpty(corpno)) {
+                        state = Select(option,sql0);
+                    }else if (StringUtil.isNotEmpty(phone)){
+                        state = Select(option,sql1);
+                    }else if (StringUtil.isNotEmpty(corpno)){
+                        state = Select(option,sql2);
+                    }
                     break;
                 case "修改":
                     break;
@@ -87,12 +121,16 @@ public class BackendFunctionCenterPageController {
     // 根据用户手机号，查询短信验证码信息
     public static boolean SmsInquiryButton(String option,String phone) throws Exception {
         boolean state = false;
-        String sql = "SELECT a.str1 as 验证码,a.phonno as 手机号,a.create_date as 时间,a.* from m_getmsg_water a where phonno ='" + phone + "' ORDER BY create_date DESC";
+        String sql = "SELECT a.phonno as 手机号,a.str1 as 验证码,a.create_date as 时间,a.* from m_getmsg_water a ORDER BY create_date DESC;";
+        String sql1 = "SELECT a.phonno as 手机号,a.str1 as 验证码,a.create_date as 时间,a.* from m_getmsg_water a where phonno ='" + phone + "' ORDER BY create_date DESC;";
         try {
-            DatabaseUtil.Connect();
             switch (option) {
                 case "查询":
-                    state = Select(sql);
+                    if(StringUtil.isEmpty(phone)){
+                        state = Select(option,sql);
+                    }else{
+                        state = Select(option,sql1);
+                    }
                     break;
                 case "修改":
                     break;
@@ -110,30 +148,43 @@ public class BackendFunctionCenterPageController {
     // 根据用户身份证，企业工商注册号等，查询工商四要素验证信息
     public static boolean Business_Button(String option, String idtfno, String regnum) throws Exception {
         boolean state = false;
+        String sql =
+            "SELECT a.transq as 交易流水,a.compna as 企业名称,a.regnum as 企业工商注册号,a.person as 企业法人姓名,a.idtfno as 证件号码,a.trandt as 交易日期,a.etnamh as 企业名称是否匹配,a.idnomh as 身份证号码是否匹配,a.renamh as 姓名是否匹配,a.renomh as 工商注册号是否匹配,a.transt as 交易状态,a.rqdata as 请求数据,a.rpdata as 响应数据,a.crtime as 创建时间,a.uptime as 更新时间,a.erorcd as 错误码,a. erortx as 错误描述 from bsap_saic_busi_recd a order by crtime desc;";
+        String sql0 =
+            "SELECT a.transq as 交易流水,a.compna as 企业名称,a.regnum as 企业工商注册号,a.person as 企业法人姓名,a.idtfno as 证件号码,a.trandt as 交易日期,a.etnamh as 企业名称是否匹配,a.idnomh as 身份证号码是否匹配,a.renamh as 姓名是否匹配,a.renomh as 工商注册号是否匹配,a.transt as 交易状态,a.rqdata as 请求数据,a.rpdata as 响应数据,a.crtime as 创建时间,a.uptime as 更新时间,a.erorcd as 错误码,a. erortx as 错误描述 from bsap_saic_busi_recd a where "
+            + "idtfno='" + idtfno + "' and regnum='" + regnum + "' order by crtime desc;";
         String sql1 =
-            "SELECT a.transq as 交易流水,a.compna as 企业名称,a.regnum as 企业工商注册号,a.person as 企业法人姓名,a.idtfno as 证件号码,a.trandt as 交易日期,a.etnamh as 企业名称是否匹配,a.idnomh as 身份证号码是否匹配,a.renamh as 姓名是否匹配,a.renomh as 工商注册号是否匹配,a.transt as 交易状态,a.rqdata as 请求数据,a.rpdata as 响应数据,a.crtime as 创建时间,a.uptime as 更新时间,a.erorcd as 错误码,a. erortx as 错误描述 from bsap_saic_busi_recd a where idtfno='"
-                + idtfno + "' order by crtime desc;";
+            "SELECT a.transq as 交易流水,a.compna as 企业名称,a.regnum as 企业工商注册号,a.person as 企业法人姓名,a.idtfno as 证件号码,a.trandt as 交易日期,a.etnamh as 企业名称是否匹配,a.idnomh as 身份证号码是否匹配,a.renamh as 姓名是否匹配,a.renomh as 工商注册号是否匹配,a.transt as 交易状态,a.rqdata as 请求数据,a.rpdata as 响应数据,a.crtime as 创建时间,a.uptime as 更新时间,a.erorcd as 错误码,a. erortx as 错误描述 from bsap_saic_busi_recd a where "
+            + "idtfno='" + idtfno + "' order by crtime desc;";
         String sql2 =
-            "SELECT a.transq as 交易流水,a.compna as 企业名称,a.regnum as 企业工商注册号,a.person as 企业法人姓名,a.idtfno as 证件号码,a.trandt as 交易日期,a.etnamh as 企业名称是否匹配,a.idnomh as 身份证号码是否匹配,a.renamh as 姓名是否匹配,a.renomh as 工商注册号是否匹配,a.transt as 交易状态,a.rqdata as 请求数据,a.rpdata as 响应数据,a.crtime as 创建时间,a.uptime as 更新时间,a.erorcd as 错误码,a. erortx as 错误描述 from bsap_saic_busi_recd a where idtfno='"
-                + idtfno + "' and regnum='" + regnum + "' order by crtime desc;";
-        String sql3 = "UPDATE bsap_saic_busi_recd a set a.etnamh='1',a.idnomh='1',a.renamh='1',a.renomh='1' where idtfno='" + idtfno + "';";
-        String sql4 = "UPDATE bsap_saic_busi_recd a set a.etnamh='1',a.idnomh='1',a.renamh='1',a.renomh='1' where idtfno='" + idtfno + "' and regnum='" + regnum + "';";
+            "SELECT a.transq as 交易流水,a.compna as 企业名称,a.regnum as 企业工商注册号,a.person as 企业法人姓名,a.idtfno as 证件号码,a.trandt as 交易日期,a.etnamh as 企业名称是否匹配,a.idnomh as 身份证号码是否匹配,a.renamh as 姓名是否匹配,a.renomh as 工商注册号是否匹配,a.transt as 交易状态,a.rqdata as 请求数据,a.rpdata as 响应数据,a.crtime as 创建时间,a.uptime as 更新时间,a.erorcd as 错误码,a. erortx as 错误描述 from bsap_saic_busi_recd a where "
+            + "regnum='" + regnum + "' order by crtime desc;";
+        String sql3 = "UPDATE bsap_saic_busi_recd a set a.etnamh='1',a.idnomh='1',a.renamh='1',a.renomh='1' where idtfno='" + idtfno + "' and regnum='" + regnum + "';";
+        String sql4 = "UPDATE bsap_saic_busi_recd a set a.etnamh='1',a.idnomh='1',a.renamh='1',a.renomh='1' where idtfno='" + idtfno + "';";
+        String sql5 = "UPDATE bsap_saic_busi_recd a set a.etnamh='1',a.idnomh='1',a.renamh='1',a.renomh='1' where regnum='" + regnum + "';";
         try {
             switch (option) {
                 case "查询":
-                    if (StringUtil.isNotEmpty(idtfno) && StringUtil.isNotEmpty(regnum)) {
-                        state = Select(sql2);
-                    } else {
-                        state = Select(sql1);
+                    if(StringUtil.isEmpty(idtfno) && StringUtil.isEmpty(regnum)){
+                        state = Select(option,sql);
+                    }else if (StringUtil.isNotEmpty(idtfno) && StringUtil.isNotEmpty(regnum)) {
+                        state = Select(option,sql0);
+                    }else if (StringUtil.isNotEmpty(idtfno)){
+                        state = Select(option,sql1);
+                    }else if (StringUtil.isNotEmpty(regnum)){
+                        state = Select(option,sql2);
                     }
                     break;
                 case "修改":
                     if (StringUtil.isNotEmpty(idtfno) && StringUtil.isNotEmpty(regnum)) {
-                        state = Update(sql4);
-                        Select(sql2);
+                        state = Update(option,sql3);
+                        Select("查询",sql0);
                     } else if (StringUtil.isNotEmpty(idtfno)) {
-                        state = Update(sql3);
-                        Select(sql1);
+                        state = Update(option,sql4);
+                        Select("查询",sql1);
+                    }else if (StringUtil.isNotEmpty(regnum)) {
+                        state = Update(option,sql5);
+                        Select("查询",sql2);
                     }
                     break;
                 case "新增":
@@ -168,11 +219,11 @@ public class BackendFunctionCenterPageController {
     
     
     
-    public static boolean Select(String SQL) throws Exception {
+    public static boolean Select(String option,String sql) throws Exception {
         try {
             DatabaseUtil.Connect();
-            ResultSet res = DatabaseUtil.sm.executeQuery(SQL);
-            BackendFunctionCenterPageView.textArea.append("SQL：" + SQL + "\n");
+            ResultSet res = DatabaseUtil.sm.executeQuery(sql);
+            BackendFunctionCenterPageView.textArea.append("SQL：" + sql + "\n");
             boolean moreRecords = res.next();
             if (moreRecords) {
                 Vector rows = new Vector();
@@ -186,6 +237,8 @@ public class BackendFunctionCenterPageController {
                 } while (res.next());
                 tabDemo = new JTable(rows, columnHeads);
                 TableView(tabDemo);
+                BackendFunctionCenterPageView.textArea.append("状态：" + option + "成功！" + "\n");
+                BackendFunctionCenterPageView.textArea.append("\n");
                 DatabaseUtil.close();
                 return true;
             }
@@ -195,17 +248,22 @@ public class BackendFunctionCenterPageController {
         return false;
     }
 
-    public static boolean Update(String SQL) throws Exception {
+    public static boolean Update(String option,String sql) throws Exception {
         try {
             DatabaseUtil.Connect();
-            int results = DatabaseUtil.sm.executeUpdate(SQL);
-            BackendFunctionCenterPageView.textArea.append("SQL：" + SQL + "\n");
+            int results = DatabaseUtil.sm.executeUpdate(sql);
+            BackendFunctionCenterPageView.textArea.append("SQL：" + sql + "\n");
             if (results >= 0) {
-                log.info("语句: " + SQL + " 执行成功，影响了" + results + "行数据");
+                log.info("语句: " + sql + " 执行成功，影响了" + results + "行数据");
+                BackendFunctionCenterPageView.textArea.append("状态：" + option + "成功，影响了" + results + "行数据！" + "\n");
+                BackendFunctionCenterPageView.textArea.append("\n");
             } else if (results == Statement.SUCCESS_NO_INFO) {
-                log.info("语句: " + SQL + " 执行成功，影响的行数未知");
+                log.info("语句: " + sql + " 执行成功，影响的行数未知");
+                BackendFunctionCenterPageView.textArea.append("状态：" + option + "成功，影响的行数未知！" + "\n");
+                BackendFunctionCenterPageView.textArea.append("\n");
             } else if (results == Statement.EXECUTE_FAILED) {
-                log.info("语句: " + SQL + " 执行失败");
+                log.info("语句: " + sql + " 执行失败");
+                return false;
             }
             DatabaseUtil.close();
         } catch (SQLException e) {

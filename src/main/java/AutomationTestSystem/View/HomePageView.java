@@ -711,14 +711,14 @@ public class HomePageView extends Application {
 
         HomePagePane.getChildren().add(TopPane);
         HomePagePane.getChildren().add(LeftPane);
-        // HomePagePane.getChildren().add(HomePageRightPane);
+         HomePagePane.getChildren().add(HomePageRightPane);
         HomePagePane.getChildren().add(FrontEndFunctionCenterPageView.FrontEndFunctionCenterPane);
         HomePagePane.getChildren().add(BackendFunctionCenterPageView.BackendFunctionCenterPane);
         HomePagePane.getChildren().add(WEBAutomationCenterPageView.WEBAutomationCenterPane);
         HomePagePane.getChildren().add(APIAutomationCenterPageView.APIAutomationCenterPane);
         HomePagePane.getChildren().add(APPAutomationCenterPageView.APPAutomationCenterPane);
         HomePagePane.getChildren().add(PerformanceAutomationCenterPageView.PerformanceAutomationCenterPane);
-        // HomePagePane.getChildren().add(ATXEquipmentClusterCenterPageView.ATXEquipmentClusterCenterPane);
+         HomePagePane.getChildren().add(ATXEquipmentClusterCenterPageView.ATXEquipmentClusterCenterPane);
         HomePagePane.getChildren().add(AccountLoginCenterPane);
 
         Rectangle HomePageRectangle = new Rectangle();

@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<root><systemDatabaseConfiguration><ddataBase>YHT_USER_SIT</ddataBase><dhostAddress>10.22.83.70</dhostAddress><djdbcDriver>com.mysql.jdbc.Driver</djdbcDriver><dpassWord>admin@300348</dpassWord><dport>3323</dport><duserName>adminall1</duserName></systemDatabaseConfiguration></root>
+<root><systemDatabaseConfiguration><ddataBase>YHT_USER_SIT</ddataBase><dhostAddress>10.22.83.70</dhostAddress><djdbcDriver>com.mysql.jdbc.Driver</djdbcDriver><dpassWord>admin@300348</dpassWord><dport>3323</dport><duserName>adminall</duserName></systemDatabaseConfiguration></root>

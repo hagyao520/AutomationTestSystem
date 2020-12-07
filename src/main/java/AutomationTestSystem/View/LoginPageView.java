@@ -21,6 +21,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.Border;
@@ -106,8 +107,8 @@ import AutomationTestSystem.View.WEBAutomationCenterPageView;
 @SuppressWarnings({"static-access", "restriction", "unchecked", "rawtypes", "unused"})
 public class LoginPageView extends Application {
 
-    private static Logger log = Logger.getLogger(LoginPageView.class);  
-    
+    private static Logger log = Logger.getLogger(LoginPageView.class);
+
     public static Stage LoginInterfaceStage;
     // LoginView.LoginInterfaceStage.close();
     public static Stage SystemSettingStage;
@@ -141,23 +142,23 @@ public class LoginPageView extends Application {
     public static TextField DPassWordField;
     public static TextField DPortField;
     public static TextField DDataBaseField;
-    public  static TextField SHostAddressField;
+    public static TextField SHostAddressField;
     public static TextField SPortField;
     public static TextField SUserNameField;
     public static TextField SPassWordField;
     public static TextField SKeyField;
     public static TextField SApiField;
-    
+
     public static ComboBox DatabaseConnectionModeBox;
     public static ComboBox EnvironmentModeBox;
-    
+
     private OnlyTrayIcon trayIcon;
     private TrayPopupMenu trayPopupMenu = new TrayPopupMenu();
     private java.awt.Image image = new ImageIcon("src/main/resources/image/LoginPane/Logo/Logo_ico16x16.png").getImage();
 
     ObservableList<String> data = FXCollections.observableArrayList();
     ListView<String> AccountListView = new ListView<String>(data);
-
+    
     CopyOnWriteArraySet<EventHandler<ActionEvent>> closeActionSet = new CopyOnWriteArraySet<EventHandler<ActionEvent>>();
     CopyOnWriteArraySet<EventHandler<ActionEvent>> iconifiedActionSet = new CopyOnWriteArraySet<EventHandler<ActionEvent>>();
 
@@ -267,7 +268,7 @@ public class LoginPageView extends Application {
         WebEngine WebEngine = LogoWebView.getEngine();
         // webEngine.load(this.getClass().getClassLoader().getResource("html/index.html").toString());
         WebEngine.load(this.getClass().getResource("/html/Login/js/index.html").toString());
-        
+
         Rectangle HeadRectangle = new Rectangle();
         HeadRectangle.setArcHeight(10);
         HeadRectangle.setArcWidth(10);
@@ -420,6 +421,18 @@ public class LoginPageView extends Application {
             AccountOnButton.setVisible(false);
             AccountOffButton.setVisible(true);
             AccountListView.setVisible(false);
+            AccountListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 1) {
+                        if(StringUtil.isEqual(AccountField.getText(),new_val)){
+                            AccountOnButton.setVisible(false);
+                            AccountOffButton.setVisible(true);
+                            AccountListView.setVisible(false);
+                        }
+                    } 
+                }
+            });
             if (null != new_val) {
                 UserSaveData usd = usdb.get(new_val);
                 if (null != usd) {
@@ -482,24 +495,20 @@ public class LoginPageView extends Application {
             }
         });
 
-        // AccountListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-        // @Override
-        // public void handle(MouseEvent event)
-        // {
-        // if(event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 1)
-        // {
-        // System.out.println("单击了条目");
-        // int index = AccountListView.getSelectionModel().getSelectedIndex();
-        // System.out.println(index);
-        // System.out.println(event.getX());
-        // System.out.println(event.getSceneX());
-        // }
-        // else if(event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2)
-        // {
-        // System.out.println("双击了条目");
-        // }
-        // }
-        // });
+//        AccountListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+//            @Override
+//            public void handle(MouseEvent event) {
+//                if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 1) {
+//                    System.out.println("单击了条目");
+//                    int index = AccountListView.getSelectionModel().getSelectedIndex();
+//                    System.out.println(index);
+//                    System.out.println(event.getX());
+//                    System.out.println(event.getSceneX());
+//                } else if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2) {
+//                    System.out.println("双击了条目");
+//                }
+//            }
+//        });
 
         AccountOnButton.setLayoutX(170);
         AccountOnButton.setLayoutY(5);
@@ -906,10 +915,10 @@ public class LoginPageView extends Application {
         SPassWordField = new TextField();
         SKeyField = new TextField();
         SApiField = new TextField();
-        
+
         DatabaseConnectionModeBox = new ComboBox();
         EnvironmentModeBox = new ComboBox();
-        
+
         DJDBCDriverField.setText(sdcd.getDjdbcDriver());
         DHostAddressField.setText(sdcd.getDhostAddress());
         DUserNameField.setText(sdcd.getDuserName());
@@ -1002,7 +1011,7 @@ public class LoginPageView extends Application {
                     } else {
                         HomePageView.HomePageInterfaceStage.show();
                     }
-//                    Dialog.SetMessageDialog("Success", "修改成功，重启后生效！");
+                    // Dialog.SetMessageDialog("Success", "修改成功，重启后生效！");
                     SystemSettingStageStatus = 0;
                 }
             }
@@ -1220,96 +1229,96 @@ public class LoginPageView extends Application {
 
         Menu DataMenu = new Menu("环境配置库");
 
-        ToggleGroup  OracleGroup = new ToggleGroup();
+        ToggleGroup OracleGroup = new ToggleGroup();
         RadioMenuItem Oracleprod = new RadioMenuItem("正式环境");
         Oracleprod.setUserData("正式环境");
         Oracleprod.setAccelerator(KeyCombination.valueOf("ctrl+1"));// 设置item1的快捷键
         Oracleprod.setOnAction(e -> {
-//            System.out.println(OracleGroup.getSelectedToggle().getUserData().toString());
+            // System.out.println(OracleGroup.getSelectedToggle().getUserData().toString());
         });
 
         RadioMenuItem Oracledev = new RadioMenuItem("开发环境");
         Oracledev.setUserData("开发环境");
         Oracledev.setAccelerator(KeyCombination.valueOf("ctrl+2"));
-        
+
         RadioMenuItem Oracletest = new RadioMenuItem("测试环境");
         Oracletest.setUserData("测试环境");
         Oracletest.setAccelerator(KeyCombination.valueOf("ctrl+3"));
-        Oracletest.setSelected(true);//默认选择
-        
+        Oracletest.setSelected(true);// 默认选择
+
         RadioMenuItem Oracleuat = new RadioMenuItem("验收环境");
         Oracleuat.setUserData("验收环境");
         Oracleuat.setAccelerator(KeyCombination.valueOf("ctrl+4"));
-        
-//        CheckMenuItem MySqlprod1 = new CheckMenuItem("正式环境");
-//        CheckMenuItem MySqldev1 = new CheckMenuItem("开发环境");
-//        CheckMenuItem MySqltest1 = new CheckMenuItem("测试环境");
+
+        // CheckMenuItem MySqlprod1 = new CheckMenuItem("正式环境");
+        // CheckMenuItem MySqldev1 = new CheckMenuItem("开发环境");
+        // CheckMenuItem MySqltest1 = new CheckMenuItem("测试环境");
 
         OracleGroup.getToggles().add(Oracleprod);
         OracleGroup.getToggles().add(Oracledev);
         OracleGroup.getToggles().add(Oracletest);
         OracleGroup.getToggles().add(Oracleuat);
-        OracleGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
+        OracleGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
             public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
-                 if (OracleGroup.getSelectedToggle() != null) {
-                     String environment = OracleGroup.getSelectedToggle().getUserData().toString();
-                     String djdbcDriver = "";
-                     String dhostAddress = "";
-                     String duserName = "";
-                     String dpassWord = "";
-                     String dport = "";
-                     String ddataBase = "";
-                     switch (environment){
-                         case "正式环境" :
-                             djdbcDriver = "oracle.jdbc.driver.OracleDriver";
-                             dhostAddress = "idcdbtest.dafycredit.com";
-                             duserName = "dafy_sales";
-                             dpassWord = "Ju$2017";
-                             dport = "3306";
-                             ddataBase = "dbtest01";
-                             break;
-                         case "开发环境" :
-                             djdbcDriver = "oracle.jdbc.driver.OracleDriver";
-                             dhostAddress = "idcdbtest.dafycredit.com";
-                             duserName = "dafy_sales";
-                             dpassWord = "Ju$2017";
-                             dport = "3306";
-                             ddataBase = "dbtest01";
-                             break;
-                         case "测试环境" :
-                             djdbcDriver = "oracle.jdbc.driver.OracleDriver";
-                             dhostAddress = "idcdbtest.dafycredit.com";
-                             duserName = "dafy_sales";
-                             dpassWord = "Ju$2017";
-                             dport = "3306";
-                             ddataBase = "dbtest01";
-                             break;
-                         case "验收环境" :
-                             djdbcDriver = "oracle.jdbc.driver.OracleDriver";
-                             dhostAddress = "idcdbtest.dafycredit.com";
-                             duserName = "dafy_sales";
-                             dpassWord = "Ju$2017";
-                             dport = "3306";
-                             ddataBase = "dbtest01";
-                             break;
-                         default :
-                             djdbcDriver = "oracle.jdbc.driver.OracleDriver";
-                             dhostAddress = "idcdbtest.dafycredit.com";
-                             duserName = "dafy_sales";
-                             dpassWord = "Ju$2017";
-                             dport = "3306";
-                             ddataBase = "dbtest01";
-                     }
-                     DJDBCDriverField.setText(djdbcDriver);
-                     DHostAddressField.setText(dhostAddress);
-                     DUserNameField.setText(duserName);
-                     DPassWordField.setText(dpassWord);
-                     DPortField.setText(dport);
-                     DDataBaseField.setText(ddataBase);
-                     DatabaseConnectionModeBox.setValue("Oracle");
-                     EnvironmentModeBox.setValue(environment);
-                 }
-             } 
+                if (OracleGroup.getSelectedToggle() != null) {
+                    String environment = OracleGroup.getSelectedToggle().getUserData().toString();
+                    String djdbcDriver = "";
+                    String dhostAddress = "";
+                    String duserName = "";
+                    String dpassWord = "";
+                    String dport = "";
+                    String ddataBase = "";
+                    switch (environment) {
+                        case "正式环境":
+                            djdbcDriver = "oracle.jdbc.driver.OracleDriver";
+                            dhostAddress = "idcdbtest.dafycredit.com";
+                            duserName = "dafy_sales";
+                            dpassWord = "Ju$2017";
+                            dport = "3306";
+                            ddataBase = "dbtest01";
+                            break;
+                        case "开发环境":
+                            djdbcDriver = "oracle.jdbc.driver.OracleDriver";
+                            dhostAddress = "idcdbtest.dafycredit.com";
+                            duserName = "dafy_sales";
+                            dpassWord = "Ju$2017";
+                            dport = "3306";
+                            ddataBase = "dbtest01";
+                            break;
+                        case "测试环境":
+                            djdbcDriver = "oracle.jdbc.driver.OracleDriver";
+                            dhostAddress = "idcdbtest.dafycredit.com";
+                            duserName = "dafy_sales";
+                            dpassWord = "Ju$2017";
+                            dport = "3306";
+                            ddataBase = "dbtest01";
+                            break;
+                        case "验收环境":
+                            djdbcDriver = "oracle.jdbc.driver.OracleDriver";
+                            dhostAddress = "idcdbtest.dafycredit.com";
+                            duserName = "dafy_sales";
+                            dpassWord = "Ju$2017";
+                            dport = "3306";
+                            ddataBase = "dbtest01";
+                            break;
+                        default:
+                            djdbcDriver = "oracle.jdbc.driver.OracleDriver";
+                            dhostAddress = "idcdbtest.dafycredit.com";
+                            duserName = "dafy_sales";
+                            dpassWord = "Ju$2017";
+                            dport = "3306";
+                            ddataBase = "dbtest01";
+                    }
+                    DJDBCDriverField.setText(djdbcDriver);
+                    DHostAddressField.setText(dhostAddress);
+                    DUserNameField.setText(duserName);
+                    DPassWordField.setText(dpassWord);
+                    DPortField.setText(dport);
+                    DDataBaseField.setText(ddataBase);
+                    DatabaseConnectionModeBox.setValue("Oracle");
+                    EnvironmentModeBox.setValue(environment);
+                }
+            }
         });
 
         Menu OracleManeu = new Menu("Oracle");
@@ -1317,301 +1326,301 @@ public class LoginPageView extends Application {
         OracleManeu.getItems().addAll(Oracledev);
         OracleManeu.getItems().addAll(Oracletest);
         OracleManeu.getItems().addAll(Oracleuat);
-        
+
         RadioMenuItem MySqlprod = new RadioMenuItem("正式环境");
         MySqlprod.setUserData("正式环境");
         MySqlprod.setAccelerator(KeyCombination.valueOf("ctrl+5"));
-        
+
         RadioMenuItem MySqldev = new RadioMenuItem("开发环境");
         MySqldev.setUserData("开发环境");
         MySqldev.setAccelerator(KeyCombination.valueOf("ctrl+6"));
-        
+
         RadioMenuItem MySqltest = new RadioMenuItem("测试环境");
         MySqltest.setUserData("测试环境");
         MySqltest.setAccelerator(KeyCombination.valueOf("ctrl+7"));
-        MySqltest.setSelected(true);//默认选择
-        
+        MySqltest.setSelected(true);// 默认选择
+
         RadioMenuItem MySqluat = new RadioMenuItem("验收环境");
         MySqluat.setUserData("验收环境");
         MySqluat.setAccelerator(KeyCombination.valueOf("ctrl+8"));
-        
+
         ToggleGroup MySqlGroup = new ToggleGroup();
         MySqlGroup.getToggles().add(MySqlprod);
         MySqlGroup.getToggles().add(MySqldev);
         MySqlGroup.getToggles().add(MySqltest);
         MySqlGroup.getToggles().add(MySqluat);
-        
-        MySqlGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
+
+        MySqlGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
             public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
-                 if (MySqlGroup.getSelectedToggle() != null) {
-                     String environment = MySqlGroup.getSelectedToggle().getUserData().toString();
-                     String djdbcDriver = "";
-                     String dhostAddress = "";
-                     String duserName = "";
-                     String dpassWord = "";
-                     String dport = "";
-                     String ddataBase = "";
-                     switch (environment){
-                         case "正式环境" :
-                             djdbcDriver = "com.mysql.jdbc.Driver";
-                             dhostAddress = "10.22.83.70";
-                             duserName = "adminall";
-                             dpassWord = "admin@300348";
-                             dport = "3323";
-                             ddataBase = "YHT_USER_PRO";
-                             break;
-                         case "开发环境" :
-                             djdbcDriver = "com.mysql.jdbc.Driver";
-                             dhostAddress = "10.22.83.70";
-                             duserName = "adminall";
-                             dpassWord = "admin@300348";
-                             dport = "3323";
-                             ddataBase = "YHT_USER_DEV";
-                             break;
-                         case "测试环境" :
-                             djdbcDriver = "com.mysql.jdbc.Driver";
-                             dhostAddress = "10.22.83.70";
-                             duserName = "adminall";
-                             dpassWord = "admin@300348";
-                             dport = "3323";
-                             ddataBase = "YHT_USER_SIT";
-                             break;
-                         case "验收环境" :
-                             djdbcDriver = "com.mysql.jdbc.Driver";
-                             dhostAddress = "10.22.83.70";
-                             duserName = "adminall";
-                             dpassWord = "admin@300348";
-                             dport = "3323";
-                             ddataBase = "YHT_USER_UAT";
-                             break;
-                         default :
-                             djdbcDriver = "com.mysql.jdbc.Driver";
-                             dhostAddress = "10.22.83.70";
-                             duserName = "adminall";
-                             dpassWord = "admin@300348";
-                             dport = "3323";
-                             ddataBase = "YHT_USER_SIT";
-                     }
-                     DJDBCDriverField.setText(djdbcDriver);
-                     DHostAddressField.setText(dhostAddress);
-                     DUserNameField.setText(duserName);
-                     DPassWordField.setText(dpassWord);
-                     DPortField.setText(dport);
-                     DDataBaseField.setText(ddataBase);
-                     DatabaseConnectionModeBox.setValue("MySql");
-                     EnvironmentModeBox.setValue(environment);
-                 }
-             } 
+                if (MySqlGroup.getSelectedToggle() != null) {
+                    String environment = MySqlGroup.getSelectedToggle().getUserData().toString();
+                    String djdbcDriver = "";
+                    String dhostAddress = "";
+                    String duserName = "";
+                    String dpassWord = "";
+                    String dport = "";
+                    String ddataBase = "";
+                    switch (environment) {
+                        case "正式环境":
+                            djdbcDriver = "com.mysql.jdbc.Driver";
+                            dhostAddress = "10.22.83.70";
+                            duserName = "adminall";
+                            dpassWord = "admin@300348";
+                            dport = "3323";
+                            ddataBase = "YHT_USER_PRO";
+                            break;
+                        case "开发环境":
+                            djdbcDriver = "com.mysql.jdbc.Driver";
+                            dhostAddress = "10.22.83.70";
+                            duserName = "adminall";
+                            dpassWord = "admin@300348";
+                            dport = "3323";
+                            ddataBase = "YHT_USER_DEV";
+                            break;
+                        case "测试环境":
+                            djdbcDriver = "com.mysql.jdbc.Driver";
+                            dhostAddress = "10.22.83.70";
+                            duserName = "adminall";
+                            dpassWord = "admin@300348";
+                            dport = "3323";
+                            ddataBase = "YHT_USER_SIT";
+                            break;
+                        case "验收环境":
+                            djdbcDriver = "com.mysql.jdbc.Driver";
+                            dhostAddress = "10.22.83.70";
+                            duserName = "adminall";
+                            dpassWord = "admin@300348";
+                            dport = "3323";
+                            ddataBase = "YHT_USER_UAT";
+                            break;
+                        default:
+                            djdbcDriver = "com.mysql.jdbc.Driver";
+                            dhostAddress = "10.22.83.70";
+                            duserName = "adminall";
+                            dpassWord = "admin@300348";
+                            dport = "3323";
+                            ddataBase = "YHT_USER_SIT";
+                    }
+                    DJDBCDriverField.setText(djdbcDriver);
+                    DHostAddressField.setText(dhostAddress);
+                    DUserNameField.setText(duserName);
+                    DPassWordField.setText(dpassWord);
+                    DPortField.setText(dport);
+                    DDataBaseField.setText(ddataBase);
+                    DatabaseConnectionModeBox.setValue("MySql");
+                    EnvironmentModeBox.setValue(environment);
+                }
+            }
         });
-        
+
         Menu MySqlManeu = new Menu("MySql");
         MySqlManeu.getItems().addAll(MySqlprod);
         MySqlManeu.getItems().addAll(MySqldev);
         MySqlManeu.getItems().addAll(MySqltest);
         MySqlManeu.getItems().addAll(MySqluat);
-        
+
         RadioMenuItem Serverprod = new RadioMenuItem("正式环境");
         Serverprod.setUserData("正式环境");
         Serverprod.setAccelerator(KeyCombination.valueOf("ctrl+q"));
-        
+
         RadioMenuItem Serverdev = new RadioMenuItem("开发环境");
         Serverdev.setUserData("开发环境");
         Serverdev.setAccelerator(KeyCombination.valueOf("ctrl+w"));
-        
+
         RadioMenuItem Servertest = new RadioMenuItem("测试环境");
         Servertest.setUserData("测试环境");
         Servertest.setAccelerator(KeyCombination.valueOf("ctrl+e"));
-        Servertest.setSelected(true);//默认选择
-        
+        Servertest.setSelected(true);// 默认选择
+
         RadioMenuItem Serveruat = new RadioMenuItem("验收环境");
         Serveruat.setUserData("验收环境");
         Serveruat.setAccelerator(KeyCombination.valueOf("ctrl+r"));
-        
+
         ToggleGroup ServerGroup = new ToggleGroup();
         ServerGroup.getToggles().add(Serverprod);
         ServerGroup.getToggles().add(Serverdev);
         ServerGroup.getToggles().add(Servertest);
         ServerGroup.getToggles().add(Serveruat);
-        
-        ServerGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
+
+        ServerGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
             public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
-                 if (ServerGroup.getSelectedToggle() != null) {
-                     String environment = ServerGroup.getSelectedToggle().getUserData().toString();
-                     String shostaddress = "";
-                     String sport = "";
-                     String susername = "";
-                     String spassword = "";
-                     String skey = "";
-                     String sapi = "";
-                     switch (environment){
-                         case "正式环境" :
-                             shostaddress = "yhtsit.sunline.cn";
-                             sport = "38822";
-                             susername = "yhttest";
-                             spassword = "yhttest_300348";
-                             skey = "src/main/resources/Keya/id_rsa";
-                             sapi = "yhtsit.sunline.cn";
-                             break;
-                         case "开发环境" :
-                             shostaddress = "yhtsit.sunline.cn";
-                             sport = "38822";
-                             susername = "yhttest";
-                             spassword = "yhttest_300348";
-                             skey = "src/main/resources/Keya/id_rsa";
-                             sapi = "yhtsit.sunline.cn";
-                             break;
-                         case "测试环境" :
-                             shostaddress = "yhtsit.sunline.cn";
-                             sport = "38822";
-                             susername = "yhttest";
-                             spassword = "yhttest_300348";
-                             skey = "src/main/resources/Keya/id_rsa";
-                             sapi = "yhtsit.sunline.cn";
-                             break;
-                         case "验收环境" :
-                             shostaddress = "yhtsit.sunline.cn";
-                             sport = "38822";
-                             susername = "yhttest";
-                             spassword = "yhttest_300348";
-                             skey = "src/main/resources/Keya/id_rsa";
-                             sapi = "yhtsit.sunline.cn";
-                             break;
-                         default :
-                             shostaddress = "yhtsit.sunline.cn";
-                             sport = "38822";
-                             susername = "yhttest";
-                             spassword = "yhttest_300348";
-                             skey = "src/main/resources/Keya/id_rsa";
-                             sapi = "yhtsit.sunline.cn";
-                     }
-                     SHostAddressField.setText(shostaddress);
-                     SPortField.setText(sport);
-                     SUserNameField.setText(susername);
-                     SPassWordField.setText(spassword);
-                     SKeyField.setText(skey);
-                     SApiField.setText(sapi);
-                 }
-             } 
+                if (ServerGroup.getSelectedToggle() != null) {
+                    String environment = ServerGroup.getSelectedToggle().getUserData().toString();
+                    String shostaddress = "";
+                    String sport = "";
+                    String susername = "";
+                    String spassword = "";
+                    String skey = "";
+                    String sapi = "";
+                    switch (environment) {
+                        case "正式环境":
+                            shostaddress = "yhtsit.sunline.cn";
+                            sport = "38822";
+                            susername = "yhttest";
+                            spassword = "yhttest_300348";
+                            skey = "src/main/resources/Keya/id_rsa";
+                            sapi = "yhtsit.sunline.cn";
+                            break;
+                        case "开发环境":
+                            shostaddress = "yhtsit.sunline.cn";
+                            sport = "38822";
+                            susername = "yhttest";
+                            spassword = "yhttest_300348";
+                            skey = "src/main/resources/Keya/id_rsa";
+                            sapi = "yhtsit.sunline.cn";
+                            break;
+                        case "测试环境":
+                            shostaddress = "yhtsit.sunline.cn";
+                            sport = "38822";
+                            susername = "yhttest";
+                            spassword = "yhttest_300348";
+                            skey = "src/main/resources/Keya/id_rsa";
+                            sapi = "yhtsit.sunline.cn";
+                            break;
+                        case "验收环境":
+                            shostaddress = "yhtsit.sunline.cn";
+                            sport = "38822";
+                            susername = "yhttest";
+                            spassword = "yhttest_300348";
+                            skey = "src/main/resources/Keya/id_rsa";
+                            sapi = "yhtsit.sunline.cn";
+                            break;
+                        default:
+                            shostaddress = "yhtsit.sunline.cn";
+                            sport = "38822";
+                            susername = "yhttest";
+                            spassword = "yhttest_300348";
+                            skey = "src/main/resources/Keya/id_rsa";
+                            sapi = "yhtsit.sunline.cn";
+                    }
+                    SHostAddressField.setText(shostaddress);
+                    SPortField.setText(sport);
+                    SUserNameField.setText(susername);
+                    SPassWordField.setText(spassword);
+                    SKeyField.setText(skey);
+                    SApiField.setText(sapi);
+                }
+            }
         });
-        
+
         Menu ServerManeu = new Menu("Server");
         ServerManeu.getItems().addAll(Serverprod);
         ServerManeu.getItems().addAll(Serverdev);
         ServerManeu.getItems().addAll(Servertest);
         ServerManeu.getItems().addAll(Serveruat);
-        
-//        MenuItem Serverprod = new MenuItem("正式环境");
-//        Serverprod.setAccelerator(KeyCombination.valueOf("ctrl+q"));// 设置item1的快捷键
-//        Serverprod.setOnAction(e -> {
-//            String shostaddress = "yhtsit.sunline.cn";
-//            String sport = "38822";
-//            String susername = "yhttest";
-//            String spassword = "yhttest_300348";
-//            String skey = "src/main/resources/Keya/id_rsa";
-//            String sapi = "yhtsit.sunline.cn";
-//            SHostAddressField.setText(shostaddress);
-//            SPortField.setText(sport);
-//            SUserNameField.setText(susername);
-//            SPassWordField.setText(spassword);
-//            SKeyField.setText(skey);
-//            SApiField.setText(sapi);
-//        });
-//
-//        MenuItem Serverdev = new MenuItem("开发环境");
-//        Serverdev.setAccelerator(KeyCombination.valueOf("ctrl+w"));
-//        Serverdev.setOnAction(e -> {
-//            String shostaddress = "yhtdev.sunline.cn";
-//            String sport = "38822";
-//            String susername = "yhttest";
-//            String spassword = "yhttest_300348";
-//            String skey = "src/main/resources/Keya/id_rsa";
-//            String sapi = "yhtsit.sunline.cn";
-//            SHostAddressField.setText(shostaddress);
-//            SPortField.setText(sport);
-//            SUserNameField.setText(susername);
-//            SPassWordField.setText(spassword);
-//            SKeyField.setText(skey);
-//            SApiField.setText(sapi);
-//        });
-//
-//        MenuItem Servertest = new MenuItem("测试环境");
-//        Servertest.setAccelerator(KeyCombination.valueOf("ctrl+-"));
-//        Servertest.setOnAction(e -> {
-//            String shostaddress = "yhtsit.sunline.cn";
-//            String sport = "38822";
-//            String susername = "yhttest";
-//            String spassword = "yhttest_300348";
-//            String skey = "src/main/resources/Keya/id_rsa";
-//            String sapi = "yhtsit.sunline.cn1";
-//            SHostAddressField.setText(shostaddress);
-//            SPortField.setText(sport);
-//            SUserNameField.setText(susername);
-//            SPassWordField.setText(spassword);
-//            SKeyField.setText(skey);
-//            SApiField.setText(sapi);
-//        });
-//
-//        Menu ServerManeu = new Menu("Server");
-//        ServerManeu.getItems().addAll(Serverprod);
-//        ServerManeu.getItems().addAll(Serverdev);
-//        ServerManeu.getItems().addAll(Servertest);
 
-        DataMenu.getItems().addAll(OracleManeu, MySqlManeu, new SeparatorMenuItem(),ServerManeu);
+        // MenuItem Serverprod = new MenuItem("正式环境");
+        // Serverprod.setAccelerator(KeyCombination.valueOf("ctrl+q"));// 设置item1的快捷键
+        // Serverprod.setOnAction(e -> {
+        // String shostaddress = "yhtsit.sunline.cn";
+        // String sport = "38822";
+        // String susername = "yhttest";
+        // String spassword = "yhttest_300348";
+        // String skey = "src/main/resources/Keya/id_rsa";
+        // String sapi = "yhtsit.sunline.cn";
+        // SHostAddressField.setText(shostaddress);
+        // SPortField.setText(sport);
+        // SUserNameField.setText(susername);
+        // SPassWordField.setText(spassword);
+        // SKeyField.setText(skey);
+        // SApiField.setText(sapi);
+        // });
+        //
+        // MenuItem Serverdev = new MenuItem("开发环境");
+        // Serverdev.setAccelerator(KeyCombination.valueOf("ctrl+w"));
+        // Serverdev.setOnAction(e -> {
+        // String shostaddress = "yhtdev.sunline.cn";
+        // String sport = "38822";
+        // String susername = "yhttest";
+        // String spassword = "yhttest_300348";
+        // String skey = "src/main/resources/Keya/id_rsa";
+        // String sapi = "yhtsit.sunline.cn";
+        // SHostAddressField.setText(shostaddress);
+        // SPortField.setText(sport);
+        // SUserNameField.setText(susername);
+        // SPassWordField.setText(spassword);
+        // SKeyField.setText(skey);
+        // SApiField.setText(sapi);
+        // });
+        //
+        // MenuItem Servertest = new MenuItem("测试环境");
+        // Servertest.setAccelerator(KeyCombination.valueOf("ctrl+-"));
+        // Servertest.setOnAction(e -> {
+        // String shostaddress = "yhtsit.sunline.cn";
+        // String sport = "38822";
+        // String susername = "yhttest";
+        // String spassword = "yhttest_300348";
+        // String skey = "src/main/resources/Keya/id_rsa";
+        // String sapi = "yhtsit.sunline.cn1";
+        // SHostAddressField.setText(shostaddress);
+        // SPortField.setText(sport);
+        // SUserNameField.setText(susername);
+        // SPassWordField.setText(spassword);
+        // SKeyField.setText(skey);
+        // SApiField.setText(sapi);
+        // });
+        //
+        // Menu ServerManeu = new Menu("Server");
+        // ServerManeu.getItems().addAll(Serverprod);
+        // ServerManeu.getItems().addAll(Serverdev);
+        // ServerManeu.getItems().addAll(Servertest);
+
+        DataMenu.getItems().addAll(OracleManeu, MySqlManeu, new SeparatorMenuItem(), ServerManeu);
         menuBar.getMenus().addAll(DataMenu);
         menuBar.setTooltip(new Tooltip("请选择数据库配置信息..."));
 
-//        ComboBox DatabaseTypeBox = new ComboBox();
-//        DatabaseTypeBox.setLayoutX(198);
-//        DatabaseTypeBox.setLayoutY(35);
-//        DatabaseTypeBox.setPrefWidth(100);
-//        DatabaseTypeBox.setPrefHeight(26);
-//        DatabaseTypeBox.getItems().addAll("Oracle", "MySql", "Server");
-//        DatabaseTypeBox.setValue("MySql");
-//        DatabaseTypeBox.setTooltip(new Tooltip("请选择数据库配置信息..."));
-//        DatabaseTypeBox.setEditable(true);
-//        DatabaseTypeBox.setOnAction((Event ev) -> {
-//            String DatabaseType = DatabaseTypeBox.getSelectionModel().getSelectedItem().toString();
-//            if ("Oracle".equals(DatabaseType)) {
-//                String djdbcDriver = "oracle.jdbc.driver.OracleDriver";
-//                String dhostAddress = "idcdbtest.dafycredit.com";
-//                String duserName = "dafy_sales";
-//                String dpassWord = "Ju$2017";
-//                String dport = "3306";
-//                String ddataBase = "dbtest01";
-//                DJDBCDriverField.setText(djdbcDriver);
-//                DHostAddressField.setText(dhostAddress);
-//                DUserNameField.setText(duserName);
-//                DPassWordField.setText(dpassWord);
-//                DPortField.setText(dport);
-//                DDataBaseField.setText(ddataBase);
-//            } else if ("MySql".equals(DatabaseType)) {
-//                String djdbcDriver = "com.mysql.jdbc.Driver";
-//                String dhostAddress = "rm-wz99130zn032n90h47v.mysql.rds.aliyuncs.com";
-//                String duserName = "jqebdaev";
-//                String dpassWord = "JQeBdebv1qaez";
-//                String dport = "3306";
-//                String ddataBase = "travaele_test";
-//                DJDBCDriverField.setText(djdbcDriver);
-//                DHostAddressField.setText(dhostAddress);
-//                DUserNameField.setText(duserName);
-//                DPassWordField.setText(dpassWord);
-//                DPortField.setText(dport);
-//                DDataBaseField.setText(ddataBase);
-//            } else if ("Server".equals(DatabaseType)) {
-//                String shostaddress = "45.126.139.225";
-//                String sport = "22";
-//                String susername = "liuzhi";
-//                String spassword = "JQBdevea@13qaz24wsx";
-//                String skey = "src/main/resources/Keya/id_rsa";
-//                String sapi = "www.travele.szjqnb.net";
-//                SHostAddressField.setText(shostaddress);
-//                SPortField.setText(sport);
-//                SUserNameField.setText(susername);
-//                SPassWordField.setText(spassword);
-//                SKeyField.setText(skey);
-//                SApiField.setText(sapi);
-//            }
-//        });
+        // ComboBox DatabaseTypeBox = new ComboBox();
+        // DatabaseTypeBox.setLayoutX(198);
+        // DatabaseTypeBox.setLayoutY(35);
+        // DatabaseTypeBox.setPrefWidth(100);
+        // DatabaseTypeBox.setPrefHeight(26);
+        // DatabaseTypeBox.getItems().addAll("Oracle", "MySql", "Server");
+        // DatabaseTypeBox.setValue("MySql");
+        // DatabaseTypeBox.setTooltip(new Tooltip("请选择数据库配置信息..."));
+        // DatabaseTypeBox.setEditable(true);
+        // DatabaseTypeBox.setOnAction((Event ev) -> {
+        // String DatabaseType = DatabaseTypeBox.getSelectionModel().getSelectedItem().toString();
+        // if ("Oracle".equals(DatabaseType)) {
+        // String djdbcDriver = "oracle.jdbc.driver.OracleDriver";
+        // String dhostAddress = "idcdbtest.dafycredit.com";
+        // String duserName = "dafy_sales";
+        // String dpassWord = "Ju$2017";
+        // String dport = "3306";
+        // String ddataBase = "dbtest01";
+        // DJDBCDriverField.setText(djdbcDriver);
+        // DHostAddressField.setText(dhostAddress);
+        // DUserNameField.setText(duserName);
+        // DPassWordField.setText(dpassWord);
+        // DPortField.setText(dport);
+        // DDataBaseField.setText(ddataBase);
+        // } else if ("MySql".equals(DatabaseType)) {
+        // String djdbcDriver = "com.mysql.jdbc.Driver";
+        // String dhostAddress = "rm-wz99130zn032n90h47v.mysql.rds.aliyuncs.com";
+        // String duserName = "jqebdaev";
+        // String dpassWord = "JQeBdebv1qaez";
+        // String dport = "3306";
+        // String ddataBase = "travaele_test";
+        // DJDBCDriverField.setText(djdbcDriver);
+        // DHostAddressField.setText(dhostAddress);
+        // DUserNameField.setText(duserName);
+        // DPassWordField.setText(dpassWord);
+        // DPortField.setText(dport);
+        // DDataBaseField.setText(ddataBase);
+        // } else if ("Server".equals(DatabaseType)) {
+        // String shostaddress = "45.126.139.225";
+        // String sport = "22";
+        // String susername = "liuzhi";
+        // String spassword = "JQBdevea@13qaz24wsx";
+        // String skey = "src/main/resources/Keya/id_rsa";
+        // String sapi = "www.travele.szjqnb.net";
+        // SHostAddressField.setText(shostaddress);
+        // SPortField.setText(sport);
+        // SUserNameField.setText(susername);
+        // SPassWordField.setText(spassword);
+        // SKeyField.setText(skey);
+        // SApiField.setText(sapi);
+        // }
+        // });
 
         DatabaseConnectionModeBox.setLayoutX(301);
         DatabaseConnectionModeBox.setLayoutY(35);
@@ -1636,22 +1645,22 @@ public class LoginPageView extends Application {
         EnvironmentModeBox.setOnAction((Event ev) -> {
             String environment = EnvironmentModeBox.getSelectionModel().getSelectedItem().toString();
             String DdataBase = DDataBaseField.getText();
-            switch(environment){
-                case "正式环境" :
-                    DDataBaseField.setText(StringUtil.ReplaceLastFew(DdataBase,3,"PRO"));
+            switch (environment) {
+                case "正式环境":
+                    DDataBaseField.setText(StringUtil.ReplaceLastFew(DdataBase, 3, "PRO"));
                     break;
-                case "开发环境" :
-                    DDataBaseField.setText(StringUtil.ReplaceLastFew(DdataBase,3,"DEV"));
+                case "开发环境":
+                    DDataBaseField.setText(StringUtil.ReplaceLastFew(DdataBase, 3, "DEV"));
                     break;
-                case "测试环境" :
-                    DDataBaseField.setText(StringUtil.ReplaceLastFew(DdataBase,3,"SIT"));
+                case "测试环境":
+                    DDataBaseField.setText(StringUtil.ReplaceLastFew(DdataBase, 3, "SIT"));
                     break;
-                case "验收环境" :
-                    DDataBaseField.setText(StringUtil.ReplaceLastFew(DdataBase,3,"UAT"));
+                case "验收环境":
+                    DDataBaseField.setText(StringUtil.ReplaceLastFew(DdataBase, 3, "UAT"));
                     break;
             }
         });
-        
+
         Button ConnectionTestButton = new Button();
         ConnectionTestButton.setLayoutX(0);
         ConnectionTestButton.setLayoutY(500);
@@ -1709,9 +1718,9 @@ public class LoginPageView extends Application {
                     String DUserName = DUserNameField.getText();
                     String DPassWord = DPassWordField.getText();
                     try {
-                        if(DatabaseUtil.Connect_Oracle(DJDBCDriver, DHostAddress, DPort, DDataBase, DUserName, DPassWord)){
+                        if (DatabaseUtil.Connect_Oracle(DJDBCDriver, DHostAddress, DPort, DDataBase, DUserName, DPassWord)) {
                             Dialog.SetMessageDialog("Success", "数据库连接成功！");
-                        }else{
+                        } else {
                             Dialog.SetMessageDialog("Error", "数据库连接失败，请检查后重试！");
                         }
                     } catch (Exception e) {
@@ -1725,9 +1734,9 @@ public class LoginPageView extends Application {
                     String DUserName = DUserNameField.getText();
                     String DPassWord = DPassWordField.getText();
                     try {
-                        if(DatabaseUtil.Connect_MySql(DJDBCDriver, DHostAddress, DPort, DDataBase, DUserName, DPassWord)){
+                        if (DatabaseUtil.Connect_MySql(DJDBCDriver, DHostAddress, DPort, DDataBase, DUserName, DPassWord)) {
                             Dialog.SetMessageDialog("Success", "数据库连接成功！");
-                        }else{
+                        } else {
                             Dialog.SetMessageDialog("Error", "数据库连接失败，请检查后重试！");
                         }
                     } catch (Exception e) {
@@ -1745,9 +1754,9 @@ public class LoginPageView extends Application {
                     String DPassWord = DPassWordField.getText();
                     String DDataBase = DDataBaseField.getText();
                     try {
-                        if(DatabaseUtil.Connect_SSHKeyMySql(SKey, SUserName, SHostAddress, SPort, DHostAddress, DPort, DJDBCDriver, DDataBase, DUserName, DPassWord)){
+                        if (DatabaseUtil.Connect_SSHKeyMySql(SKey, SUserName, SHostAddress, SPort, DHostAddress, DPort, DJDBCDriver, DDataBase, DUserName, DPassWord)) {
                             Dialog.SetMessageDialog("Success", "数据库连接成功！");
-                        }else{
+                        } else {
                             Dialog.SetMessageDialog("Error", "数据库连接失败，请检查后重试！");
                         }
                     } catch (Exception e) {
@@ -1765,9 +1774,9 @@ public class LoginPageView extends Application {
                     String DUserName = DUserNameField.getText();
                     String DPassWord = DPassWordField.getText();
                     try {
-                        if(DatabaseUtil.Connect_SSHPassWordMySql(SUserName, SHostAddress, SPort, SPassWord, DHostAddress, DPort, DJDBCDriver, DDataBase, DUserName, DPassWord)){
+                        if (DatabaseUtil.Connect_SSHPassWordMySql(SUserName, SHostAddress, SPort, SPassWord, DHostAddress, DPort, DJDBCDriver, DDataBase, DUserName, DPassWord)) {
                             Dialog.SetMessageDialog("Success", "数据库连接成功！");
-                        }else{
+                        } else {
                             Dialog.SetMessageDialog("Error", "数据库连接失败，请检查后重试！");
                         }
                     } catch (Exception e) {
@@ -1785,7 +1794,7 @@ public class LoginPageView extends Application {
         SystemSettingPane.getChildren().add(ConnectionTestButton);
         SystemSettingPane.getChildren().add(DatabaseConnectionModeBox);
         SystemSettingPane.getChildren().add(EnvironmentModeBox);
-        
+
         LoginStack.getChildren().addAll(SystemSettingPane);
 
         // 拖动监听器
@@ -1970,7 +1979,7 @@ public class LoginPageView extends Application {
                 tray.add(trayIcon);
             }
         } catch (AWTException ex) {
-//            Logger.getLogger(Tray.class.getName()).log(Level.SEVERE, null, ex);
+            // Logger.getLogger(Tray.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -2179,18 +2188,21 @@ public class LoginPageView extends Application {
                 AccountListViewDeleteButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
-                        usdb.remove(item);
-                        ConfigManage.addOrUpdate(UserSaveDataBox.path, usdb);
-                        AccountListView.setVisible(false);
-                        AccountOnButton.setVisible(false);
-                        AccountOffButton.setVisible(true);
-                        Dialog.SetMessageDialog("Success", "删除成功，重启后生效！");
+                        if(StringUtil.isNotEqual(item, "18688888888")){
+                            usdb.remove(item);
+                            ConfigManage.addOrUpdate(UserSaveDataBox.path, usdb);
+                            AccountListView.setVisible(false);
+                            AccountOnButton.setVisible(false);
+                            AccountOffButton.setVisible(true);
+                            Dialog.SetMessageDialog("Success", "删除成功，重启后生效！");
+                        }else{
+                            Dialog.SetMessageDialog("Warning", "请勿删除该账号！");
+                        }
                     }
                 });
 
                 Label NameLabel = new Label();
                 NameLabel.setText(ud.getAccount());
-                // NameLabel.setText("1306086303");
                 NameLabel.setGraphic(imageView);
                 NameLabel.setOnMouseMoved(new EventHandler<MouseEvent>() {
                     @Override
