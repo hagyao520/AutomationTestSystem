@@ -545,9 +545,9 @@ public class BackendFunctionCenterPageView extends Application {
                 jTabbedpane.setBounds(5, 510, 755, 375);
                 jTabbedpane.setFont(Constants.BASIC_BOLD);
                 LoginPageView.DDataBaseField.setText("YHT_USER_SIT");
-                jTabbedpane.addTab("用户", null, YHT_USER_Panel(), "YHT_USER");// 加入第一个页面
-                jTabbedpane.addTab("APP", null, YHT_APP_Panel(), "YHT_APP");// 加入第一个页面
-                jTabbedpane.addTab("前置", null, YHT_EDGE_Panel(), "YHT_EDGE");// 加入第一个页面
+                jTabbedpane.addTab("用户", null, YHT_USER_Panel(), "YHT_USER");
+                jTabbedpane.addTab("APP", null, YHT_APP_Panel(), "YHT_APP");
+                jTabbedpane.addTab("前置", null, YHT_EDGE_Panel(), "YHT_EDGE");
                 jTabbedpane.addChangeListener(new javax.swing.event.ChangeListener() {
                     @Override
                     public void stateChanged(javax.swing.event.ChangeEvent e) {
@@ -574,7 +574,7 @@ public class BackendFunctionCenterPageView extends Application {
 
                 JPanel OperationPanel = new JPanel(new GridLayout(0, 1));
                 // OperationPanel.setBorder(Constants.GRAY_BORDER);
-                OperationPanel.setBounds(765, 515, 51, 370);
+                OperationPanel.setBounds(760, 515, 60, 370);
 
                 // operation=new ButtonGroup();
 

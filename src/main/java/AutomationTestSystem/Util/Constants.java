@@ -34,7 +34,7 @@ public class Constants {
 	// 微软雅黑
 	public static Font BASIC_FONT = new Font("微软雅黑", Font.PLAIN, 12);
 	public static Font BASIC_BOLD = new Font("微软雅黑", Font.BOLD, 12);
-	public static Font BASIC_FONT2 = new Font("微软雅黑", Font.TYPE1_FONT, 12);
+	public static Font BASIC_FONT2 = new Font("微软雅黑", Font.PLAIN, 14);
 	public static Font BASIC_FONT3 = new Font("微软雅黑", Font.BOLD, 14);
 	public static Font BASIC_FONT4 = new Font("宋体",Font.BOLD,15);
 	// 楷体
