@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>AutomationTestSystem</groupId>
 	<artifactId>AutomationTestSystem</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
-
 	<name>AutomationTestSystem</name>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>jar</packaging>
 	<url>http://maven.apache.org</url>
 
 	<repositories>
@@ -28,6 +26,44 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
+
+		<!-- Installer fxlauncher exe -->
+		<fxlauncher.version>1.0.20</fxlauncher.version>
+		<!-- Installer Filename without suffix -->
+		<app.filename>${project.name}</app.filename>
+
+		<!-- The JavaFX Application class name -->
+		<app.mainClass>AutomationTestSystem.View.LoginPageView</app.mainClass>
+
+		<!-- Optional override to specify where the cached files are stored. Default is current working directory -->
+		<app.cacheDir>USERLIB/${project.name}</app.cacheDir>
+
+		<!-- Optional parameters to the application, will be embedded in the launcher and can be overriden on the command line -->
+		<app.parameters>--myOption=myValue --myOtherOption=myOtherValue</app.parameters>
+
+		<!-- The Application vendor used by javapackager -->
+		<app.vendor>Acme Inc</app.vendor>
+
+		<!-- The Application version used by javapackager -->
+		<app.version>${project.version}</app.version>
+
+		<!-- Base URL where you will host the application artifacts -->
+		<app.url>https://yhtsit.sunline.cn/yhttest/${project.name}/</app.url>
+
+		<!-- Optional scp target for application artifacts hosted at the above url -->
+		<app.deploy.target>yhttest@yhtsit.sunline.cn:/data/H5/sit/yhttest/${project.name}</app.deploy.target>
+
+		<!-- The app and launcher will be assembled in this folder -->
+		<app.dir>${project.build.directory}/app</app.dir>
+
+		<!-- Native installers will be built in this folder -->
+		<app.installerdir>${basedir}/installer</app.installerdir>
+
+		<!-- Should the client downgrade if the server version is older than the local version? -->
+		<app.acceptDowngrade>false</app.acceptDowngrade>
+
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
 	</properties>
 
 	<dependencies>
@@ -81,9 +117,6 @@
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>1.6.6</version>
 		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.dom4j/dom4j <dependency> <groupId>org.dom4j</groupId> 
-			<artifactId>dom4j</artifactId> <version>2.1.0</version> </dependency> -->
 
 		<!-- https://mvnrepository.com/artifact/org.eclipse.jgit/org.eclipse.jgit -->
 		<dependency>
@@ -184,8 +217,7 @@
 			</exclusions>
 			<version>${spring.boot.version}</version>
 		</dependency>
-		<!-- <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-log4j2</artifactId> 
-			<version>${spring.boot.version}</version> </dependency> -->
+		<!-- <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-log4j2</artifactId> <version>${spring.boot.version}</version> </dependency> -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -201,6 +233,11 @@
 			<groupId>org.comtel2000</groupId>
 			<artifactId>fx-onscreen-keyboard</artifactId>
 			<version>8.2.5</version>
+		</dependency>
+		<dependency>
+			<groupId>no.tornado</groupId>
+			<artifactId>fxlauncher</artifactId>
+			<version>${fxlauncher.version}</version>
 		</dependency>
 	</dependencies>
 
@@ -231,14 +268,17 @@
 					<include>**/*.xml</include>
 					<include>**/*.properties</include>
 				</includes>
-				<!--<excludes> <exclude>**/*.properties</exclude> <exclude>com/test/aboutjar/*</exclude> 
-					</excludes> -->
+				<!--<excludes> <exclude>**/*.properties</exclude> <exclude>com/test/aboutjar/*</exclude> </excludes> -->
 				<!-- 是否替换资源中的属性 -->
 				<filtering>false</filtering>
 			</resource>
 		</resources>
 
 		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -248,6 +288,7 @@
 					<target>${maven.compiler.target}</target>
 				</configuration>
 			</plugin>
+			<!-- Copy dependencies to appdir -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
@@ -259,7 +300,7 @@
 							<goal>copy-dependencies</goal>
 						</goals>
 						<configuration>
-							<outputDirectory>${project.build.directory}/lib</outputDirectory>
+							<outputDirectory>${app.dir}/lib</outputDirectory>
 							<overWriteReleases>false</overWriteReleases>
 							<overWriteSnapshots>false</overWriteSnapshots>
 							<overWriteIfNewer>true</overWriteIfNewer>
@@ -267,34 +308,160 @@
 					</execution>
 				</executions>
 			</plugin>
+			<!-- copy文件 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy_fxlauncher</id>
+						<phase>package</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<tasks>
+								<copy overwrite="true" file="${app.dir}/lib/fxlauncher-${fxlauncher.version}.jar" tofile="${app.dir}/fxlauncher.jar" />
+							</tasks>
+						</configuration>
+					</execution>
+					<execution>
+						<id>copy_src</id>
+						<phase>install</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<tasks>
+								<copy todir="${basedir}/Config/src/main/resources/data" overwrite="true">
+									<fileset dir="${basedir}/src/main/resources/data/">
+										<include name="**/**" />
+									</fileset>
+								</copy>
+								<copy todir="${basedir}/Config/src/main/resources/image/LoginPane/Logo" overwrite="true">
+									<fileset dir="${basedir}/src/main/resources/image/LoginPane/Logo/">
+										<include name="**/**" />
+									</fileset>
+								</copy>
+								<copy todir="${app.dir}" overwrite="true">
+									<fileset dir="${basedir}/Config/">
+										<include name="**/**" />
+									</fileset>
+								</copy>
+							</tasks>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- Compile project jar to appdir -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
-				<!-- <version>3.0.2</version> -->
+				<version>2.6</version>
 				<configuration>
-					<outputDirectory>${project.build.directory}</outputDirectory>
+					<outputDirectory>${app.dir}</outputDirectory>
 					<archive>
 						<manifest>
 							<addClasspath>true</addClasspath>
-							<classpathPrefix>libs/</classpathPrefix>
-							<mainClass>AutomationTestSystem.StartClient</mainClass>
+							<classpathPrefix>lib/</classpathPrefix>
+							<mainClass>${app.mainClass}</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
 			</plugin>
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>com.zenjava</groupId>
-				<artifactId>javafx-maven-plugin</artifactId>
-				<configuration>
-					<mainClass>AutomationTestSystem.StartClient</mainClass>
-					<vendor>AutomationTestSystem</vendor>
-				</configuration>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>1.4.0</version>
+				<!-- Generate app.xml manifest -->
+				<executions>
+					<execution>
+						<id>create-manifest</id>
+						<phase>package</phase>
+						<goals>
+							<goal>java</goal>
+						</goals>
+						<configuration>
+							<mainClass>fxlauncher.CreateManifest</mainClass>
+							<arguments>
+								<argument>${app.url}</argument>
+								<argument>${app.mainClass}</argument>
+								<argument>${app.dir}</argument>
+								<argument>--cache-dir=${app.cacheDir}</argument>
+								<argument>--accept-downgrade=${app.acceptDowngrade}</argument>
+								<argument>--include-extensions=jpg</argument>
+								<argument>${app.parameters}</argument>
+							</arguments>
+						</configuration>
+					</execution>
+					<!-- Embed app.xml inside fxlauncher.xml so we don't need to reference app.xml to start the app -->
+					<execution>
+						<id>embed-manifest-in-launcher</id>
+						<phase>package</phase>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<configuration>
+							<executable>jar</executable>
+							<workingDirectory>${app.dir}</workingDirectory>
+							<arguments>
+								<argument>uf</argument>
+								<argument>fxlauncher.jar</argument>
+								<argument>app.xml</argument>
+							</arguments>
+						</configuration>
+					</execution>
+					<execution>
+						<id>installer</id>
+						<phase>install</phase>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<configuration>
+							<executable>javafxpackager</executable>
+							<arguments>
+								<argument>-deploy</argument>
+								<argument>-native</argument>
+								<argument>exe</argument>
+								<argument>-srcdir</argument>
+								<argument>${app.dir}</argument>
+								<!-- <argument>-srcfiles</argument> <argument>fxlauncher.jar</argument> -->
+								<argument>-outdir</argument>
+								<argument>${app.installerdir}</argument>
+								<argument>-outfile</argument>
+								<argument>${app.filename}-${app.version}</argument>
+								<argument>-name</argument>
+								<argument>${project.name}</argument>
+								<argument>-appclass</argument>
+								<argument>fxlauncher.Launcher</argument>
+								<argument>-title</argument>
+								<argument>${project.name}</argument>
+								<argument>-vendor</argument>
+								<argument>${app.vendor}</argument>
+								<argument>-BappVersion=${app.version}</argument>
+								<argument>-Bidentifier=${project.groupId}.${project.artifactId}</argument>
+							</arguments>
+						</configuration>
+					</execution>
+					<!-- Copy application artifacts to remote site using scp (optional) -->
+					<execution>
+						<id>deploy-app</id>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<configuration>
+							<executable>scp</executable>
+							<arguments>
+								<argument>-P 38822</argument>
+								<argument>-r</argument>
+								<argument>target/app/.</argument>
+								<argument>${app.deploy.target}</argument>
+							</arguments>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
-		<finalName>Sunline.finline.AutomationTestSystem</finalName>
+		<finalName>${app.filename}-${app.version}</finalName>
 	</build>
 </project>
