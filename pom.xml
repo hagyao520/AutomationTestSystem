@@ -28,7 +28,7 @@
 		<maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
 
 		<!-- Installer fxlauncher exe -->
-		<fxlauncher.version>1.0.20</fxlauncher.version>
+		<fxlauncher.version>1.0.21</fxlauncher.version>
 		<!-- Installer Filename without suffix -->
 		<app.filename>${project.name}</app.filename>
 
@@ -321,7 +321,8 @@
 						</goals>
 						<configuration>
 							<tasks>
-								<copy overwrite="true" file="${app.dir}/lib/fxlauncher-${fxlauncher.version}.jar" tofile="${app.dir}/fxlauncher.jar" />
+								<!-- <copy overwrite="true" file="${app.dir}/lib/fxlauncher-${fxlauncher.version}.jar" tofile="${app.dir}/fxlauncher.jar" /> -->
+								<copy overwrite="true" file="${basedir}/Libs/fxlauncher-${fxlauncher.version}.jar" tofile="${app.dir}/fxlauncher.jar" />
 							</tasks>
 						</configuration>
 					</execution>
