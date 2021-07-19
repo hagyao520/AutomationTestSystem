@@ -10,8 +10,9 @@
      • 其中最重要的是AutomationTestSystem是跨平台的，何为跨平台，意思就是一套系统兼容多个平台，可以针对不同的平台用一套方法来编写测试用例
 
 ### 系统下载：
-   微云地址： [https://pan.baidu.com/s/1GQONQa1No4uyrt12-ls-uw](https://pan.baidu.com/s/1GQONQa1No4uyrt12-ls-uw)
-
+   百度网盘：https://pan.baidu.com/s/1ZYrihj5AS6V2U3zW1noVlw 提取码: t5nv
+   微云地址： [https://share.weiyun.com/s1Gtk5Nt](https://share.weiyun.com/s1Gtk5Nt)
+   
 ### 源码地址：
    Gitee地址： [https://gitee.com/hagyao520/AutomationTestSystem.git](https://gitee.com/hagyao520/AutomationTestSystem.git)
 
