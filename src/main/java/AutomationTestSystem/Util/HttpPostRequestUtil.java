@@ -11,9 +11,66 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
+import AutomationTestSystem.View.BackendFunctionCenterPageView;
+
 import static io.restassured.RestAssured.given;
 
 public class HttpPostRequestUtil {
+    /**
+     * 指定API接口URL,POST请求参数,获取Cookies
+     * @param ApiUrl
+     * @param Param
+     * @return Cookies
+     */
+    public static Map<String, String> GetPostCookies(String ApiUrl, String Body){
+
+        Response response = given()
+            .config((RestAssured.config().sslConfig(new SSLConfig().relaxedHTTPSValidation())))
+            .contentType("application/json;charset=UTF-8")
+            .log().all()
+            .request()
+            .body(Body)
+            .when()
+            .post(ApiUrl);
+        
+        response.print();
+        Map<String, String> Cookie=response.getCookies();
+        System.out.println("allCookies: "+Cookie);
+        
+        return Cookie;
+    }
+    
+    /**
+     * 指定API接口URL,POST请求参数,获取Cookie
+     * @Body ApiUrl
+     * @Body Body
+     * @return Cookie
+     */
+    public static String GetCookie(String ApiUrl, String Body) throws Exception{
+
+        Response response = given()
+                .config((RestAssured.config().sslConfig(new SSLConfig().relaxedHTTPSValidation())))
+                .contentType("application/json;charset=UTF-8")
+                .log().all()
+                .request()
+                .body(Body)
+                .when()
+                .post(ApiUrl);
+
+        response.print();
+        
+        Map<String, String> Cookies =response.getCookies();
+        String Cookie= Cookies.toString().replace(",", ";").replace("{", "").replace("}", "");
+        System.out.println("Cookie: " +Cookie);
+        BackendFunctionCenterPageView.textArea.append("请求地址：" + ApiUrl + "\n");
+        BackendFunctionCenterPageView.textArea.append("请求参数：\n" + JsonFormatUtil.formatJson(Body) + "\n");
+        BackendFunctionCenterPageView.textArea.append("返回结果：\n" + JsonFormatUtil.formatJson(response.asString()) + "\n");
+        BackendFunctionCenterPageView.textArea.append("<------------------------------------------- 分    割    线 -------------------------------------------->");
+        BackendFunctionCenterPageView.textAreaToBottom(BackendFunctionCenterPageView.textArea);
+        
+        return Cookie;
+    }
+    
 	   /**
 	   * 指定API接口URL,POST请求参数,获取ToKen
 	   * @param ApiUrl
@@ -34,7 +91,7 @@ public class HttpPostRequestUtil {
 	      String result = response.asString();
 	      JsonPath jsonPath = new JsonPath(result).setRoot("data");
 	      String ToKen = jsonPath.getString("token");
-	      System.out.println("token:" +ToKen);
+	      System.out.println("token: " +ToKen);
 
 	      return ToKen;
 	  }
@@ -133,6 +190,36 @@ public class HttpPostRequestUtil {
        return JsonResult;
    }
 
+   /**
+    * 指定API接口URL,POST请求参数,获取JsonResult
+    * @Body ApiUrl
+    * @Body Body
+    * @return JsonResult
+    */
+   public static String GetJsonResult(String ApiUrl, Map<String, Object> Headers, String Body)throws Exception{
+       
+       Response response = given()
+               .config((RestAssured.config().sslConfig(new SSLConfig().relaxedHTTPSValidation())))
+               .contentType("application/json; charset=UTF-8")
+               .headers(Headers)
+               .log().all()
+               .request()
+               .body(Body)
+               .when()
+               .post(ApiUrl);
+
+       response.print();
+
+       BackendFunctionCenterPageView.textArea.append("请求地址：" + ApiUrl + "\n");
+       BackendFunctionCenterPageView.textArea.append("请求表头：\n" + Headers + "\n");
+       BackendFunctionCenterPageView.textArea.append("请求参数：\n" + JsonFormatUtil.formatJson(Body) + "\n");
+       BackendFunctionCenterPageView.textArea.append("返回结果：\n" + JsonFormatUtil.formatJson(response.asString()) + "\n");
+       BackendFunctionCenterPageView.textArea.append("<------------------------------------------- 分    割    线 -------------------------------------------->");
+       BackendFunctionCenterPageView.textAreaToBottom(BackendFunctionCenterPageView.textArea);
+       
+       return response.asString();
+   }
+   
    /**
     * 指定API接口URL,POST请求参数,获取JsonResult
     * @param ApiUrl
@@ -254,29 +341,6 @@ public class HttpPostRequestUtil {
        return JsonDataParamValueValue;
    }
 
-   /**
-    * 指定API接口URL,POST请求参数,获取Cookie
-    * @param ApiUrl
-    * @param Param
-    * @return Cookie
-    */
-   public static Map<String, String> GetPostCookies(String ApiUrl, String Param){
-
-       Response response = given()
-               .config((RestAssured.config().sslConfig(new SSLConfig().relaxedHTTPSValidation())))
-               .contentType("application/json")
-               .request()
-               .body(Param)
-               .when()
-               .post(ApiUrl);
-
-       response.print();
-       Map<String, String> Cookie=response.getCookies();
-       System.out.println("allCookies"+Cookie);
-
-       return Cookie;
-   }
-
     /**
      * 指定API接口URL,POST请求参数,获取JsonResult
      * @param ApiUrl
@@ -388,7 +452,7 @@ public class HttpPostRequestUtil {
      * @return sessionId
      * @throws Exception
      */
-    public static String GetPostCookie(String ApiUrl,String Param) throws Exception{
+    public static String GetPostCookie1(String ApiUrl,String Param) throws Exception{
 
     	 String result = "";
          int responseCode = 0;
@@ -438,5 +502,10 @@ public class HttpPostRequestUtil {
             System.out.println(result);
         }
 		return sessionId;
+    }
+    
+    public static void main(String[] args) throws Exception {
+        String Body = "{\"email\":\"liuhzi1@sunline.cn\",\"password\":\"lz612425\"}";
+        GetCookie("http://10.22.83.65:3000/api/user/login", Body);
     }
 }

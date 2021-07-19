@@ -82,6 +82,7 @@ import AutomationTestSystem.Util.ApkIconUtil;
 import AutomationTestSystem.Util.ApkInfo;
 import AutomationTestSystem.Util.ApkUtil;
 import AutomationTestSystem.Util.DatabaseUtil;
+import AutomationTestSystem.Util.DateUtil;
 import AutomationTestSystem.Util.DialogUtil;
 import AutomationTestSystem.Util.DragUtil;
 import AutomationTestSystem.Util.HttpPostRequestUtil;
@@ -927,7 +928,7 @@ public class APPAutomationCenterPageView extends Application {
 						    	        		try {
 						    	        			SoftwareDownloadsButton.setDisable(true);
 //							    	        		String DownloadUrl ="http://oih492dqz.bkt.clouddn.com/lkkm_2.1.0_31_"+NewDate+"_android.apk";
-								                	String DownloadUrl ="http://gdown.baidu.com/data/wisegame/3d4de3ae1d2dc7d5/weixin_1360.apk";
+								                	String DownloadUrl ="https://dldir1.qq.com/weixin/android/weixin800android1840_arm64.apk";
 									    	    	String SavePath = ""+System.getProperty("user.home")+"\\AppData\\Local\\AutomationTestSystem\\app\\"+SoftwareEngineering+"\\TestData\\App\\";
 //									    	    	String FileName = "LekeU.apk";
 									    	    	String FileName = "WeChat.apk";
@@ -950,6 +951,7 @@ public class APPAutomationCenterPageView extends Application {
 							    	    			    	DownloadProgressBar.setVisible(false);
 											    	    	DownloadProgressLabel.setVisible(false);
 											    	    	SoftwareDownloadsButton.setDisable(false);
+											    	    	SoftwareDownloadsField.setEditable(true);
 							    	    			    }
 							    	    			});
 												}
@@ -971,7 +973,7 @@ public class APPAutomationCenterPageView extends Application {
 						                		try {
 						                			SoftwareDownloadsButton.setDisable(true);
 //							    	        		String DownloadUrl ="http://oih492dqz.bkt.clouddn.com/lkkmwy_1.0.5_11_"+NewDate+"_android.apk";
-								                	String DownloadUrl ="https://qd.myapp.com/myapp/qqteam/AndroidQQ/mobileqq_android.apk";
+								                	String DownloadUrl ="https://down.qq.com/qqweb/QQ_1/android_apk/Android_8.5.5.5105_537067016.apk";
 								                	String SavePath = ""+System.getProperty("user.home")+"\\AppData\\Local\\AutomationTestSystem\\app\\"+SoftwareEngineering+"\\TestData\\App\\";
 //									    	    	String FileName = "LekeW.apk";
 									    	    	String FileName = "QQ.apk";
@@ -994,6 +996,7 @@ public class APPAutomationCenterPageView extends Application {
 							    	    			    	DownloadProgressBar.setVisible(false);
 											    	    	DownloadProgressLabel.setVisible(false);
 											    	    	SoftwareDownloadsButton.setDisable(false);
+											    	    	SoftwareDownloadsField.setEditable(true);
 							    	    			    }
 							    	    			});
 												}	   
@@ -1994,6 +1997,7 @@ public class APPAutomationCenterPageView extends Application {
 	    	    GenerationReportButton.setId("GenerationReportButton");
 	    	    GenerationReportButton.setOnAction(new EventHandler<ActionEvent>() {
 	                public void handle(ActionEvent event) {
+	                    String date = DateUtil.getDateFormat("yyyy-MM-dd");
 	                	try {
 	                	    if(StringUtil.isEmpty(SoftwareEngineeringField.getText())){
 	                            Dialog.SetMessageDialog("Warning","请输入工程地址！");
@@ -2004,7 +2008,7 @@ public class APPAutomationCenterPageView extends Application {
 			                		Dialog.SetMessageDialog("Warning","请添加151.139.237.11 cdn.rawgit.com,到本地hosts文件末尾，或者翻墙即可正常打开测试报告，否则会显示乱码！");
 			                		FirstOpen =1;
 		                		}else{
-		                		    OpenBrowserUtil.OpenBrowser("file:///"+System.getProperty("user.home")+"//AppData//Local//AutomationTestSystem//app//"+SoftwareEngineering+"//TestOutput//ExtentReport//index.html");
+		                		    OpenBrowserUtil.OpenBrowser("file:///"+System.getProperty("user.home")+"//AppData//Local//AutomationTestSystem//app//"+SoftwareEngineering+"//TestOutput//ExtentReport//"+date+"//index.html");
 		                		}
 			                }
 						 }catch (Exception e) {

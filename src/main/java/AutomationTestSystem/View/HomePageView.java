@@ -19,11 +19,15 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import javafx.scene.control.ScrollPane;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -286,6 +290,7 @@ public class HomePageView extends Application {
                 FrontEndFunctionCenterPageView.FrontEndFunctionCenterPane.setVisible(false);
                 // FrontEndFunctionCenterPageView.getFrontEndFunctionCenterPane(false);
                 // BackendFunctionCenterPane.setVisible(false);
+                BackendFunctionCenterPageView.BackendFunctionCenterPane.setVisible(false);
                 WEBAutomationCenterPageView.WEBAutomationCenterPane.setVisible(false);
                 APIAutomationCenterPageView.APIAutomationCenterPane.setVisible(false);
                 APPAutomationCenterPageView.APPAutomationCenterPane.setVisible(false);
@@ -718,7 +723,7 @@ public class HomePageView extends Application {
         HomePagePane.getChildren().add(APIAutomationCenterPageView.APIAutomationCenterPane);
         HomePagePane.getChildren().add(APPAutomationCenterPageView.APPAutomationCenterPane);
         HomePagePane.getChildren().add(PerformanceAutomationCenterPageView.PerformanceAutomationCenterPane);
-         HomePagePane.getChildren().add(ATXEquipmentClusterCenterPageView.ATXEquipmentClusterCenterPane);
+        HomePagePane.getChildren().add(ATXEquipmentClusterCenterPageView.ATXEquipmentClusterCenterPane);
         HomePagePane.getChildren().add(AccountLoginCenterPane);
 
         Rectangle HomePageRectangle = new Rectangle();
@@ -727,11 +732,18 @@ public class HomePageView extends Application {
         HomePageRectangle.setArcHeight(10);
         HomePageRectangle.setArcWidth(10);
 
-        HomePageStack.getChildren().addAll(HomePagePane);
+        Dimension screen=Toolkit.getDefaultToolkit().getScreenSize();
+        if(screen.width<1920&&screen.height<1080){
+            ScrollPane HomePageScrolls = new ScrollPane(HomePagePane);
+            HomePageScrolls.setPrefSize(screen.width, screen.height);
+            HomePageStack.getChildren().addAll(HomePageScrolls);
+        }else{
+            HomePageStack.getChildren().addAll(HomePagePane);
+        }
         HomePageStack.setClip(HomePageRectangle);
 
         // 拖动监听器
-        DragUtil.addDragListener(HomePageInterfaceStage, HomePageStack);
+        DragUtil.addDragListener(HomePageInterfaceStage, HomePagePane);
         // DragUtil.addDragListener(HomePageInterfaceStage,APPAutomationCenterPageView.DevicesCenterPane);
 
         // 构建一个场景Scene,加载包含根布局的场景

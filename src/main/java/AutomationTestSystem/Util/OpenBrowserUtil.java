@@ -38,6 +38,6 @@ public class OpenBrowserUtil {
 	}
 	
 	public static void main(String[] args) throws Exception {
-		OpenBrowser("file:///C://Users//King-liu//AppData//Local//AutomationTestSystem//app//Appium//TestOutput//ExtentReport//index.html");
+		OpenBrowser("file:///C://Users//King-liu//AppData//Local//AutomationTestSystem//app//sunline.finline.applets.test//TestOutput//ExtentReport//2021-02-04//index.html");
     }
 }

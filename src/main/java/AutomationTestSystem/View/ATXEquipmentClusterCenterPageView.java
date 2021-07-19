@@ -678,7 +678,8 @@ public class ATXEquipmentClusterCenterPageView extends Application {
         		BackgroundWebView.setPrefSize(1365, 730);
 
         	    BackgroundWebEngine = BackgroundWebView.getEngine();
-        		BackgroundWebEngine.load("https://www.baidu.com/s?wd=https%3A%2F%2Fgitee.com%2Fhagyao520%2FATX&rsv_spt=1&rsv_iqid=0xbb1fa6b7000bef88&issp=1&f=8&rsv_bp=1&rsv_idx=2&ie=utf-8&rqlang=cn&tn=baiduhome_pg&rsv_dl=tb&rsv_enter=0&oq=ATX%253A%2520ATX%25E6%2598%25AF%25E4%25B8%2580%25E4%25B8%25AA%25E5%25AE%2589%25E5%258D%2593%25E8%25AE%25BE%25E5%25A4%2587%25E9%259B%2586%25E7%25BE%25A4%25E7%25AE%25A1%25E7%2590%2586%25E5%25B9%25B3%25E5%258F%25B0%252C%25E5%258F%25AF%25E5%259C%25A8%25E7%25BA%25BF%25E7%25AE%25A1%25E7%2590%2586%25E5%25A4%259A%25E5%258F%25B0%25E8%25AE%25BE%25E5%25A4%2587%252C&inputT=346&rsv_t=40d5acCWm3%2F4dcSAucmpVOMFB9txsxYlJtHuEKNBs%2BDWG5LE8fPzrEq6vXvIW%2FtwrCkb&rsv_pq=d86c78660011da73&rsv_n=2&rsv_sug3=54&rsv_sug2=0&rsv_sug4=346");
+        	    BackgroundWebEngine.load("https://gitee.com/hagyao520/ATX");
+//        		BackgroundWebEngine.load("https://www.baidu.com/s?wd=https%3A%2F%2Fgitee.com%2Fhagyao520%2FATX&rsv_spt=1&rsv_iqid=0xbb1fa6b7000bef88&issp=1&f=8&rsv_bp=1&rsv_idx=2&ie=utf-8&rqlang=cn&tn=baiduhome_pg&rsv_dl=tb&rsv_enter=0&oq=ATX%253A%2520ATX%25E6%2598%25AF%25E4%25B8%2580%25E4%25B8%25AA%25E5%25AE%2589%25E5%258D%2593%25E8%25AE%25BE%25E5%25A4%2587%25E9%259B%2586%25E7%25BE%25A4%25E7%25AE%25A1%25E7%2590%2586%25E5%25B9%25B3%25E5%258F%25B0%252C%25E5%258F%25AF%25E5%259C%25A8%25E7%25BA%25BF%25E7%25AE%25A1%25E7%2590%2586%25E5%25A4%259A%25E5%258F%25B0%25E8%25AE%25BE%25E5%25A4%2587%252C&inputT=346&rsv_t=40d5acCWm3%2F4dcSAucmpVOMFB9txsxYlJtHuEKNBs%2BDWG5LE8fPzrEq6vXvIW%2FtwrCkb&rsv_pq=d86c78660011da73&rsv_n=2&rsv_sug3=54&rsv_sug2=0&rsv_sug4=346");
         		
         		StartServiceButton.setLayoutX(219);
         		StartServiceButton.setLayoutY(782);

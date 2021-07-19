@@ -34,52 +34,42 @@ public class DatabaseUtil {
     public static void Connect() throws Exception {
         try {
             String DatabaseConnectionMode = LoginPageView.DatabaseConnectionModeBox.getSelectionModel().getSelectedItem().toString();
-            if ("Oracle".equals(DatabaseConnectionMode)) {
-                String DJDBCDriver = LoginPageView.DJDBCDriverField.getText();
-                String DHostAddress = LoginPageView.DHostAddressField.getText();
-                int DPort = Integer.parseInt(LoginPageView.DPortField.getText());
-                String DDataBase = LoginPageView.DDataBaseField.getText();
-                String DUserName = LoginPageView.DUserNameField.getText();
-                String DPassWord = LoginPageView.DPassWordField.getText();
-                
-                Connect_Oracle(DJDBCDriver, DHostAddress, DPort, DDataBase, DUserName, DPassWord);
+            
+            String DJDBCDriver = LoginPageView.DJDBCDriverField.getText();
+            String DHostAddress = LoginPageView.DHostAddressField.getText();
+            int DPort = Integer.parseInt(LoginPageView.DPortField.getText());
+            String DDataBase = LoginPageView.DDataBaseField.getText();
+            String DUserName = LoginPageView.DUserNameField.getText();
+            String DPassWord = LoginPageView.DPassWordField.getText();
+            
+            String SKey = LoginPageView.SKeyField.getText();
+            String SUserName = LoginPageView.SUserNameField.getText();
+            String SPassWord = LoginPageView.SPassWordField.getText();
+            String SHostAddress = LoginPageView.SHostAddressField.getText();
+            int SPort = Integer.parseInt(LoginPageView.SPortField.getText());
+            
+            Boolean state = false;
+            switch(DatabaseConnectionMode){
+                case "Oracle" :
+                    state = Connect_Oracle(DJDBCDriver, DHostAddress, DPort, DDataBase, DUserName, DPassWord);
+                    break;
+                case "MySql" :
+                    state = Connect_MySql(DJDBCDriver, DHostAddress, DPort, DDataBase, DUserName, DPassWord);
+                    break;
+                case "SHHKeyMySql" :
+                    state = Connect_SSHKeyMySql(SKey, SUserName, SHostAddress, SPort, DHostAddress, DPort, DJDBCDriver, DDataBase, DUserName, DPassWord);
+                    break;
+                case "SHHPassWordMySql" :
+                    state = Connect_SSHPassWordMySql(SUserName, SHostAddress, SPort, SPassWord, DHostAddress, DPort, DJDBCDriver, DDataBase, DUserName, DPassWord);
+                    break;
             }
-            if ("MySql".equals(DatabaseConnectionMode)) {
-                String DJDBCDriver = LoginPageView.DJDBCDriverField.getText();
-                String DHostAddress = LoginPageView.DHostAddressField.getText();
-                int DPort = Integer.parseInt(LoginPageView.DPortField.getText());
-                String DDataBase = LoginPageView.DDataBaseField.getText();
-                String DUserName = LoginPageView.DUserNameField.getText();
-                String DPassWord = LoginPageView.DPassWordField.getText();
-                Connect_MySql(DJDBCDriver, DHostAddress, DPort, DDataBase, DUserName, DPassWord);
-            }
-            if ("SHHKeyMySql".equals(DatabaseConnectionMode)) {
-                String SKey = LoginPageView.SKeyField.getText();
-                String SUserName = LoginPageView.SUserNameField.getText();
-                String SHostAddress = LoginPageView.SHostAddressField.getText();
-                int SPort = Integer.parseInt(LoginPageView.SPortField.getText());
-                String DHostAddress = LoginPageView.DHostAddressField.getText();
-                int DPort = Integer.parseInt(LoginPageView.DPortField.getText());
-                String DJDBCDriver = LoginPageView.DJDBCDriverField.getText();
-                String DUserName = LoginPageView.DUserNameField.getText();
-                String DPassWord = LoginPageView.DPassWordField.getText();
-                String DDataBase = LoginPageView.DDataBaseField.getText();
-                
-                Connect_SSHKeyMySql(SKey, SUserName, SHostAddress, SPort, DHostAddress, DPort, DJDBCDriver, DDataBase, DUserName, DPassWord);
-            }
-            if ("SHHPassWordMySql".equals(DatabaseConnectionMode)) {
-                String SUserName = LoginPageView.SUserNameField.getText();
-                String SHostAddress = LoginPageView.SHostAddressField.getText();
-                int SPort = Integer.parseInt(LoginPageView.SPortField.getText());
-                String SPassWord = LoginPageView.SPassWordField.getText();
-                String DHostAddress = LoginPageView.DHostAddressField.getText();
-                int DPort = Integer.parseInt(LoginPageView.DPortField.getText());
-                String DJDBCDriver = LoginPageView.DJDBCDriverField.getText();
-                String DDataBase = LoginPageView.DDataBaseField.getText();
-                String DUserName = LoginPageView.DUserNameField.getText();
-                String DPassWord = LoginPageView.DPassWordField.getText();
-                
-                Connect_SSHPassWordMySql(SUserName, SHostAddress, SPort, SPassWord, DHostAddress, DPort, DJDBCDriver, DDataBase, DUserName, DPassWord);
+            if(!state){
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        Dialog.SetMessageDialog("Error", "数据库连接失败，请检查后重试！");
+                    }
+                });
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -101,12 +91,6 @@ public class DatabaseUtil {
             return true;
         } catch (Exception e) {
             LOG.info("数据库连接失败");
-            Platform.runLater(new Runnable() {
-                @Override
-                public void run() {
-                    Dialog.SetMessageDialog("Error", "数据库连接失败，请检查后重试！");
-                }
-            });
             e.printStackTrace();
         }
         return false;
@@ -126,12 +110,6 @@ public class DatabaseUtil {
             return true;
         } catch (Exception e) {
             LOG.info("数据库连接失败");
-            Platform.runLater(new Runnable() {
-                @Override
-                public void run() {
-                    Dialog.SetMessageDialog("Error", "数据库连接失败，请检查后重试！");
-                }
-            });
             e.printStackTrace();
         }
         return false;
@@ -154,12 +132,6 @@ public class DatabaseUtil {
             return true;
         } catch (Exception e) {
             LOG.info("数据库连接失败");
-            Platform.runLater(new Runnable() {
-                @Override
-                public void run() {
-                    Dialog.SetMessageDialog("Error", "数据库连接失败，请检查后重试！");
-                }
-            });
             e.printStackTrace();
         }
         return false;
@@ -181,12 +153,6 @@ public class DatabaseUtil {
             return true;
         } catch (Exception e) {
             LOG.info("数据库连接失败");
-            Platform.runLater(new Runnable() {
-                @Override
-                public void run() {
-                    Dialog.SetMessageDialog("Error", "数据库连接失败，请检查后重试！");
-                }
-            });
             e.printStackTrace();
         }
         return false;

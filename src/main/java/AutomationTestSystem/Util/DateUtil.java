@@ -1,62 +1,79 @@
 package AutomationTestSystem.Util;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.apache.log4j.Logger;
 
 /**
- * Helper functions for handling dates.
- *
- * @author King
+ * @author 刘智King
+ * @date 2020年8月14日 上午11:18:42
  */
 public class DateUtil {
-
-    /** The date pattern that is used for conversion. Change as you wish. */
-    private static final String DATE_PATTERN = "dd.MM.yyyy";
-
-    /** The date formatter. */
-    private static final DateTimeFormatter DATE_FORMATTER =
-            DateTimeFormatter.ofPattern(DATE_PATTERN);
-
+    
+    static Logger log = Logger.getLogger(DateUtil.class);
+    
+    static Calendar cale = Calendar.getInstance();;
+    static Map<String,String> date = new HashMap<>();
+    
     /**
-     * Returns the given date as a well formatted String. The above defined
-     * {@link DateUtil#DATE_PATTERN} is used.
-     *
-     * @param date the date to be returned as a string
-     * @return formatted string
+     * 获取当前系统时间
+     * 
+     * @return
      */
-    public static String format(LocalDate date) {
-        if (date == null) {
-            return null;
-        }
-        return DATE_FORMATTER.format(date);
+    public static String getDate() {
+        SimpleDateFormat Date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        log.info(Date.format(new Date()));
+        return Date.format(new Date());
+    }
+
+    public static String getDateFormat(String DateFormat) {
+        SimpleDateFormat Date = new SimpleDateFormat(DateFormat);
+        return Date.format(new Date());
+    }
+    
+    /**
+     * 获取当前月的第一天和最后一天
+     * 
+     * @return
+     */
+    public static Map<String,String> getDateCalendar(String DateFormat) {
+        SimpleDateFormat format = new SimpleDateFormat(DateFormat);
+        String firstday,lastday;
+        
+        // 获取当前月的第一天
+        cale.add(Calendar.MONTH, 0);
+        cale.set(Calendar.DAY_OF_MONTH, 1);
+        firstday = format.format(cale.getTime());
+        
+        // 获取当前月的最后一天
+        cale.add(Calendar.MONTH, 1);
+        cale.set(Calendar.DAY_OF_MONTH, 0);
+        lastday = format.format(cale.getTime());
+        
+        date.put("firstday", firstday);
+        date.put("lastday", lastday);
+        return date;
     }
 
     /**
-     * Converts a String in the format of the defined {@link DateUtil#DATE_PATTERN}
-     * to a {@link LocalDate} object.
-     *
-     * Returns null if the String could not be converted.
-     *
-     * @param dateString the date as String
-     * @return the date object or null if it could not be converted
+     * 获取当前系统时间戳
+     * 
+     * @return
      */
-    public static LocalDate parse(String dateString) {
-        try {
-            return DATE_FORMATTER.parse(dateString, LocalDate::from);
-        } catch (DateTimeParseException e) {
-            return null;
-        }
+    public static String getTime() {
+        String Time = String.valueOf(new Date().getTime());
+        log.info(Time);
+        return Time;
     }
-
-    /**
-     * Checks the String whether it is a valid date.
-     *
-     * @param dateString
-     * @return true if the String is a valid date
-     */
-    public static boolean validDate(String dateString) {
-        // Try to parse the String.
-        return DateUtil.parse(dateString) != null;
+    
+    public static void main(String[] args) {
+        getDate();
+        log.info(System.currentTimeMillis());
+        
     }
+    
 }

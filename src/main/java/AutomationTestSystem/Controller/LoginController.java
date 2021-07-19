@@ -3,8 +3,6 @@ package AutomationTestSystem.Controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
-import org.json.JSONObject;
-
 import AutomationTestSystem.Config.ConfigManage;
 import AutomationTestSystem.Config.SystemServerConfiguration;
 import AutomationTestSystem.Util.DecodeUnicodeUtil;
@@ -90,29 +88,29 @@ public class LoginController {
 		return avatar;
 	}
 
-    public static String WebUserLogin2(String Account,String PassWord) throws Exception {
-
-    	//指定请求的Api地址
-        String ApiUrl = "http://"+Api+"/api/client/user/login";
-
-        final String Param = "{" +
-                "\"username\": \""+Account+"\",\"password\": \""+PassWord+"\"}";
-
-        //指定API地址,请求参数,发起请求,获取token值
-        String Token = HttpPostRequestUtil.GetToKen(ApiUrl,Param);
-
-        //指定请求的Api地址
-        String ApiUrl1 = "http://"+Api+"/api/client/user/userMsg?token=";
-
-        //指定API地址,请求参数,发起请求,获取Josn结果
-        String JsonResult = HttpGetRequestUtil.GetJsonResult(ApiUrl1,Token);
-
-        JSONObject object_result = new JSONObject(JsonResult);
-        String message = object_result.getString("message");
-
-        //将Json数据中的Unicode编码转换为中文
-        DecodeUnicodeUtil.decodeUnicode(JsonResult);
-
-		return message;
-	}
+//    public static String WebUserLogin2(String Account,String PassWord) throws Exception {
+//
+//    	//指定请求的Api地址
+//        String ApiUrl = "http://"+Api+"/api/client/user/login";
+//
+//        final String Param = "{" +
+//                "\"username\": \""+Account+"\",\"password\": \""+PassWord+"\"}";
+//
+//        //指定API地址,请求参数,发起请求,获取token值
+//        String Token = HttpPostRequestUtil.GetToKen(ApiUrl,Param);
+//
+//        //指定请求的Api地址
+//        String ApiUrl1 = "http://"+Api+"/api/client/user/userMsg?token=";
+//
+//        //指定API地址,请求参数,发起请求,获取Josn结果
+//        JsonPath JsonResult = HttpGetRequestUtil.GetJsonResult(ApiUrl1,Token);
+//
+//        JSONObject object_result = new JSONObject(JsonResult);
+//        String message = object_result.getString("message");
+//
+//        //将Json数据中的Unicode编码转换为中文
+//        DecodeUnicodeUtil.decodeUnicode(JsonResult.toString());
+//
+//		return message;
+//	}
 }

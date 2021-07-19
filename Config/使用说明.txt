@@ -64,20 +64,31 @@
 1.新增用户开户信息查询功能，一键查询所有用户的开户相关信息
 2.新增短信验证码查询功能，一键查询登录等相关短信验证码
 3.新增小微贷工商四要素验证功能，一键查询或修改相关工商四要素验证信息
-4.新增自动更新功能，当有新版本时，启动自动检测更新
+4.新增梅州项目，白名单，授信，清户等相关功能
+5.新增自动更新功能，当有新版本时，启动自动检测更新
 
 Windows系统使用说明：
-1.双击AutomationTestSystem-1.1.4.exe程序，点击install按钮，完成安装
-2.安装完成后，会自动运行程序，注：【系统需安装java环境】
-3.鼠标右击任务栏程序图标，打开程序安位置，进入app目录，双击【点击生成桌面快捷方式】bat文件，即可自动生成桌面快捷程序，以后点击可以运行
-4.打开Windows终端cmd命令窗口，运行java -jar JMoney.Xiyuyou.AutomationTestSystem-jfx.jar   
+【java环境配置】
+1.解压AutomationTestSystem-1.1.4_Win版.zip到桌面，进入目录中
+2.运行jdk-8u112-windows-x64.exe，一直下一步，默认安装即可
+3.打开系统环境变量配置，添加系统变量
+变量名：JAVA_HOME
+变量值：C:\Program Files\Java\jdk1.8.0_91
+变量名：CLASSPATH
+变量值：.;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar;%Ant_HOME%\lib
+变量名：JAVA_TOOL_OPTIONS
+变量值：-Dfile.encoding=UTF-8
+变量名：path
+追加变量值：;%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;
+4.双击AutomationTestSystem-1.1.4.exe程序，点击install按钮，完成安装，会自动运行程序
+5.鼠标右击任务栏程序图标，打开程序安位置，进入app目录，双击【点击生成桌面快捷方式】bat文件，即可自动生成桌面快捷程序，以后点击可以运行
+6.打开Windows终端cmd命令窗口，运行java -jar JMoney.Xiyuyou.AutomationTestSystem-jfx.jar   
 ---该方式也可以运行程序，可查看操作log日志
 
 Mac系统使用说明：
-1.解压AutomationTestSystem-1.1.4_Mac版.zip到桌面，进入目录
+1.解压AutomationTestSystem-1.1.4_Mac版.zip到桌面，进入目录中
 2.运行jdk-8u141-macosx-x64.dmg,安装java
 3.通过java运行【Sunline.finline.AutomationTestSystem-jfx.jar】文件打开即可
-
 4.配置java环境变量，打开mac终端，运行以下命令
 sudo -i vi /etc/.bash_profile
 open -e .bash_profile

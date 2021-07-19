@@ -80,6 +80,7 @@ import org.apache.log4j.Logger;
 import org.comtel2000.keyboard.control.KeyBoardPopup;
 import org.comtel2000.keyboard.control.KeyBoardPopupBuilder;
 
+import AutomationTestSystem.StartClient;
 import AutomationTestSystem.Config.ConfigManage;
 import AutomationTestSystem.Config.SystemDatabaseConfiguration;
 import AutomationTestSystem.Config.SystemServerConfiguration;
@@ -1666,15 +1667,19 @@ public class LoginPageView extends Application {
 			switch (environment) {
 			case "正式环境":
 				DDataBaseField.setText(StringUtil.ReplaceLastFew(DdataBase, 3, "PRO"));
+				StartClient.Environment ="PRO";
 				break;
 			case "开发环境":
 				DDataBaseField.setText(StringUtil.ReplaceLastFew(DdataBase, 3, "DEV"));
+				StartClient.Environment ="DEV";
 				break;
 			case "测试环境":
 				DDataBaseField.setText(StringUtil.ReplaceLastFew(DdataBase, 3, "SIT"));
+				StartClient.Environment ="SIT";
 				break;
 			case "验收环境":
 				DDataBaseField.setText(StringUtil.ReplaceLastFew(DdataBase, 3, "UAT"));
+				StartClient.Environment ="UAT";
 				break;
 			}
 		});
@@ -1689,8 +1694,7 @@ public class LoginPageView extends Application {
 		ConnectionTestButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				String DatabaseConnectionMode = DatabaseConnectionModeBox.getSelectionModel().getSelectedItem()
-						.toString();
+				String DatabaseConnectionMode = DatabaseConnectionModeBox.getSelectionModel().getSelectedItem().toString();
 
 				String djdbcdriver = DJDBCDriverField.getText();
 				String dhostaddress = DHostAddressField.getText();

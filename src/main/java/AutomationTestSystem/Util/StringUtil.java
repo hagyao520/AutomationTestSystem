@@ -3,6 +3,7 @@ package AutomationTestSystem.Util;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -11,6 +12,10 @@ import javax.swing.JTextField;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
+import com.google.gson.reflect.TypeToken;
+
 import AutomationTestSystem.View.LoginPageView;
 
 @SuppressWarnings("unused")
@@ -18,28 +23,28 @@ public class StringUtil {
 
     private static final Logger LOG = LoggerFactory.getLogger(StringUtil.class);
 
-    public static boolean isEmpty(String str) {
+    public static boolean isEmpty(Object str) {
         if (null == str || "".equals(str)) {
             return true;
         }
         return false;
     }
 
-    public static boolean isNotEmpty(String str) {
+    public static boolean isNotEmpty(Object str) {
         if (null == str || "".equals(str)) {
             return false;
         }
         return true;
     }
 
-    public static boolean isEqual(String str1, String str2) {
+    public static boolean isEqual(Object str1, Object str2) {
         if (str1 == str2 || str1.equals(str2)) {
             return true;
         }
         return false;
     }
 
-    public static boolean isNotEqual(String str1, String str2) {
+    public static boolean isNotEqual(Object str1, Object str2) {
         if (str1 == str2 || str1.equals(str2)) {
             return false;
         }
@@ -171,6 +176,20 @@ public class StringUtil {
     }
 
     /**
+     * 替换前几位字符
+     * 
+     * @param str,begin,end,newstr
+     * @return
+     */
+    public static String ReplaceTopFew(String str, int num, String newstr) {
+        StringBuilder sb = new StringBuilder(str);
+        int end = sb.length() - num;
+        sb.replace(0, end, newstr);
+//         System.out.println("替换后的字符串：" + sb.toString());
+        return sb.toString();
+    }
+    
+    /**
      * 替换后几位字符
      * 
      * @param str,begin,end,newstr
@@ -181,10 +200,10 @@ public class StringUtil {
         int begin = sb.length() - num;
         int end = sb.length();
         sb.replace(begin, end, newstr);
-        // System.out.println("替换后的字符串：" + sb.toString());
+//         System.out.println("替换后的字符串：" + sb.toString());
         return sb.toString();
     }
-
+    
     /**
      * 替换开始到结束指定位置的字符
      * 
@@ -222,6 +241,24 @@ public class StringUtil {
         return true;
     }
 
+    /**
+     * Java中String类型转换成Map
+     * 
+     * @param 
+     * @return
+     */
+    public static Map<String, Object> JsonToMap(String str_json) {
+        Map<String, Object> res = null;
+        try {
+            Gson gson = new Gson();
+            res = gson.fromJson(str_json, new TypeToken<Map<String, Object>>() {
+            }.getType());
+        } catch (JsonSyntaxException e) {
+            e.printStackTrace();
+        }
+        return res;
+}
+    
     public static void main(String[] args) {
          String str1 = "SELECT " + "a.usercd as 『用户ID』,a.custno as 客户号,a.phonno as 手机号,";
           str1 = str1.replace("as ", "{").replace(",", "}").replace(" FROM", "}");
@@ -230,6 +267,9 @@ public class StringUtil {
           System.out.println(getBetween(str1,"『","』")[0]);
         
          ReplaceLastFew("YHT_USER_SIT", 3, "DEV");
-         getBetween("请输入身份证号码...","请输入","...");
+         ReplaceTopFew("YHT_USER_UAT", 4, "YHT_ORDER");
+//         getBetween("请输入身份证号码...","请输入","...");
+//         ReplaceBetween("YHT_USER_UAT", 0,9, "YHT_ORDER");
+         
     }
 }
